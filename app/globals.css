@@ -170,26 +170,34 @@
 
   /* Layered cut-paper depth for display titles, echoing the hero diorama */
   :is(h1, h2, h3).font-display {
-    --paper-1: oklch(0.74 0.14 350);
-    --paper-2: oklch(0.6 0.19 305);
-    --paper-3: oklch(0.4 0.14 300);
-    /* Fibrous card-stock fill: noise multiplied over the heading's own color */
-    background-color: currentColor;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.35 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
-    background-size: 160px 160px;
+    /* Sheets sampled from the hero diorama: moon-cream face, pastel facade
+       stripes (pink, mint), then the purple brick wall as the backing card */
+    --paper-face: oklch(0.94 0.045 88);
+    --paper-1: oklch(0.82 0.09 355);
+    --paper-2: oklch(0.82 0.08 175);
+    --paper-3: oklch(0.47 0.15 298);
+    --paper-shade: oklch(0.12 0.04 290 / 0.45);
+    color: var(--paper-face);
+    /* Matte card stock: warm fibres plus a soft top-left light falloff */
+    background-color: var(--paper-face);
+    background-image:
+      linear-gradient(160deg, oklch(1 0 0 / 0.35), oklch(1 0 0 / 0) 45%, oklch(0.55 0.05 70 / 0.18)),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0 0.3 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+    background-size: 100% 100%, 180px 180px;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    /* Chained drop-shadows follow the glyph outline, so each sheet sits on the
-       previous one with its own cast shadow, like stacked cut paper */
+    /* Chained drop-shadows follow the glyph outline: each pastel sheet is
+       lifted off the next by a soft, diffuse shadow like the diorama figures */
     filter:
-      drop-shadow(0 0 0.5px oklch(0 0 0 / 0.5))
-      drop-shadow(0.035em 0.045em 0 var(--paper-1))
-      drop-shadow(0.01em 0.015em 0.02em oklch(0 0 0 / 0.55))
-      drop-shadow(0.035em 0.045em 0 var(--paper-2))
-      drop-shadow(0.01em 0.015em 0.02em oklch(0 0 0 / 0.55))
+      drop-shadow(-0.5px -0.5px 0 oklch(1 0 0 / 0.6))
+      drop-shadow(0.02em 0.03em 0.015em var(--paper-shade))
+      drop-shadow(0.03em 0.04em 0 var(--paper-1))
+      drop-shadow(0.02em 0.03em 0.02em var(--paper-shade))
+      drop-shadow(0.03em 0.04em 0 var(--paper-2))
+      drop-shadow(0.02em 0.03em 0.02em var(--paper-shade))
       drop-shadow(0.035em 0.045em 0 var(--paper-3))
-      drop-shadow(0.04em 0.08em 0.08em oklch(0 0 0 / 0.65));
+      drop-shadow(0.05em 0.09em 0.12em oklch(0.08 0.04 290 / 0.6));
   }
 }
 
