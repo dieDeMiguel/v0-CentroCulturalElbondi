@@ -1,312 +1,57 @@
-'use client'
-
-import { useState, useRef, useEffect, useCallback } from 'react'
-import { Pause, Volume2, VolumeOff, ChevronDown } from 'lucide-react'
-
-const HERO_VIDEO_URL =
-  'https://nqoenjvb7emeaosc.public.blob.vercel-storage.com/Sequence%2001_2.mp4'
-
-// Background music for the hero. Drop the uploaded track URL here.
-// The hero video itself has no audio track, so the speaker button controls this.
-const HERO_MUSIC_URL = ''
-
-// Target volume (0-1) when the music is unmuted, and fade duration in ms.
-const MUSIC_VOLUME = 0.6
-const FADE_DURATION = 900
-
-interface MousePosition {
-  x: number
-  y: number
-}
+import Image from 'next/image'
+import { ChevronDown } from 'lucide-react'
 
 export function ImmersiveHero() {
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [isMuted, setIsMuted] = useState(true)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0.5, y: 0.5 })
-  const [isLoaded, setIsLoaded] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const fadeRafRef = useRef<number | null>(null)
-
-  // Handle scroll progress
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const windowHeight = window.innerHeight
-      // Calculate progress: 0 at top, 1 when hero is scrolled past
-      const progress = Math.min(Math.max(-rect.top / windowHeight, 0), 1)
-      setScrollProgress(progress)
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // Handle mouse movement for parallax effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = e.clientX / window.innerWidth
-      const y = e.clientY / window.innerHeight
-      setMousePosition({ x, y })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  // Clean up any in-flight volume fade on unmount
-  useEffect(() => {
-    return () => {
-      if (fadeRafRef.current) cancelAnimationFrame(fadeRafRef.current)
-    }
-  }, [])
-
-  // Video load handler
-  const handleVideoLoad = useCallback(() => {
-    setIsLoaded(true)
-  }, [])
-
-  const handlePlayToggle = useCallback(() => {
-    if (!videoRef.current) return
-    if (isPlaying) {
-      videoRef.current.pause()
-      audioRef.current?.pause()
-      setIsPlaying(false)
-    } else {
-      void videoRef.current.play()
-      // Resume the music only if the user has already unmuted it.
-      if (!isMuted && audioRef.current) {
-        void audioRef.current.play().catch(() => {})
-      }
-      setIsPlaying(true)
-    }
-  }, [isPlaying, isMuted])
-
-  // Smoothly ramp the music volume; optionally pause when the fade reaches 0.
-  const fadeAudioTo = useCallback((target: number, pauseAtEnd = false) => {
-    const audio = audioRef.current
-    if (!audio) return
-    if (fadeRafRef.current) cancelAnimationFrame(fadeRafRef.current)
-
-    const start = audio.volume
-    const startTime = performance.now()
-
-    const step = (now: number) => {
-      const t = Math.min((now - startTime) / FADE_DURATION, 1)
-      audio.volume = start + (target - start) * t
-      if (t < 1) {
-        fadeRafRef.current = requestAnimationFrame(step)
-      } else {
-        fadeRafRef.current = null
-        if (pauseAtEnd) audio.pause()
-      }
-    }
-    fadeRafRef.current = requestAnimationFrame(step)
-  }, [])
-
-  const handleMuteToggle = useCallback(() => {
-    const audio = audioRef.current
-    const nextMuted = !isMuted
-    setIsMuted(nextMuted)
-
-    if (!audio) return
-    if (nextMuted) {
-      fadeAudioTo(0, true)
-    } else {
-      audio.volume = 0
-      audio.muted = false
-      // Only start playback if the video is currently playing.
-      if (isPlaying) {
-        void audio.play().catch(() => {})
-      }
-      fadeAudioTo(MUSIC_VOLUME)
-    }
-  }, [isMuted, isPlaying, fadeAudioTo])
-
-  // Calculate dynamic transforms based on scroll and mouse
-  const videoScale = 1 + scrollProgress * 0.15
-  const videoOpacity = 1 - scrollProgress * 0.6
-  const videoBlur = scrollProgress * 8
-  const parallaxX = (mousePosition.x - 0.5) * 20
-  const parallaxY = (mousePosition.y - 0.5) * 20
-
-  // Content reveal — CTAs wait until logo is fully gone (logo fades out by ~0.25)
-  const ctaOpacity = Math.max(0, (scrollProgress - 0.4) * 2.5)
-  const ctaY = Math.max(0, 50 - (scrollProgress - 0.4) * 125)
-
   return (
-    // Negative margin (matching the sticky navbar's clamped height) pulls the hero
-    // up beneath the translucent header so the 100dvh sticky child fills the full
-    // visible viewport at every screen size — keeping the Explora indicator on-screen.
-    <div
-      ref={containerRef}
-      className="relative -mt-[clamp(3.5rem,3rem+2.5vw,5rem)]"
-    >
-      {/* Full-screen cinematic hero container */}
-      <section className="relative h-[200vh]">
-        {/* Sticky video container — dvh tracks the visible viewport on mobile so
-            bottom-anchored UI (the Explora indicator) is never clipped by browser chrome */}
-        <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
-          {/* Video layer with parallax and scroll effects */}
-          <div
-            className="absolute inset-0 transition-transform duration-100 ease-out"
-            style={{
-              transform: `scale(${videoScale}) translate(${parallaxX}px, ${parallaxY}px)`,
-              opacity: videoOpacity,
-              filter: `blur(${videoBlur}px)`,
-            }}
-          >
-            <video
-              ref={videoRef}
-              src={HERO_VIDEO_URL}
-              autoPlay
-              playsInline
-              muted
-              loop
-              preload="auto"
-              poster="/images/hero.jpg"
-              onLoadedData={handleVideoLoad}
-              className="size-full object-cover"
-            >
-              <track kind="captions" />
-            </video>
-
-            {/* Background music layer — controlled by the speaker button */}
-            {HERO_MUSIC_URL && (
-              <audio
-                ref={audioRef}
-                src={HERO_MUSIC_URL}
-                loop
-                preload="auto"
-                aria-hidden="true"
-              />
-            )}
-
-            {/* Cinematic vignette overlay */}
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.3)_100%)]" />
-
-            {/* Subtle film grain texture */}
-            <div 
-              className="pointer-events-none absolute inset-0 opacity-[0.03] mix-blend-overlay"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-              }}
-            />
-          </div>
-
-          {/* Cursor-following spotlight effect */}
-          <div
-            className="pointer-events-none absolute inset-0 transition-opacity duration-500"
-            style={{
-              background: `radial-gradient(circle 400px at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(255,255,255,0.03) 0%, transparent 70%)`,
-              opacity: 1 - scrollProgress,
-            }}
+    <div>
+      <section className="relative w-full overflow-hidden bg-background">
+        <div className="relative h-[60svh] w-full md:h-auto md:aspect-[1584/672]">
+          <Image
+            src="/images/el-bondi-scene.png"
+            alt="Ilustración en papel recortado 3D de la fachada de El Bondi de noche: estructura de madera, banderines, faroles, una artista tatuada en telas aéreas, una chica en el trapecio, un acróbata en la soga, chicos en monociclo y con aro, una pareja bailando tango y músicos con guitarra, acordeón, bombo y violín frente a la pared de rayas de colores."
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
           />
 
-          {/* Gradient overlays for smooth transition */}
-          <div 
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/5 to-transparent"
-            style={{ opacity: 0.4 + scrollProgress * 0.6 }}
-          />
-          <div 
-            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-transparent"
-            style={{ opacity: scrollProgress * 0.5 }}
-          />
-
-          {/* Scroll indicator - fades out on scroll, always centered */}
-          <div
-            className="absolute inset-x-0 bottom-[env(safe-area-inset-bottom,0px)] z-20 flex justify-center pb-8 sm:pb-10 md:pb-12 transition-all duration-500"
-            style={{
-              opacity: Math.max(0, 1 - scrollProgress * 3),
-              transform: `translateY(${scrollProgress * 20}px)`,
-            }}
+          <a
+            href="#contenido"
+            className="absolute inset-x-0 bottom-4 z-10 mx-auto flex w-fit flex-col items-center gap-2 rounded-full px-4 py-2 text-white/80 transition-colors hover:text-white sm:bottom-8"
           >
-            <div className="flex flex-col items-center gap-2 sm:gap-3">
-              <span className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] text-white/70">
-                Explorá
-              </span>
-              <div className="animate-bounce">
-                <ChevronDown className="size-5 sm:size-6 text-white/70" />
-              </div>
-            </div>
-          </div>
-
-          {/* Editorial content — only appears AFTER the logo is fully gone */}
-          <div
-            className="absolute inset-0 flex items-center justify-center px-4 transition-all duration-500"
-            style={{
-              opacity: ctaOpacity,
-              transform: `translateY(${ctaY}px)`,
-              pointerEvents: scrollProgress > 0.5 ? 'auto' : 'none',
-            }}
-          >
-            <div className="max-w-4xl text-center">
-              <h1 className="font-display text-4xl tracking-wide text-foreground md:text-6xl lg:text-7xl">
-                Un espacio para la comunidad
-              </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-                Donde el arte, la cultura y los vecinos se encuentran. 
-                Un centro cultural vivo, construido por y para la comunidad de Maschwitz.
-              </p>
-              <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-                <a
-                  href="/programacion"
-                  className="group relative overflow-hidden rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
-                >
-                  <span className="relative z-10">Ver Programación</span>
-                  <div className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-500 group-hover:translate-x-0" />
-                </a>
-                <a
-                  href="/centro-cultural"
-                  className="rounded-lg border border-border bg-background/80 px-8 py-3 text-sm font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:bg-background hover:shadow-lg"
-                >
-                  Conocé El Bondi
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Video controls - bottom right, always visible */}
-          <div 
-            className="absolute bottom-6 right-6 z-30 flex gap-2 transition-all duration-300"
-            style={{
-              opacity: Math.max(0.5, 1 - scrollProgress),
-            }}
-          >
-            <button
-              onClick={handlePlayToggle}
-              aria-label={isPlaying ? 'Pausar video' : 'Reproducir video'}
-              className="group relative flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-md transition-all duration-300 ease-out hover:bg-black/50"
-            >
-              {isPlaying ? (
-                <Pause className="size-4 fill-current" />
-              ) : (
-                <svg className="size-4 fill-current" viewBox="0 0 24 24">
-                  <polygon points="5,3 19,12 5,21" />
-                </svg>
-              )}
-            </button>
-            <button
-              onClick={handleMuteToggle}
-              aria-label={isMuted ? 'Activar sonido' : 'Silenciar'}
-              className="group relative flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-md transition-all duration-300 ease-out hover:bg-black/50"
-            >
-              {isMuted ? (
-                <VolumeOff className="size-4" />
-              ) : (
-                <Volume2 className="size-4" />
-              )}
-            </button>
-          </div>
+            <span className="text-xs font-medium uppercase tracking-[0.2em] drop-shadow">
+              Explorá
+            </span>
+            <ChevronDown className="size-5 drop-shadow sm:size-6" aria-hidden="true" />
+          </a>
         </div>
       </section>
 
-      {/* Spacer for smooth transition to content */}
-      <div className="pointer-events-none h-[10vh]" />
+      <section id="contenido" className="scroll-mt-20 px-4 py-16 md:py-24">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="font-display text-4xl tracking-wide text-balance text-foreground md:text-6xl lg:text-7xl">
+            Un espacio para la comunidad
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground md:text-xl">
+            Donde el arte, la cultura y los vecinos se encuentran. Un centro cultural vivo,
+            construido por y para la comunidad de Maschwitz.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="/programacion"
+              className="rounded-lg bg-primary px-8 py-3 text-sm font-medium text-primary-foreground transition-shadow hover:shadow-lg hover:shadow-primary/25"
+            >
+              Ver Programación
+            </a>
+            <a
+              href="/centro-cultural"
+              className="rounded-lg border border-border bg-background/80 px-8 py-3 text-sm font-medium text-foreground transition-colors hover:bg-background"
+            >
+              Conocé El Bondi
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
