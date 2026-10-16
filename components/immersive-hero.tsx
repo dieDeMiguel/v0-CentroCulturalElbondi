@@ -7,7 +7,7 @@ export function ImmersiveHero() {
         <div className="relative h-[60svh] w-full md:h-auto md:aspect-[1584/672]">
           <Image
             src="/images/el-bondi-scene.png"
-            alt="Ilustración en papel recortado 3D de la fachada de El Bondi de noche: estructura de madera, banderines, faroles, una artista en telas aéreas, una chica en el trapecio y un acróbata en la soga suspendidos en lo alto, chicos en monociclo y con aro, una pareja bailando tango y músicos con guitarra, acordeón, bombo y violín frente a la pared de rayas de colores."
+            alt="Ilustración en papel recortado 3D de la fachada de El Bondi de noche, centrada: una pared de rayas verticales rosa, celeste, rojo, amarillo, verde y lila con un mural de pájaros, junto a un edificio con arcos de colores alrededor de una ventana. Arriba, una estructura con luces y banderines donde una artista en telas aéreas, una chica en el trapecio y un acróbata en la soga se suspenden en lo alto; a los costados, edificios y árboles. En la vereda, chicos en monociclo y con aro, una pareja bailando tango y músicos con guitarra, acordeón, batería, violín y trompeta."
             fill
             priority
             sizes="100vw"
