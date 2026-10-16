@@ -319,8 +319,85 @@ html {
 .animate-drift-b { animation: drift-b 20s ease-in-out infinite; }
 .animate-drift-c { animation: drift-c 24s ease-in-out infinite; }
 
+/* Hero illustration motion: slow camera drift plus glowing light overlays */
+@keyframes scene-drift {
+  0%, 100% { transform: scale(1.02) translate(0, 0); }
+  50% { transform: scale(1.06) translate(-0.8%, -0.6%); }
+}
+.scene-drift {
+  animation: scene-drift 28s ease-in-out infinite;
+  transform-origin: 50% 60%;
+  will-change: transform;
+}
+
+.scene-star,
+.scene-bulb,
+.scene-window,
+.scene-moon-glow {
+  position: absolute;
+  translate: -50% -50%;
+  border-radius: 9999px;
+}
+
+@keyframes scene-twinkle {
+  0%, 100% { opacity: 0.15; scale: 0.6; }
+  50% { opacity: 1; scale: 1.15; }
+}
+.scene-star {
+  width: 1.4%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, oklch(0.98 0.03 95 / 0.95) 0%, oklch(0.95 0.06 95 / 0.35) 35%, transparent 70%);
+  animation: scene-twinkle 3.6s ease-in-out infinite;
+}
+
+@keyframes scene-flicker {
+  0%, 100% { opacity: 0.55; }
+  20% { opacity: 1; }
+  45% { opacity: 0.7; }
+  60% { opacity: 0.95; }
+  80% { opacity: 0.6; }
+}
+.scene-bulb {
+  width: 1.6%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, oklch(0.97 0.08 90 / 0.9) 0%, oklch(0.88 0.14 80 / 0.4) 40%, transparent 72%);
+  mix-blend-mode: screen;
+  animation: scene-flicker 2.4s ease-in-out infinite;
+}
+
+@keyframes scene-window-glow {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.7; }
+}
+.scene-window {
+  width: 4%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, oklch(0.9 0.12 75 / 0.6) 0%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: scene-window-glow 6s ease-in-out infinite;
+}
+
+@keyframes scene-moon {
+  0%, 100% { opacity: 0.35; scale: 1; }
+  50% { opacity: 0.65; scale: 1.08; }
+}
+.scene-moon-glow {
+  width: 10%;
+  aspect-ratio: 1;
+  background: radial-gradient(circle, oklch(0.96 0.05 95 / 0.45) 0%, transparent 65%);
+  mix-blend-mode: screen;
+  animation: scene-moon 7s ease-in-out infinite;
+}
+
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .scene-drift,
+  .scene-star,
+  .scene-bulb,
+  .scene-window,
+  .scene-moon-glow {
+    animation: none !important;
+  }
   html {
     scroll-behavior: auto;
   }
