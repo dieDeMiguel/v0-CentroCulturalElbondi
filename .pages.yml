@@ -266,3 +266,71 @@ content:
         label: Enlace
         description: Por ejemplo "/evento/slug-del-evento" o una URL completa. Si queda vacío no se muestra enlace.
         type: string
+
+  - name: integrantes
+    label: Integrantes
+    type: file
+    path: content/integrantes.json
+    format: json
+    list: true
+    fields:
+      - name: name
+        label: Nombre
+        type: string
+        required: true
+      - name: role
+        label: Rol
+        description: Por ejemplo "Coordinadora de Talleres".
+        type: string
+        required: true
+      - name: bio
+        label: Biografía
+        type: text
+      - name: image
+        label: Foto
+        description: Se muestra en blanco y negro.
+        type: image
+
+  - name: redes
+    label: Redes sociales
+    description: Redes del Centro Cultural. Se muestran en /redes y en el pie de página. La radio tiene sus propias redes.
+    type: file
+    path: content/redes.json
+    format: json
+    list: true
+    fields:
+      - name: network
+        label: Red
+        description: Define el ícono.
+        type: select
+        required: true
+        options:
+          values:
+            - { value: instagram, label: Instagram }
+            - { value: youtube, label: YouTube }
+            - { value: facebook, label: Facebook }
+            - { value: x, label: X / Twitter }
+            - { value: whatsapp, label: WhatsApp }
+            - { value: spotify, label: Spotify }
+            - { value: web, label: Otro sitio web }
+      - name: name
+        label: Nombre visible
+        type: string
+        required: true
+      - name: handle
+        label: Usuario
+        description: Por ejemplo "@cccelbondi".
+        type: string
+      - name: description
+        label: Descripción
+        description: Se muestra en la tarjeta de /redes.
+        type: text
+      - name: href
+        label: Enlace
+        description: URL completa, empezando con https://
+        type: string
+        required: true
+      - name: cta
+        label: Texto del botón
+        description: Por ejemplo "Seguir en Instagram".
+        type: string

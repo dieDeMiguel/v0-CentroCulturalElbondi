@@ -1,0 +1,18 @@
+[
+  {
+    "network": "instagram",
+    "name": "Instagram",
+    "handle": "@cccelbondi",
+    "description": "El día a día del espacio: eventos, talleres, convocatorias y fotos de lo que pasa en El Bondi.",
+    "href": "https://instagram.com/cccelbondi",
+    "cta": "Seguir en Instagram"
+  },
+  {
+    "network": "youtube",
+    "name": "YouTube",
+    "handle": "@ElBondi-colectivocultural",
+    "description": "Registros de shows, ferias, charlas y proyectos del Colectivo Cultural. Reviví lo que pasó en el escenario.",
+    "href": "https://youtube.com/@ElBondi-colectivocultural/videos",
+    "cta": "Ir al canal"
+  }
+]

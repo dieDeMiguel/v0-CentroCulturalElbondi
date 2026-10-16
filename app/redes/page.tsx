@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { Home, Instagram, Youtube, ArrowUpRight, Radio } from 'lucide-react'
+import { Home, Youtube, ArrowUpRight, Radio } from 'lucide-react'
+import { socials } from '@/lib/socials'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
 import { InteractiveGlow } from '@/components/interactive-glow'
@@ -16,27 +17,6 @@ import {
  * Redes del Centro Cultural / Colectivo Cultural El Bondi.
  * OJO: la radio (FM RadioActiva 96.9) tiene sus propias redes en /radio-espacio.
  */
-const socials = [
-  {
-    name: 'Instagram',
-    handle: '@cccelbondi',
-    description:
-      'El día a día del espacio: eventos, talleres, convocatorias y fotos de lo que pasa en El Bondi.',
-    href: 'https://instagram.com/cccelbondi',
-    icon: Instagram,
-    cta: 'Seguir en Instagram',
-  },
-  {
-    name: 'YouTube',
-    handle: '@ElBondi-colectivocultural',
-    description:
-      'Registros de shows, ferias, charlas y proyectos del Colectivo Cultural. Reviví lo que pasó en el escenario.',
-    href: 'https://youtube.com/@ElBondi-colectivocultural/videos',
-    icon: Youtube,
-    cta: 'Ir al canal',
-  },
-]
-
 export default function RedesPage() {
   return (
     <main className="min-h-screen bg-background">

@@ -1,10 +1,11 @@
-import { Instagram, Youtube } from 'lucide-react'
+import { socials } from '@/lib/socials'
 
 export function Footer() {
-  const socialLinks = [
-    { icon: Instagram, href: 'https://instagram.com/cccelbondi', label: 'Instagram' },
-    { icon: Youtube, href: 'https://youtube.com/@ElBondi-colectivocultural/videos', label: 'YouTube' },
-  ]
+  const socialLinks = socials.map((social) => ({
+    icon: social.icon,
+    href: social.href,
+    label: social.name,
+  }))
 
   return (
     <footer className="border-t border-border bg-card">
