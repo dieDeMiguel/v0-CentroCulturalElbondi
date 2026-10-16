@@ -18,15 +18,11 @@ export function CommunitySection() {
           {/* Left - CTA */}
           <ScrollReveal direction="left" scaleFrom={0.95} duration={800}>
           <div className="flex flex-col gap-6">
-            <span className="text-sm font-medium tracking-wider text-primary uppercase">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
-            </span>
             <h2 className="font-display text-4xl tracking-wide text-foreground md:text-5xl">
               Se parte de nuestra comunidad
             </h2>
             <p className="max-w-md leading-relaxed text-muted-foreground">
-              Al vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-              takimata sanctus est Lorem ipsum dolor sit amet.
+              Te invitamos a formar parte de esta iniciativa, ya sea como docente de un taller, alumno, artista o amigo del espacio. Sumate!
             </p>
           </div>
           </ScrollReveal>

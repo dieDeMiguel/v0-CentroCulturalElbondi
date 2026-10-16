@@ -14,6 +14,7 @@ import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
 import { InteractiveGlow } from '@/components/interactive-glow'
 import { AnimatedTeamCard } from '@/components/animated-team-card'
+import integrantesData from '@/content/integrantes.json'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -23,62 +24,16 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 
-const teamMembers = [
-  {
-    name: 'Martin Gonzalez',
-    role: 'Maestro de Ceremonias',
-    bio: 'Animador y presentador de los eventos del centro cultural. Su energia y carisma hacen unicas las noches del Variete Bajo las Estrellas.',
-    image: '/images/team-performer.jpg',
-  },
-  {
-    name: 'Fernando Silva',
-    role: 'Coordinador de Voluntarios',
-    bio: 'Parte fundamental del equipo del Variete Bajo las Estrellas. Coordina a los voluntarios y colabora en la produccion de eventos.',
-    image: '/images/team-crew.jpg',
-  },
-  {
-    name: 'Mariana Lopez',
-    role: 'Directora General',
-    bio: 'Fundadora de El Bondi desde 2010. Gestora cultural con mas de 15 anos de experiencia en proyectos comunitarios y educativos en la zona norte del Gran Buenos Aires.',
-    image: '/images/team-mariana.jpg',
-  },
-  {
-    name: 'Carlos Mendez',
-    role: 'Coordinador de Talleres',
-    bio: 'Artista plastico y educador popular. Coordina la oferta de talleres y el programa de bachillerato popular desde sus inicios.',
-    image: '/images/team-carlos.jpg',
-  },
-  {
-    name: 'Lucia Fernandez',
-    role: 'Directora de Radio Activa',
-    bio: 'Comunicadora social y periodista comunitaria. Dirige la programacion de Radio Activa FM 96.9 y coordina los talleres de radio.',
-    image: '/images/team-lucia.jpg',
-  },
-  {
-    name: 'Diego Ramirez',
-    role: 'Coordinador de Eventos',
-    bio: 'Productor de espectaculos y gestor cultural. Responsable de la programacion de eventos, el Variete Bajo las Estrellas y festivales.',
-    image: '/images/team-diego.jpg',
-  },
-  {
-    name: 'Ana Torres',
-    role: 'Coordinadora de Educacion',
-    bio: 'Pedagoga y educadora popular. Lleva adelante el bachillerato popular y los programas de formacion para jovenes y adultos.',
-    image: '/images/team-ana.jpg',
-  },
-  {
-    name: 'Pablo Gutierrez',
-    role: 'Responsable Tecnico',
-    bio: 'Tecnico en sonido e iluminacion. Se encarga de toda la parte tecnica de eventos, la radio y el mantenimiento del espacio.',
-    image: '/images/team-pablo.jpg',
-  },
-  {
-    name: 'Sofia Herrera',
-    role: 'Instructora de Circo',
-    bio: 'Artista circense y docente. Ensena acrobacias, malabares y artes aereas a ninos, jovenes y adultos en los talleres del centro.',
-    image: '/images/team-sofia.jpg',
-  },
-]
+const teamMembers = (
+  integrantesData as { name: string; role: string; bio?: string; image?: string }[]
+)
+  .filter((member) => member.name)
+  .map((member) => ({
+    name: member.name,
+    role: member.role ?? '',
+    bio: member.bio ?? '',
+    image: member.image || '/images/logo-white.png',
+  }))
 
 const specialThanks = [
   { name: 'Leonor Conti', reason: 'Viuda del Nene Conti, hijo del dueno del cine San Martin y Gloria. Nos dio las llaves para ingresar al espacio y su apoyo frente a distintos sectores de la sociedad local.' },

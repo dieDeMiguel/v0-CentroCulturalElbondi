@@ -1,10 +1,11 @@
-import { Instagram, Youtube } from 'lucide-react'
+import { socials } from '@/lib/socials'
 
 export function Footer() {
-  const socialLinks = [
-    { icon: Instagram, href: 'https://instagram.com/cccelbondi', label: 'Instagram' },
-    { icon: Youtube, href: 'https://youtube.com/@ElBondi-colectivocultural/videos', label: 'YouTube' },
-  ]
+  const socialLinks = socials.map((social) => ({
+    icon: social.icon,
+    href: social.href,
+    label: social.name,
+  }))
 
   return (
     <footer className="border-t border-border bg-card">
@@ -56,7 +57,7 @@ export function Footer() {
       <div className="border-t border-border/50 bg-card/80">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row lg:px-8">
           <p className="text-xs text-muted-foreground">
-            {'Copyright © 2015-2026 colectivo cultural | Lorem Ipsum | Design by'}
+            {'Copyright © 2015-2026 Colectivo Culural ONG'}
           </p>
           <a
             href="#"
