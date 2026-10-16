@@ -1,19 +1,19 @@
 [
   {
-    "title": "Festival de Rock",
-    "slug": "festival-de-rock",
-    "description": "Bandas de rock en vivo sobre el escenario del Bondi. Una noche potente de musica local. As rock y la Ballena de Mawy",
-    "fullDescription": "El Festival de Rock reune a bandas locales e invitadas sobre el escenario del Bondi. Una noche potente de musica en vivo para celebrar la escena rockera de Maschwitz y la zona con cierre de cumbia.",
-    "image": "/images/evento-musica.jpg",
+    "title": "Fiesta rockumbiera",
+    "slug": "fiesta-rockumbiera",
+    "description": "Bandas de rock en vivo sobre el escenario del Bondi. Una noche potente de musica local. As rock y la Ballena de Mawy y Dj Rancho",
+    "fullDescription": "El Festival de Rock reune a bandas locales e invitadas sobre el escenario del Bondi. Una noche potente de musica en vivo para celebrar la escena rockera de Maschwitz y la zona con cierre de cumbia y fiesta",
+    "image": "/images/WhatsApp Image 2026-10-16 at 15.20.23.jpeg",
     "calendarDate": "2026-10-17",
     "date": "17 Oct 2026",
-    "time": "20:00 hs",
+    "time": "21:00 hs",
     "eventType": "musica",
     "production": "externa",
     "location": "Salon principal - El Bondi",
     "price": "Contribución sugerida",
     "contact": "eventoscccelbondi@gmail.com",
-    "instagram": "@asrock @laballenademawy"
+    "instagram": "@asorock @laballenademawy"
   },
   {
     "title": "Esto o morir en el intento. De Andy Gil",
