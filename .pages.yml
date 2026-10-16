@@ -334,3 +334,155 @@ content:
         label: Texto del botón
         description: Por ejemplo "Seguir en Instagram".
         type: string
+
+  - name: radio
+    label: Radio Activa
+    description: Contenido de la sección de radio en el inicio y de la página /radio-espacio.
+    type: file
+    path: content/radio.json
+    format: json
+    fields:
+      - name: name
+        label: Nombre de la radio
+        type: string
+        required: true
+      - name: frequency
+        label: Frecuencia
+        description: Por ejemplo "96.9".
+        type: string
+        required: true
+      - name: listenUrl
+        label: Enlace para escuchar en vivo
+        description: URL completa, empezando con https://
+        type: string
+        required: true
+      - name: home
+        label: Sección en el inicio
+        type: object
+        fields:
+          - name: image
+            label: Imagen
+            type: image
+            required: true
+          - name: imageAlt
+            label: Texto alternativo de la imagen
+            type: string
+            required: true
+          - name: description
+            label: Descripción
+            type: text
+            required: true
+          - name: cta
+            label: Texto del botón
+            type: string
+            required: true
+            default: Escuchar en vivo
+      - name: heroDescription
+        label: Bajada de la página
+        description: Se muestra debajo del título en /radio-espacio.
+        type: text
+        required: true
+      - name: heroCta
+        label: Texto del botón principal
+        type: string
+        required: true
+        default: Escuchar en Vivo
+      - name: aboutTitle
+        label: Título de "Quiénes somos"
+        type: string
+        required: true
+        default: Quienes Somos
+      - name: about
+        label: Párrafos de "Quiénes somos"
+        type: text
+        list: true
+      - name: mission
+        label: Nuestra misión
+        type: text
+      - name: values
+        label: Nuestros valores
+        type: string
+        list: true
+      - name: contact
+        label: Contacto
+        type: object
+        fields:
+          - name: address
+            label: Dirección
+            type: string
+          - name: phone
+            label: Teléfono
+            type: string
+          - name: email
+            label: Email
+            type: string
+      - name: socials
+        label: Redes de la radio
+        type: object
+        list: true
+        fields:
+          - name: network
+            label: Red
+            description: Define el ícono.
+            type: select
+            required: true
+            options:
+              values:
+                - { value: instagram, label: Instagram }
+                - { value: facebook, label: Facebook }
+                - { value: youtube, label: YouTube }
+                - { value: x, label: X / Twitter }
+                - { value: whatsapp, label: WhatsApp }
+                - { value: spotify, label: Spotify }
+                - { value: app, label: App / descarga }
+                - { value: web, label: Otro sitio web }
+          - name: name
+            label: Nombre visible
+            type: string
+            required: true
+          - name: handle
+            label: Usuario o detalle
+            description: Por ejemplo "@fmradioactiva96.9".
+            type: string
+          - name: href
+            label: Enlace
+            description: URL completa, empezando con https://
+            type: string
+            required: true
+      - name: galleryTitle
+        label: Título de la galería
+        type: string
+        default: La Radio en Imagenes
+      - name: galleryDescription
+        label: Bajada de la galería
+        type: text
+      - name: gallery
+        label: Galería de fotos
+        type: object
+        list: true
+        fields:
+          - name: src
+            label: Foto
+            type: image
+            required: true
+          - name: alt
+            label: Descripción de la foto
+            description: Se muestra al pasar el mouse y la leen los lectores de pantalla.
+            type: string
+            required: true
+      - name: ctaSection
+        label: Bloque final "Escuchá en vivo"
+        type: object
+        fields:
+          - name: title
+            label: Título
+            type: string
+            required: true
+          - name: description
+            label: Texto
+            type: text
+          - name: cta
+            label: Texto del botón
+            type: string
+            required: true
+            default: Ir a radioactiva.ar

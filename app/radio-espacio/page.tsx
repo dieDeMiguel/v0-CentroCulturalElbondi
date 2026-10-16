@@ -2,17 +2,8 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import {
-  Home,
-  Radio,
-  ExternalLink,
-  Instagram,
-  Facebook,
-  Youtube,
-  MapPin,
-  Phone,
-  Mail,
-} from 'lucide-react'
+import { Home, Radio, ExternalLink, MapPin, Phone, Mail } from 'lucide-react'
+import { radio } from '@/lib/radio'
 import { Button } from '@/components/ui/button'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
@@ -26,23 +17,9 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 
-const RADIO_WEBSITE_URL = 'https://radioactiva.ar'
-
-const galleryImages = [
-  { src: '/images/radio-mixer-knobs.jpg', alt: 'Controles de la consola de audio' },
-  { src: '/images/radio-studio-desk.jpg', alt: 'Estudio de Radio Activa con consola y auriculares' },
-  { src: '/images/radio-mic-vintage.jpg', alt: 'Microfono vintage del estudio' },
-  { src: '/images/radio-mic-condenser.jpg', alt: 'Microfono profesional con filtro anti-pop' },
-  { src: '/images/radio-estudio-activa.jpg', alt: 'Estudio de Radio Activa 96.9 en vivo' },
-  { src: '/images/radio-logo-969.jpg', alt: 'Logo Radio Activa Comunitaria 96.9' },
-]
-
-const socialLinks = [
-  { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/fmradioactiva96.9/', handle: '@fmradioactiva96.9' },
-  { name: 'Facebook', icon: Facebook, url: 'https://facebook.com/radioactivacomunitaria', handle: '/radioactivacomunitaria' },
-  { name: 'Youtube', icon: Youtube, url: 'https://www.youtube.com/@fmradioactiva96.9', handle: '@fmradioactiva96.9' },
-  { name: 'App Android', icon: ExternalLink, url: 'https://play.google.com/store/apps/details?id=com.radioactivacomunitaria', handle: 'Descarga la App' },
-]
+const RADIO_WEBSITE_URL = radio.listenUrl
+const galleryImages = radio.gallery
+const socialLinks = radio.socials
 
 export default function RadioEspacioPage() {
   return (
@@ -81,12 +58,9 @@ export default function RadioEspacioPage() {
                   <div className="flex size-12 items-center justify-center rounded-full bg-primary-foreground/20">
                     <Radio className="size-6 text-primary-foreground" />
                   </div>
-                  <span className="font-display text-5xl text-primary-foreground md:text-6xl">96.9</span>
+                  <span className="font-display text-5xl text-primary-foreground md:text-6xl">{radio.frequency}</span>
                 </div>
-                <InteractivePageHeader
-                  title="Radio Activa Comunitaria"
-                  description="La voz de Maschwitz y alrededores. Desde 2012 transmitiendo cultura, música y las voces de nuestra comunidad."
-                />
+                <InteractivePageHeader title={radio.name} description={radio.heroDescription} />
 
                 {/* Listen live CTA */}
                 <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -97,7 +71,7 @@ export default function RadioEspacioPage() {
                   >
                     <a href={RADIO_WEBSITE_URL} target="_blank" rel="noopener noreferrer">
                       <Radio className="size-5" />
-                      Escuchar en Vivo
+                      {radio.heroCta}
                       <ExternalLink className="size-4" />
                     </a>
                   </Button>
@@ -116,37 +90,29 @@ export default function RadioEspacioPage() {
             <ScrollReveal>
               <div>
                 <h2 className="font-display text-3xl tracking-wide text-foreground md:text-4xl">
-                  Quienes Somos
+                  {radio.aboutTitle}
                 </h2>
                 <div className="mt-6 space-y-4 text-muted-foreground">
-                  <p className="leading-relaxed">
-                    Maschwitz es la primera localidad del Partido de Escobar en tener una radio comunitaria. 
-                    En FM RadioActiva se promueven las voces del pueblo y nuestra diversidad local.
-                  </p>
-                  <p className="leading-relaxed">
-                    Organizaciones sociocomunitarias, estudiantes, jovenes, adultos y adultos mayores tienen las puertas abiertas 
-                    en este medio de comunicacion. Somos una radio comunitaria sin fines de lucro y no pertenecemos a un partido politico.
-                  </p>
-                  <p className="leading-relaxed">
-                    La música que suena es diversa, como quienes participan de este sueño, sea desde el estudio o escuchando. 
-                    FM RadioActiva, la radio comunitaria del pueblo.
-                  </p>
+                  {radio.about.map((paragraph, index) => (
+                    <p key={index} className="leading-relaxed">
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
 
                 {/* Mission & Values */}
                 <div className="mt-8 space-y-4">
-                  <div>
-                    <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">Nuestra misión</h3>
-                    <p className="mt-2 leading-relaxed text-muted-foreground">
-                      Promover la integración social, el respeto por los Derechos Humanos y el cuidado del medio ambiente
-                      por medio de la cultura. Elegimos las actividades culturales porque creemos que la cultura nos
-                      relaciona, nos integra y nos convoca a formar parte activa de la sociedad en la que vivimos.
-                    </p>
-                  </div>
+                  {radio.mission ? (
+                    <div>
+                      <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">Nuestra misión</h3>
+                      <p className="mt-2 leading-relaxed text-muted-foreground">{radio.mission}</p>
+                    </div>
+                  ) : null}
+                  {radio.values.length > 0 ? (
                   <div>
                     <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">Nuestros valores</h3>
                     <ul className="mt-3 flex flex-wrap gap-2">
-                      {['Solidaridad', 'Libertad', 'Honestidad', 'Companerismo', 'Respeto', 'Igualdad', 'Responsabilidad', 'Compromiso'].map((valor) => (
+                      {radio.values.map((valor) => (
                         <li
                           key={valor}
                           className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-sm text-foreground"
@@ -156,22 +122,31 @@ export default function RadioEspacioPage() {
                       ))}
                     </ul>
                   </div>
+                  ) : null}
                 </div>
 
                 {/* Contact info */}
                 <div className="mt-8 space-y-3">
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <MapPin className="size-4 text-primary" />
-                    <span>Av El Dorado 1518, Ingeniero Maschwitz 1723</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Phone className="size-4 text-primary" />
-                    <span>11 6005-1234</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                    <Mail className="size-4 text-primary" />
-                    <a href="mailto:fmra969@gmail.com" className="hover:text-primary transition-colors">fmra969@gmail.com</a>
-                  </div>
+                  {radio.contact.address ? (
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <MapPin className="size-4 text-primary" />
+                      <span>{radio.contact.address}</span>
+                    </div>
+                  ) : null}
+                  {radio.contact.phone ? (
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <Phone className="size-4 text-primary" />
+                      <span>{radio.contact.phone}</span>
+                    </div>
+                  ) : null}
+                  {radio.contact.email ? (
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      <Mail className="size-4 text-primary" />
+                      <a href={`mailto:${radio.contact.email}`} className="hover:text-primary transition-colors">
+                        {radio.contact.email}
+                      </a>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             </ScrollReveal>
@@ -191,7 +166,7 @@ export default function RadioEspacioPage() {
                     return (
                       <a
                         key={social.name}
-                        href={social.url}
+                        href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group flex items-center gap-4 rounded-lg border border-border bg-card p-4 transition-all hover:border-primary/40 hover:shadow-md"
@@ -219,11 +194,11 @@ export default function RadioEspacioPage() {
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
             <h2 className="font-display text-3xl tracking-wide text-foreground md:text-4xl">
-              La Radio en Imagenes
+              {radio.galleryTitle}
             </h2>
-            <p className="mt-2 max-w-xl text-muted-foreground">
-              Momentos de transmision, eventos especiales y la vida cotidiana en Radio Activa.
-            </p>
+            {radio.galleryDescription ? (
+              <p className="mt-2 max-w-xl text-muted-foreground">{radio.galleryDescription}</p>
+            ) : null}
           </ScrollReveal>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -258,19 +233,20 @@ export default function RadioEspacioPage() {
                   <Radio className="size-8 text-primary-foreground" />
                 </div>
                 <h2 className="font-display text-3xl tracking-wide text-primary-foreground md:text-4xl text-balance">
-                  Escucha nuestra programacion en vivo
+                  {radio.ctaSection.title}
                 </h2>
-                <p className="max-w-lg leading-relaxed text-primary-foreground/80 text-pretty">
-                  Toda la programacion de FM RadioActiva Comunitaria 96.9 esta disponible en nuestro sitio web.
-                  Ingresa para escuchar en vivo y conocer los programas.
-                </p>
+                {radio.ctaSection.description ? (
+                  <p className="max-w-lg leading-relaxed text-primary-foreground/80 text-pretty">
+                    {radio.ctaSection.description}
+                  </p>
+                ) : null}
                 <Button
                   size="lg"
                   asChild
                   className="gap-2 bg-primary-foreground text-primary hover:bg-primary-foreground/90"
                 >
                   <a href={RADIO_WEBSITE_URL} target="_blank" rel="noopener noreferrer">
-                    Ir a radioactiva.ar
+                    {radio.ctaSection.cta}
                     <ExternalLink className="size-4" />
                   </a>
                 </Button>
