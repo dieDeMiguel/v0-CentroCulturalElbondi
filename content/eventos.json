@@ -137,5 +137,21 @@
     "location": "El Bondi",
     "price": "Entrada libre y gratuita",
     "contact": "mailcolectivocultural@gmail.com"
+  },
+  {
+    "title": "Falta el aire. Matemurga",
+    "slug": "falta-el-aire-matemurga",
+    "description": "Obra de teatro comunitario del colectivo Matemurga",
+    "fullDescription": "Cuando falta el aire falta la vida. Pero a veces buscamos la vida en lugares equivocados, mundos en los que nos meten, realidades que creemos propias y son construidas e impuestas. ¿Dónde está el aire que necesitamos? ¿En qué sociedad estamos viviendo?\nUn barrio participa en una extraña convención para “la felicidad y coso\". Se somete, se adapta, compite, se humilla. El aire, sin embargo, parece estar en otro lugar.\nA veces un hecho inesperado, casual, nos despabila, nos sacude, nos despierta de una pesadilla que vivimos como única realidad posible.\nEste espectáculo nos permite respirar, nos ayuda a romper con lo naturalizado, a imaginar quimeras, a soñar que remontamos barriletes que se elevan livianos y libres, haya o no haya viento a favor.",
+    "image": "/images/WhatsApp Image 2026-10-12 at 16.12.27.jpeg",
+    "calendarDate": "2026-10-25",
+    "date": "25 octubre",
+    "time": "17.00hs",
+    "eventType": "teatro",
+    "production": "bondi",
+    "location": "El Bondi",
+    "price": "Contribución sugerida a la gorra",
+    "contact": "eventoscccelbondi@gmail.com",
+    "instagram": "@matemurga @glorialadelbondi"
   }
 ]
