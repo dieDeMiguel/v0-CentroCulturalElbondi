@@ -239,3 +239,30 @@ content:
             label: Respuesta
             type: text
             required: true
+
+  - name: anuncio
+    label: Barra de anuncios
+    type: file
+    path: content/anuncio.json
+    format: json
+    fields:
+      - name: enabled
+        label: Mostrar barra
+        description: Activala para mostrar el anuncio arriba de todas las páginas. Apagala cuando el anuncio venza.
+        type: boolean
+        default: false
+      - name: highlight
+        label: Destacado
+        description: Texto en negrita al inicio, por ejemplo "¡Últimas novedades!".
+        type: string
+      - name: text
+        label: Texto
+        type: text
+      - name: linkLabel
+        label: Texto del enlace
+        description: Por ejemplo "Más información".
+        type: string
+      - name: linkHref
+        label: Enlace
+        description: Por ejemplo "/evento/slug-del-evento" o una URL completa. Si queda vacío no se muestra enlace.
+        type: string
