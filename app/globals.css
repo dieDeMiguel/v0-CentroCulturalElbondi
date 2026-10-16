@@ -124,6 +124,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
+  --color-splash: #732b8f;
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
@@ -207,6 +208,47 @@ html {
 }
 
 /* Subtle grain texture for cinematic feel */
+.splash-screen {
+  transition:
+    transform 600ms cubic-bezier(0.7, 0, 0.3, 1),
+    opacity 600ms ease;
+}
+
+.splash-screen[data-leaving='true'] {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.splash-logo {
+  animation: splash-pop 900ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes splash-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-4deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.04) rotate(1.5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-logo {
+    animation: none;
+  }
+
+  .splash-screen[data-leaving='true'] {
+    transform: none;
+    opacity: 0;
+  }
+}
+
 @keyframes grain {
   0%, 100% { transform: translate(0, 0); }
   10% { transform: translate(-5%, -10%); }
