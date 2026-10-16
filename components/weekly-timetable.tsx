@@ -60,10 +60,10 @@ function parseMultipleDays(dateStr: string): Day[] {
 
 export function WeeklyTimetable({ mode = 'talleres', selectedDay = 'todos' }: WeeklyTimetableProps) {
   // Filter days based on selectedDay prop
-  const daysToShow = useMemo(() => {
+  const daysToShow = useMemo((): readonly Day[] => {
     if (selectedDay === 'todos') return DAYS
     const mappedDay = DAY_FILTER_MAP[selectedDay]
-    return mappedDay ? [mappedDay] as const : DAYS
+    return mappedDay ? [mappedDay] : DAYS
   }, [selectedDay])
 
   const timetableData = useMemo(() => {
