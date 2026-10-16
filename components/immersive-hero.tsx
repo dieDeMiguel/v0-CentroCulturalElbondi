@@ -7,12 +7,23 @@ export function ImmersiveHero() {
         <div className="relative h-[60svh] w-full md:h-auto md:aspect-[1584/672]">
           <Image
             src="/images/el-bondi-scene.png"
-            alt="Ilustración en papel recortado 3D de la fachada de El Bondi de noche, centrada: una pared de rayas verticales rosa, celeste, rojo, amarillo, verde y lila, junto a un edificio con arcos de colores alrededor de una ventana cubierto por una enredadera. Arriba, una estructura con luces y banderines donde una artista en telas aéreas, una chica en el trapecio y un acróbata en la soga se suspenden en lo alto; a los costados, casas vecinas con balcones y detrás, árboles de papel. En la vereda, chicos en monociclo y con aro, una pareja bailando tango y músicos con guitarra, acordeón, batería, violín y trompeta."
+            alt="Ilustración en papel recortado 3D de la fachada de El Bondi de noche, centrada: una pared de rayas verticales rosa, celeste, rojo, amarillo, verde y lila con un cartel blanco que lleva el logo de El Bondi, junto a un edificio con arcos de colores alrededor de una ventana cubierto por una enredadera. Arriba, una estructura con luces y banderines donde una artista en telas aéreas, una chica en el trapecio y un acróbata en la soga se suspenden en lo alto; pegados a los costados, edificios vecinos con balcones y detrás, árboles de papel. En la vereda, chicos en monociclo y con aro, una pareja bailando tango y músicos con acordeón, guitarras, batería y violín."
             fill
             priority
             sizes="100vw"
             className="object-cover object-center"
           />
+          {/* Locked to the image's aspect ratio so the logo stays on the banner when object-cover crops the sides on mobile. */}
+          <div className="pointer-events-none absolute top-0 left-1/2 aspect-[1584/672] h-full -translate-x-1/2">
+            <Image
+              src="/images/logo-dark.png"
+              alt=""
+              width={1200}
+              height={306}
+              sizes="15vw"
+              className="absolute top-[62%] left-[35.9%] w-[10.4%] -rotate-1 opacity-90 mix-blend-multiply"
+            />
+          </div>
         </div>
       </section>
 
