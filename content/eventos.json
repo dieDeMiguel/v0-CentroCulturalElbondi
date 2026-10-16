@@ -2,8 +2,8 @@
   {
     "title": "Festival de Rock",
     "slug": "festival-de-rock",
-    "description": "Bandas de rock en vivo sobre el escenario del Bondi. Una noche potente de musica local.",
-    "fullDescription": "El Festival de Rock reune a bandas locales e invitadas sobre el escenario del Bondi. Una noche potente de musica en vivo para celebrar la escena rockera de Maschwitz y la zona.",
+    "description": "Bandas de rock en vivo sobre el escenario del Bondi. Una noche potente de musica local. As rock y la Ballena de Mawy",
+    "fullDescription": "El Festival de Rock reune a bandas locales e invitadas sobre el escenario del Bondi. Una noche potente de musica en vivo para celebrar la escena rockera de Maschwitz y la zona con cierre de cumbia.",
     "image": "/images/evento-musica.jpg",
     "calendarDate": "2026-10-17",
     "date": "17 Oct 2026",
@@ -12,7 +12,8 @@
     "production": "externa",
     "location": "Salon principal - El Bondi",
     "price": "Contribución sugerida",
-    "contact": "mailcolectivocultural@gmail.com"
+    "contact": "eventoscccelbondi@gmail.com",
+    "instagram": "@asrock @laballenademawy"
   },
   {
     "title": "Esto o morir en el intento. De Andy Gil",
@@ -49,17 +50,18 @@
   {
     "title": "Festival de Murgas Uruguayas",
     "slug": "festival-de-murgas-uruguayas",
-    "description": "Murga uruguaya en vivo: color, canto y percusion sobre el escenario del Bondi.",
-    "fullDescription": "El Festival de Murgas Uruguayas trae el color, el canto y la percusion de la murga rioplatense al escenario del Bondi. Una noche de fiesta popular con la energia inconfundible de la murga uruguaya.",
-    "image": "/images/evento-variete.jpg",
+    "description": "Se viene el Tablado de Murgas al estilo uruguayo en Maschwitz! 🎭🥁\ndi.",
+    "fullDescription": "Se viene el Tablado de Murgas al estilo uruguayo en Maschwitz! 🎭🥁\n\nVecinos y vecinas de zona norte: los esperamos en el CC El Bondi para compartir una noche a puro bombo, platillo y redoblante. 🇺🇾\n\n📆 sábado 7 de noviembre, desde las 19:30h\n📍 CC El Bondi (Ingeniero Maschwitz)\n🎟️ Entrada: Precio sugerido en puerta\n\nShows en vivo: Alta Llanta (adelantando \"Mugre\"), Le Puse Cuca (con \"Y te va a pasar a ti\") y Baila La Chola (presentando \"Cutre\").\n\nTaller abierto de coro de murga a cargo de Romina Valsecchi @murga_laqueseviene\n\nBuffet popular con precios amigos. Bingo murguero.\n\n¡No te lo pierdas!",
+    "image": "/images/1080x1080.png",
     "calendarDate": "2026-11-07",
     "date": "7 Nov 2026",
-    "time": "20:00 hs",
-    "eventType": "variedades",
+    "time": "19:30hs",
+    "eventType": "musica",
     "production": "externa",
     "location": "Salon principal - El Bondi",
     "price": "Contribución sugerida",
-    "contact": "mailcolectivocultural@gmail.com"
+    "contact": "eventoscccelbondi@gmail.com",
+    "instagram": "@bailalachola"
   },
   {
     "title": "Varieté Bajo las Estrellas",
