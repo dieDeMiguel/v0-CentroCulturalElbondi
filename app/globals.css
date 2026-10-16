@@ -167,6 +167,24 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
   }
+
+  /* Layered cut-paper depth for display titles, echoing the hero diorama */
+  :is(h1, h2, h3).font-display {
+    --paper-1: oklch(0.74 0.14 350);
+    --paper-2: oklch(0.6 0.19 305);
+    --paper-3: oklch(0.4 0.14 300);
+    text-shadow:
+      0.02em 0.025em 0 var(--paper-1),
+      0.035em 0.045em 0 var(--paper-1),
+      0.05em 0.065em 0 var(--paper-1),
+      0.065em 0.085em 0 var(--paper-2),
+      0.08em 0.105em 0 var(--paper-2),
+      0.095em 0.125em 0 var(--paper-2),
+      0.11em 0.145em 0 var(--paper-3),
+      0.125em 0.165em 0 var(--paper-3),
+      0.14em 0.2em 0.06em oklch(0 0 0 / 0.6),
+      0.16em 0.26em 0.22em oklch(0 0 0 / 0.45);
+  }
 }
 
 /* Cinematic smooth scrolling */
