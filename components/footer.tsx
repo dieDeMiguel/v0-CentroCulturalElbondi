@@ -57,8 +57,12 @@ export function Footer() {
       <div className="border-t border-border/50 bg-card/80">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row lg:px-8">
           <p className="text-xs text-muted-foreground">
-            {'Copyright © 2015-2026 Colectivo Cultural ONG'}
-          </p>
+  {'Copyright © 2015-2026 Colectivo Cultural ONG'}
+  <span aria-hidden="true" className="mx-2">
+  {'·'}
+  </span>
+  {'Diseño: Carmen Chaves'}
+  </p>
           <a
             href="#"
             className="text-xs text-muted-foreground transition-colors hover:text-foreground"
