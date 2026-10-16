@@ -12,7 +12,7 @@ export function RadioSection() {
       <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center gap-10 px-4 lg:flex-row lg:gap-16 lg:px-8">
         {/* Radio Image */}
         <ScrollReveal direction="left" className="w-full max-w-md shrink-0 lg:w-2/5">
-          <div className="paper-card group overflow-hidden rounded-lg border border-primary-foreground/10">
+          <div className="group relative overflow-hidden rounded-lg border border-primary-foreground/10 shadow-2xl">
             <img
               src={radio.home.image}
               alt={radio.home.imageAlt}

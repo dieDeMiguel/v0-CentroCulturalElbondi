@@ -12,7 +12,7 @@ export function CommunitySection() {
   const [submitted, setSubmitted] = useState(false)
 
   return (
-    <section id="comunidad" className="paper-edge flex min-h-[640px] items-center bg-background py-16">
+    <section id="comunidad" className="flex min-h-[640px] items-center bg-background py-16">
       <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left - CTA */}

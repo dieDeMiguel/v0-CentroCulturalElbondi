@@ -11,7 +11,7 @@ export function LocationCta() {
     <section className="border-b border-border/40 bg-background">
       <div className="mx-auto max-w-7xl px-4 py-8 lg:px-8 lg:py-10">
         <ScrollReveal direction="up">
-          <div className="flex flex-col items-start gap-6 paper-card rounded-xl border border-border/50 bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+          <div className="flex flex-col items-start gap-6 rounded-xl border border-border/50 bg-card/60 p-6 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:p-8">
             <div className="flex items-start gap-4">
               <div
                 ref={iconRef}

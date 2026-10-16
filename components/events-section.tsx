@@ -18,7 +18,7 @@ export function EventsSection() {
     .slice(0, 4)
 
   return (
-    <section id="eventos" className="paper-edge bg-background py-16 lg:py-24">
+    <section id="eventos" className="bg-background py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <ScrollReveal scaleFrom={0.92} duration={800}>
           <h2 className="text-balance text-center font-display text-4xl tracking-wide text-foreground md:text-5xl lg:text-6xl">

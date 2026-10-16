@@ -82,7 +82,7 @@ export function CardSlider({ items }: CardSliderProps) {
         {pages.map((page, pageIndex) => (
           <div
             key={pageIndex}
-            className="grid w-full shrink-0 snap-center grid-cols-1 gap-6 pb-4 pr-4 pt-1 sm:grid-cols-2 lg:grid-cols-4"
+            className="grid w-full shrink-0 snap-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
             {page.map((item, index) => (
               <ScrollReveal key={item.slug} delay={index * 100} className="h-full">
