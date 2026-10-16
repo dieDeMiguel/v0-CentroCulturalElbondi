@@ -61,7 +61,16 @@ export function Footer() {
   <span aria-hidden="true" className="mx-2">
   {'·'}
   </span>
-  {'Diseño: Carmen Chaves'}
+            {'Diseño: '}
+            <a
+              href="https://www.linkedin.com/in/carmen-chavez-canales-649868132"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline-offset-4 transition-colors hover:text-primary hover:underline"
+            >
+              Carmen Chaves
+              <span className="sr-only">{' (LinkedIn, se abre en una nueva pestaña)'}</span>
+            </a>
   </p>
           <a
             href="#"
