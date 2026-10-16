@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import { ChevronDown } from 'lucide-react'
 
 export function ImmersiveHero() {
   return (
@@ -14,16 +13,6 @@ export function ImmersiveHero() {
             sizes="100vw"
             className="object-cover object-center"
           />
-
-          <a
-            href="#contenido"
-            className="absolute inset-x-0 bottom-4 z-10 mx-auto flex w-fit flex-col items-center gap-2 rounded-full px-4 py-2 text-white/80 transition-colors hover:text-white sm:bottom-8"
-          >
-            <span className="text-xs font-medium uppercase tracking-[0.2em] drop-shadow">
-              Explorá
-            </span>
-            <ChevronDown className="size-5 drop-shadow sm:size-6" aria-hidden="true" />
-          </a>
         </div>
       </section>
 
