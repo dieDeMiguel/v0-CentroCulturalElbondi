@@ -52,7 +52,7 @@ export function RadioSection() {
             href="/radio-espacio"
             className="inline-flex w-fit items-center gap-2 rounded-md bg-background px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-background/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
           >
-            Conocer la radio
+            Conocé la radio
             <ArrowRight className="size-4" aria-hidden="true" />
           </Link>
         </ScrollReveal>
