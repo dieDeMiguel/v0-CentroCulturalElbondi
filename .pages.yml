@@ -213,3 +213,29 @@ content:
         type: string
         required: true
         default: Ver el evento
+
+  - name: faq
+    label: Preguntas frecuentes
+    type: file
+    path: content/faq.json
+    format: json
+    list: true
+    fields:
+      - name: category
+        label: Categoría
+        description: Título de la sección, por ejemplo "Sobre El Bondi".
+        type: string
+        required: true
+      - name: questions
+        label: Preguntas
+        type: object
+        list: true
+        fields:
+          - name: question
+            label: Pregunta
+            type: string
+            required: true
+          - name: answer
+            label: Respuesta
+            type: text
+            required: true
