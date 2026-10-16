@@ -15,19 +15,20 @@
     "contact": "mailcolectivocultural@gmail.com"
   },
   {
-    "title": "Afuera no hay garantías, adentro tampoco",
-    "slug": "afuera-no-hay-garantias",
-    "description": "Obra de teatro con una mirada aguda y actual. Una propuesta escenica que invita a pensar.",
-    "fullDescription": "Afuera no hay garantias, adentro tampoco es una obra de teatro que llega al escenario del Bondi con una mirada aguda sobre nuestro presente. Una propuesta escenica que combina reflexion y emocion.",
-    "image": "/images/evento-variete.jpg",
+    "title": "Esto o morir en el intento. De Andy Gil",
+    "slug": "esto-o-morir-en-el-intento",
+    "description": "Unipersonal de Andy Gil",
+    "fullDescription": "Unipersonal de Andy Gil",
+    "image": "/images/ESTO ok 2026-1.png",
     "calendarDate": "2026-10-24",
     "date": "24 Oct 2026",
-    "time": "A confirmar",
+    "time": "21.00hs",
     "eventType": "teatro",
-    "production": "externa",
+    "production": "bondi",
     "location": "Salon principal - El Bondi",
-    "price": "Contribución sugerida",
-    "contact": "mailcolectivocultural@gmail.com"
+    "price": "Contribución sugerida 10.000 pesos",
+    "contact": "mailcolectivocultural@gmail.com",
+    "instagram": "@cirquetengue"
   },
   {
     "title": "Noche de los Muertos",
