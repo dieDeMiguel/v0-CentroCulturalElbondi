@@ -25,7 +25,7 @@ export function EventCard({ slug, title, description, image, date, time, locatio
   return (
     <Link
       href={`/evento/${slug}`}
-      className={`group flex h-full flex-col overflow-hidden rounded-lg border bg-card transition-all duration-300 ease-cinematic hover:-translate-y-1.5 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
+      className={`group flex h-full flex-col overflow-hidden paper-card rounded-lg border bg-card focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${
         isBondi
           ? 'border-primary/50 ring-1 ring-primary/20 hover:border-primary'
           : 'border-border hover:border-primary/40'

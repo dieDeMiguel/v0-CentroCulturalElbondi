@@ -37,7 +37,7 @@ export function FlyersSection() {
               <figure className="group flex h-full flex-col">
                 <Link
                   href={flyer.href}
-                  className="relative block overflow-hidden rounded-xl border border-border bg-card shadow-lg transition-all duration-300 hover:border-primary/50 hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="paper-card block overflow-hidden rounded-xl border border-border bg-card hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   aria-label={flyer.cta + ': ' + flyer.title}
                 >
                   <div className="relative aspect-[2/3] w-full overflow-hidden">

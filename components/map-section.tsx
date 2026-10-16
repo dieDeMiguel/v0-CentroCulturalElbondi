@@ -12,7 +12,7 @@ export function MapSection() {
   const [isActive, setIsActive] = useState(false)
 
   return (
-    <section id="ubicacion" className="relative min-h-[640px] scroll-mt-16 bg-muted">
+    <section id="ubicacion" className="paper-edge min-h-[640px] scroll-mt-16 bg-muted">
       <div className="relative h-[640px] min-h-[640px] w-full overflow-hidden">
         {/* Google Maps iframe */}
         <iframe
