@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react'
 
-const VISIBLE_MS = 1000
-const EXIT_MS = 600
+const VISIBLE_MS = 1100
+const EXIT_MS = 900
 
 export function SplashScreen() {
   const [phase, setPhase] = useState<'visible' | 'leaving' | 'gone'>('visible')
