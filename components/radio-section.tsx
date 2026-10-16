@@ -1,8 +1,9 @@
 'use client'
 
-import { Radio } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
+import { radio } from '@/lib/radio'
 
 export function RadioSection() {
   return (
@@ -13,25 +14,25 @@ export function RadioSection() {
         <ScrollReveal direction="left" className="w-full max-w-md shrink-0 lg:w-2/5">
           <div className="group relative overflow-hidden rounded-lg border border-primary-foreground/10 shadow-2xl">
             <img
-              src="/images/radio.jpg"
-              alt="Radio Activa Comunitaria FM 96.9"
+              src={radio.home.image}
+              alt={radio.home.imageAlt}
               className="aspect-square w-full object-cover transition-transform duration-700 ease-cinematic group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
             {/* Live "on air" indicator */}
-            <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-black/40 px-3 py-1.5 backdrop-blur-sm">
+            <div className="absolute right-4 top-4 flex items-center gap-2 rounded-full bg-background/90 px-3 py-1.5 shadow-md backdrop-blur-sm">
               <span className="relative flex size-2.5">
                 <span className="animate-pulse-ring absolute inline-flex size-full rounded-full bg-red-500" />
                 <span className="relative inline-flex size-2.5 rounded-full bg-red-500" />
               </span>
-              <span className="text-[10px] font-bold tracking-wider text-primary-foreground uppercase">
+              <span className="text-[10px] font-bold tracking-wider text-foreground uppercase">
                 En vivo
               </span>
             </div>
             <div className="absolute bottom-4 left-4">
-              <span className="font-display text-5xl text-primary-foreground drop-shadow-lg md:text-6xl">96.9</span>
+              <span className="font-display text-5xl text-primary-foreground drop-shadow-lg md:text-6xl">{radio.frequency}</span>
               <div className="text-xs font-bold tracking-wider text-primary-foreground/80 uppercase">
-                Radio Activa Comunitaria
+                {radio.name}
               </div>
             </div>
           </div>
@@ -41,27 +42,19 @@ export function RadioSection() {
         <ScrollReveal direction="right" className="flex w-full flex-col gap-6" delay={200}>
           <div>
             <h2 className="font-display text-4xl tracking-wide text-primary-foreground md:text-5xl">
-              Radio Activa Comunitaria
+              {radio.name}
             </h2>
             <p className="mt-3 max-w-lg leading-relaxed text-primary-foreground/80">
-              Lleva RadioActiva Comunitaria FM 96.9 con vos, vayas donde vayas.
-              Escuchanos en vivo desde cualquier parte del mundo haciendo clic en
-              nuestro enlace a continuacion.
+              {radio.home.description}
             </p>
           </div>
-
-          <div>
-            <Button
-              asChild
-              size="lg"
-              className="group gap-2 bg-primary-foreground text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-foreground/90 hover:shadow-xl hover:shadow-black/20"
-            >
-              <a href="https://radioactiva.ar" target="_blank" rel="noopener noreferrer">
-                <Radio className="size-5 transition-transform duration-300 group-hover:rotate-12" />
-                Escuchar en vivo
-              </a>
-            </Button>
-          </div>
+          <Link
+            href="/radio-espacio"
+            className="inline-flex w-fit items-center gap-2 rounded-md bg-background px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-background/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-background focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+          >
+            Conocé la radio
+            <ArrowRight className="size-4" aria-hidden="true" />
+          </Link>
         </ScrollReveal>
       </div>
     </section>

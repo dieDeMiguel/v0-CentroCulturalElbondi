@@ -1,0 +1,76 @@
+{
+  "name": "Radio Activa Comunitaria",
+  "frequency": "96.9",
+  "listenUrl": "https://radioactiva.ar",
+  "home": {
+    "image": "/images/radio.jpg",
+    "imageAlt": "Radio Activa Comunitaria FM 96.9",
+    "description": "Lleva RadioActiva Comunitaria FM 96.9 con vos, vayas donde vayas. Escuchanos en vivo desde cualquier parte del mundo haciendo clic en nuestro enlace a continuacion.",
+    "cta": "Escuchar en vivo"
+  },
+  "heroDescription": "La voz de Maschwitz y alrededores. Desde 2012 transmitiendo cultura, música y las voces de nuestra comunidad.",
+  "heroCta": "Escuchar en Vivo",
+  "aboutTitle": "Quienes Somos",
+  "about": [
+    "Maschwitz es la primera localidad del Partido de Escobar en tener una radio comunitaria. En FM RadioActiva se promueven las voces del pueblo y nuestra diversidad local.",
+    "Organizaciones sociocomunitarias, estudiantes, jovenes, adultos y adultos mayores tienen las puertas abiertas en este medio de comunicacion. Somos una radio comunitaria sin fines de lucro y no pertenecemos a un partido politico.",
+    "La música que suena es diversa, como quienes participan de este sueño, sea desde el estudio o escuchando. FM RadioActiva, la radio comunitaria del pueblo."
+  ],
+  "mission": "Promover la integración social, el respeto por los Derechos Humanos y el cuidado del medio ambiente por medio de la cultura. Elegimos las actividades culturales porque creemos que la cultura nos relaciona, nos integra y nos convoca a formar parte activa de la sociedad en la que vivimos.",
+  "values": [
+    "Solidaridad",
+    "Libertad",
+    "Honestidad",
+    "Companerismo",
+    "Respeto",
+    "Igualdad",
+    "Responsabilidad",
+    "Compromiso"
+  ],
+  "contact": {
+    "address": "Av El Dorado 1518, Ingeniero Maschwitz 1723",
+    "phone": "11 6005-1234",
+    "email": "fmra969@gmail.com"
+  },
+  "socials": [
+    {
+      "network": "instagram",
+      "name": "Instagram",
+      "handle": "@fmradioactiva96.9",
+      "href": "https://www.instagram.com/fmradioactiva96.9/"
+    },
+    {
+      "network": "facebook",
+      "name": "Facebook",
+      "handle": "/radioactivacomunitaria",
+      "href": "https://facebook.com/radioactivacomunitaria"
+    },
+    {
+      "network": "youtube",
+      "name": "Youtube",
+      "handle": "@fmradioactiva96.9",
+      "href": "https://www.youtube.com/@fmradioactiva96.9"
+    },
+    {
+      "network": "app",
+      "name": "App Android",
+      "handle": "Descarga la App",
+      "href": "https://play.google.com/store/apps/details?id=com.radioactivacomunitaria"
+    }
+  ],
+  "galleryTitle": "La Radio en Imagenes",
+  "galleryDescription": "Momentos de transmision, eventos especiales y la vida cotidiana en Radio Activa.",
+  "gallery": [
+    { "src": "/images/radio-mixer-knobs.jpg", "alt": "Controles de la consola de audio" },
+    { "src": "/images/radio-studio-desk.jpg", "alt": "Estudio de Radio Activa con consola y auriculares" },
+    { "src": "/images/radio-mic-vintage.jpg", "alt": "Microfono vintage del estudio" },
+    { "src": "/images/radio-mic-condenser.jpg", "alt": "Microfono profesional con filtro anti-pop" },
+    { "src": "/images/radio-estudio-activa.jpg", "alt": "Estudio de Radio Activa 96.9 en vivo" },
+    { "src": "/images/radio-logo-969.jpg", "alt": "Logo Radio Activa Comunitaria 96.9" }
+  ],
+  "ctaSection": {
+    "title": "Escucha nuestra programacion en vivo",
+    "description": "Toda la programacion de FM RadioActiva Comunitaria 96.9 esta disponible en nuestro sitio web. Ingresa para escuchar en vivo y conocer los programas.",
+    "cta": "Ir a radioactiva.ar"
+  }
+}

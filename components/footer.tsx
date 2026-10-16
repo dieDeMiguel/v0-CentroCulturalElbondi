@@ -57,8 +57,21 @@ export function Footer() {
       <div className="border-t border-border/50 bg-card/80">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row lg:px-8">
           <p className="text-xs text-muted-foreground">
-            {'Copyright © 2015-2026 Colectivo Culural ONG'}
-          </p>
+  {'Copyright © 2015-2026 Colectivo Cultural ONG'}
+  <span aria-hidden="true" className="mx-2">
+  {'·'}
+  </span>
+            {'Diseño: '}
+            <a
+              href="https://www.linkedin.com/in/carmen-chavez-canales-649868132"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 transition-colors hover:text-primary hover:underline"
+            >
+              Carmen Chaves
+              <span className="sr-only">{' (LinkedIn, se abre en una nueva pestaña)'}</span>
+            </a>
+  </p>
           <a
             href="#"
             className="text-xs text-muted-foreground transition-colors hover:text-foreground"
