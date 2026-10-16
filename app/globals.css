@@ -177,20 +177,19 @@
     --paper-2: oklch(0.82 0.08 175);
     --paper-3: oklch(0.47 0.15 298);
     --paper-shade: oklch(0.12 0.04 290 / 0.45);
+    /* Dark plum card hugging every glyph keeps the cream face legible on
+       any header colour (light purple, dark plum or the illustration) */
+    --paper-edge: oklch(0.22 0.07 300);
+    /* Solid fill instead of background-clip:text, which Safari renders as a
+       dark, grainy face when combined with filter */
     color: var(--paper-face);
-    /* Matte card stock: warm fibres plus a soft top-left light falloff */
-    background-color: var(--paper-face);
-    background-image:
-      linear-gradient(160deg, oklch(1 0 0 / 0.35), oklch(1 0 0 / 0) 45%, oklch(0.55 0.05 70 / 0.18)),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0 0.3 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
-    background-size: 100% 100%, 180px 180px;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* Chained drop-shadows follow the glyph outline: each pastel sheet is
-       lifted off the next by a soft, diffuse shadow like the diorama figures */
+    /* Wins over text-* utilities on the heading so the face stays cream */
+    -webkit-text-fill-color: var(--paper-face);
     filter:
-      drop-shadow(-0.5px -0.5px 0 oklch(1 0 0 / 0.6))
+      drop-shadow(0.025em 0 0 var(--paper-edge))
+      drop-shadow(-0.025em 0 0 var(--paper-edge))
+      drop-shadow(0 0.025em 0 var(--paper-edge))
+      drop-shadow(0 -0.025em 0 var(--paper-edge))
       drop-shadow(0.02em 0.03em 0.015em var(--paper-shade))
       drop-shadow(0.03em 0.04em 0 var(--paper-1))
       drop-shadow(0.02em 0.03em 0.02em var(--paper-shade))
@@ -198,6 +197,16 @@
       drop-shadow(0.02em 0.03em 0.02em var(--paper-shade))
       drop-shadow(0.035em 0.045em 0 var(--paper-3))
       drop-shadow(0.05em 0.09em 0.12em oklch(0.08 0.04 290 / 0.6));
+  }
+
+  @media (prefers-contrast: more), (forced-colors: active) {
+    :is(h1, h2, h3).font-display {
+      filter:
+        drop-shadow(0.03em 0 0 var(--paper-edge))
+        drop-shadow(-0.03em 0 0 var(--paper-edge))
+        drop-shadow(0 0.03em 0 var(--paper-edge))
+        drop-shadow(0 -0.03em 0 var(--paper-edge));
+    }
   }
 }
 
