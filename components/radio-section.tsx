@@ -1,7 +1,5 @@
 'use client'
 
-import { Radio } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { radio } from '@/lib/radio'
 
@@ -47,19 +45,6 @@ export function RadioSection() {
             <p className="mt-3 max-w-lg leading-relaxed text-primary-foreground/80">
               {radio.home.description}
             </p>
-          </div>
-
-          <div>
-            <Button
-              asChild
-              size="lg"
-              className="group gap-2 bg-primary-foreground text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-foreground/90 hover:shadow-xl hover:shadow-black/20"
-            >
-              <a href={radio.listenUrl} target="_blank" rel="noopener noreferrer">
-                <Radio className="size-5 transition-transform duration-300 group-hover:rotate-12" />
-                {radio.home.cta}
-              </a>
-            </Button>
           </div>
         </ScrollReveal>
       </div>

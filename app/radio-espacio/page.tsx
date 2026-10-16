@@ -61,21 +61,6 @@ export default function RadioEspacioPage() {
                   <span className="font-display text-5xl text-primary-foreground md:text-6xl">{radio.frequency}</span>
                 </div>
                 <InteractivePageHeader title={radio.name} description={radio.heroDescription} />
-
-                {/* Listen live CTA */}
-                <div className="mt-6 flex flex-wrap items-center gap-4">
-                  <Button
-                    size="lg"
-                    asChild
-                    className="gap-2 bg-primary-foreground text-primary hover:bg-primary-foreground/90"
-                  >
-                    <a href={RADIO_WEBSITE_URL} target="_blank" rel="noopener noreferrer">
-                      <Radio className="size-5" />
-                      {radio.heroCta}
-                      <ExternalLink className="size-4" />
-                    </a>
-                  </Button>
-                </div>
               </div>
             </div>
           </ScrollReveal>
