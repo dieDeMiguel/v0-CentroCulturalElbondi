@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Kaushan_Script } from 'next/font/google'
+import { Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AnnouncementBar } from '@/components/announcement-bar'
 import './globals.css'
@@ -7,12 +7,6 @@ import './globals.css'
 const geist = Geist({
   subsets: ['latin'],
   variable: '--font-geist',
-})
-
-const brush = Kaushan_Script({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-brush',
 })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
@@ -61,7 +55,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/zwk2tqd.css" />
       </head>
-      <body className={`${geist.variable} ${brush.variable} font-sans antialiased overflow-x-clip`}>
+      <body className={`${geist.variable} font-sans antialiased overflow-x-clip`}>
         <AnnouncementBar />
         {children}
         <Analytics />
