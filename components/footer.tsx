@@ -57,7 +57,7 @@ export function Footer() {
       <div className="border-t border-border/50 bg-card/80">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-4 sm:flex-row lg:px-8">
           <p className="text-xs text-muted-foreground">
-            {'Copyright © 2015-2026 Colectivo Culural ONG'}
+            {'Copyright © 2015-2026 Colectivo Cultural ONG'}
           </p>
           <a
             href="#"
