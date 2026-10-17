@@ -406,63 +406,6 @@ html {
 }
 .scene-sway { animation-name: scene-sway; }
 
-@keyframes scene-swing {
-  0%, 100% { transform: rotate(-1.6deg); }
-  50% { transform: rotate(1.6deg); }
-}
-.scene-swing { animation-name: scene-swing; }
-
-/* Musicians nod to the beat, leaning side to side */
-@keyframes scene-groove {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-2.5%) rotate(-2deg); }
-  50% { transform: translateY(0) rotate(0deg); }
-  75% { transform: translateY(-2.5%) rotate(2deg); }
-}
-.scene-groove { animation-name: scene-groove; }
-
-@keyframes scene-drum {
-  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
-  50% { transform: translateY(-5%) rotate(1.5deg); }
-}
-.scene-drum { animation-name: scene-drum; }
-
-/* Tango couple sways and turns in place */
-@keyframes scene-tango {
-  0%, 100% { transform: translateX(0) rotate(0deg); }
-  25% { transform: translateX(-4%) rotate(-3deg); }
-  50% { transform: translateX(0) rotate(0deg) scaleX(0.97); }
-  75% { transform: translateX(4%) rotate(3deg); }
-}
-.scene-tango { animation-name: scene-tango; }
-
-/* Hula hoop kid swings her hips */
-@keyframes scene-hula {
-  0%, 100% { transform: translateX(-3%) rotate(-2deg); }
-  50% { transform: translateX(3%) rotate(2deg); }
-}
-.scene-hula { animation-name: scene-hula; }
-
-/* Unicyclist balances back and forth */
-@keyframes scene-pedal {
-  0%, 100% { transform: translateX(-5%) rotate(-3deg); }
-  50% { transform: translateX(5%) rotate(3deg); }
-}
-.scene-pedal { animation-name: scene-pedal; }
-
-/* Juggler bounces lightly while the balls fly */
-@keyframes scene-juggle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2%); }
-}
-.scene-juggle { animation-name: scene-juggle; }
-
-@keyframes scene-toss {
-  0%, 100% { transform: translateY(0) rotate(-4deg); }
-  50% { transform: translateY(-14%) rotate(4deg); }
-}
-.scene-toss { animation-name: scene-toss; }
-
 /* Wind gusts: paper leaves blow across the scene now and then, hidden between gusts */
 @keyframes scene-gust {
   0% { transform: translateX(-3%); opacity: 0; }
