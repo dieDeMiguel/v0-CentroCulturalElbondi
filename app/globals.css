@@ -177,6 +177,7 @@
     font-weight: 700;
     line-height: 1.05;
     color: oklch(0.95 0.035 88);
+    text-shadow: none;
   }
 }
 
