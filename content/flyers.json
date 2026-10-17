@@ -9,10 +9,10 @@
   },
   {
     "src": "/images/Cartel de talleres circenses y comunitarios.png",
-    "alt": "Talleres del Bondi",
+    "alt": "Talleres del Bondi. Toda la semana, propuestas para todos los gusto y edades, para toda la comunidad.",
     "title": "Talleres",
     "caption": "circo, ceramica, teatro, danza y más",
-    "href": "/programaci",
-    "cta": "Ver el evento"
+    "href": "/programacion?categoria=talleres",
+    "cta": "Ver los talleres"
   }
 ]
