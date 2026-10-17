@@ -18,13 +18,6 @@ type Cutout = {
 
 // Regions are in source-image pixels; each one is a masked copy of a single plant animated in place around its own pivot.
 const cutouts: Cutout[] = [
-  { name: 'tree-left-1', x: 0, y: 105, w: 150, h: 170, origin: '50% 100%', sway: { duration: 7, delay: 0 } },
-  { name: 'tree-left-2', x: 145, y: 165, w: 150, h: 115, origin: '50% 100%', sway: { duration: 8, delay: 1.2 } },
-  { name: 'tree-right-1', x: 1120, y: 85, w: 170, h: 185, origin: '50% 100%', sway: { duration: 8.5, delay: 0.6 } },
-  { name: 'tree-right-2', x: 1290, y: 140, w: 150, h: 135, origin: '50% 100%', sway: { duration: 7, delay: 1.8 } },
-  { name: 'tree-right-3', x: 1440, y: 90, w: 144, h: 180, origin: '50% 100%', sway: { duration: 9, delay: 3 } },
-  { name: 'street-tree-left', x: 0, y: 320, w: 100, h: 330, origin: '30% 100%' },
-  { name: 'street-tree-right', x: 1490, y: 390, w: 94, h: 265, origin: '70% 100%' },
   { name: 'ivy-crown', x: 900, y: 195, w: 165, h: 150, origin: '80% 15%' },
 ]
 

@@ -446,9 +446,6 @@ html[data-splash-seen] .splash-screen {
   /* Jacarandá: layered paper canopy over the tree beside the stage */
   .jacaranda {
   position: absolute;
-  transform-origin: 50% 100%;
-  animation: scene-sway 8s ease-in-out 1.5s infinite;
-  will-change: transform;
   }
   .jacaranda-branch {
   position: absolute;
