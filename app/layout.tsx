@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AnnouncementBar } from '@/components/announcement-bar'
-import { SplashScreen } from '@/components/splash-screen'
+import { SplashScreen, splashSeenScript } from '@/components/splash-screen'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -49,7 +49,14 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} dark bg-background overflow-x-clip`}>
+    <html
+      lang="es"
+      className={`${inter.variable} dark bg-background overflow-x-clip`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: splashSeenScript }} />
+      </head>
       <body className="font-sans antialiased overflow-x-clip">
         <SplashScreen />
         <AnnouncementBar />

@@ -192,6 +192,10 @@ html {
   will-change: opacity;
 }
 
+html[data-splash-seen] .splash-screen {
+  display: none;
+}
+
 .splash-screen[data-leaving='true'] {
   opacity: 0;
   pointer-events: none;
