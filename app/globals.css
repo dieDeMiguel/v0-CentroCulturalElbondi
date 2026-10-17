@@ -116,7 +116,7 @@
 @theme inline {
   --font-sans: 'Geist', 'Geist Fallback', sans-serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
-  --font-display: 'dress-combo-one', serif;
+  --font-display: 'laca', sans-serif;
   --font-heading: 'laca', sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -170,48 +170,16 @@
     font-family: var(--font-heading);
   }
 
-  /* Layered cut-paper depth for display titles, echoing the hero diorama */
+  /* Minimal display titles: bold Laca on moon-cream, lifted off the page by a
+     single purple paper card, a quiet nod to the hero diorama */
   :is(h1, h2, h3).font-display {
-    /* Sheets sampled from the hero diorama: moon-cream face, pastel facade
-       stripes (pink, mint), then the purple brick wall as the backing card */
-    --paper-face: oklch(0.94 0.045 88);
-    --paper-1: oklch(0.82 0.09 355);
-    --paper-2: oklch(0.82 0.08 175);
-    --paper-3: oklch(0.47 0.15 298);
-    --paper-shade: oklch(0.12 0.04 290 / 0.45);
-    color: var(--paper-face);
-    /* Matte card stock: warm fibres plus a soft top-left light falloff */
-    background-color: var(--paper-face);
-    background-image:
-      linear-gradient(160deg, oklch(1 0 0 / 0.35), oklch(1 0 0 / 0) 45%, oklch(0.55 0.05 70 / 0.18)),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0 0.3 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
-    background-size: 100% 100%, 180px 180px;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    /* Chained drop-shadows follow the glyph outline: each pastel sheet is
-       lifted off the next by a soft, diffuse shadow like the diorama figures */
-    /* Fileteado lettering: a fine gold filete line traced around each glyph,
-       then a dark contour before the paper sheets, like a sign painter's outline */
-    --filete-gold: oklch(0.8 0.11 82);
-    -webkit-text-stroke: 0.014em var(--filete-gold);
-    paint-order: stroke fill;
-    filter:
-      drop-shadow(-0.5px -0.5px 0 oklch(1 0 0 / 0.6))
-      drop-shadow(0 0 0.6px oklch(0.16 0.05 295))
-      drop-shadow(0.02em 0.03em 0.015em var(--paper-shade))
-      drop-shadow(0.03em 0.04em 0 var(--paper-1))
-      drop-shadow(0.02em 0.03em 0.02em var(--paper-shade))
-      drop-shadow(0.03em 0.04em 0 var(--paper-2))
-      drop-shadow(0.02em 0.03em 0.02em var(--paper-shade))
-      drop-shadow(0.035em 0.045em 0 var(--paper-3))
-      drop-shadow(0.05em 0.09em 0.12em oklch(0.08 0.04 290 / 0.6));
+    font-weight: 700;
+    line-height: 1.05;
+    color: oklch(0.95 0.035 88);
+    text-shadow:
+      0.04em 0.05em 0 oklch(0.47 0.15 298),
+      0.06em 0.09em 0.12em oklch(0.08 0.04 290 / 0.5);
   }
-}
-
-/* Cut-paper filigree lifted off the page with the same soft shadow as the titles */
-.filete-ornament {
-  filter: drop-shadow(0.15rem 0.3rem 0.4rem oklch(0.08 0.04 290 / 0.6));
 }
 
 /* Cinematic smooth scrolling */
