@@ -1,17 +1,10 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { SPLASH_SEEN_KEY } from '@/lib/splash'
 
 const VISIBLE_MS = 1100
 const EXIT_MS = 900
-
-export const SPLASH_SEEN_KEY = 'elbondi-splash-seen'
-
-/*
- * Runs before first paint so that, once the splash has been shown in this
- * browser session, full page loads hide it via CSS without a purple flash.
- */
-export const splashSeenScript = `try{if(sessionStorage.getItem('${SPLASH_SEEN_KEY}')){document.documentElement.dataset.splashSeen=''}}catch(e){}`
 
 export function SplashScreen() {
   const [phase, setPhase] = useState<'visible' | 'leaving' | 'gone'>('visible')

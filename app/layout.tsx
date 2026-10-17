@@ -2,7 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AnnouncementBar } from '@/components/announcement-bar'
-import { SplashScreen, splashSeenScript } from '@/components/splash-screen'
+import { SplashScreen } from '@/components/splash-screen'
+import { splashSeenScript } from '@/lib/splash'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
