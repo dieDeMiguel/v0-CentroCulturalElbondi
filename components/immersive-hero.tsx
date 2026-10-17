@@ -1,13 +1,14 @@
 import Image from 'next/image'
 import { HeroSceneMotion } from '@/components/hero-scene-motion'
 import { HeroSceneLife } from '@/components/hero-scene-life'
+import { HeroSceneWind } from '@/components/hero-scene-wind'
 
 export function ImmersiveHero() {
   return (
     <div>
       <section className="relative w-full overflow-hidden bg-background">
         <div className="relative h-[60svh] w-full md:h-auto md:aspect-[1584/672]">
-          <div className="scene-drift absolute inset-0">
+          <div className="absolute inset-0">
           <Image
             src="/images/el-bondi-scene.png"
             alt="Ilustración en papel recortado 3D de la fachada de El Bondi de noche, centrada: una pared de rayas verticales rosa, celeste, rojo, amarillo, verde y lila con un cartel blanco que lleva el logo de El Bondi, junto a un edificio con arcos de colores alrededor de una ventana cubierto por una enredadera. Arriba, una estructura con luces y banderines donde una artista en telas aéreas, una chica en el trapecio y un acróbata en la soga se suspenden en lo alto; pegados a los costados, edificios vecinos con balcones y detrás, árboles de papel. En la vereda, chicos en monociclo y con aro, una pareja bailando tango y músicos con acordeón, guitarras, batería y violín."
@@ -28,6 +29,7 @@ export function ImmersiveHero() {
               className="absolute top-[62%] left-[35.9%] w-[10.4%] -rotate-1 opacity-90 mix-blend-multiply"
             />
             <HeroSceneMotion />
+            <HeroSceneWind />
           </div>
           </div>
         </div>

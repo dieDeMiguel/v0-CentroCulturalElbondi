@@ -412,28 +412,142 @@ html {
 }
 .scene-swing { animation-name: scene-swing; }
 
-@keyframes scene-bob {
+/* Musicians nod to the beat, leaning side to side */
+@keyframes scene-groove {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  25% { transform: translateY(-1.2%) rotate(-0.8deg); }
+  25% { transform: translateY(-2.5%) rotate(-2deg); }
   50% { transform: translateY(0) rotate(0deg); }
-  75% { transform: translateY(-1.2%) rotate(0.8deg); }
+  75% { transform: translateY(-2.5%) rotate(2deg); }
 }
-.scene-bob { animation-name: scene-bob; }
+.scene-groove { animation-name: scene-groove; }
 
-@keyframes scene-bounce {
+@keyframes scene-drum {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-5%) rotate(1.5deg); }
+}
+.scene-drum { animation-name: scene-drum; }
+
+/* Tango couple sways and turns in place */
+@keyframes scene-tango {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-4%) rotate(-3deg); }
+  50% { transform: translateX(0) rotate(0deg) scaleX(0.97); }
+  75% { transform: translateX(4%) rotate(3deg); }
+}
+.scene-tango { animation-name: scene-tango; }
+
+/* Hula hoop kid swings her hips */
+@keyframes scene-hula {
+  0%, 100% { transform: translateX(-3%) rotate(-2deg); }
+  50% { transform: translateX(3%) rotate(2deg); }
+}
+.scene-hula { animation-name: scene-hula; }
+
+/* Unicyclist balances back and forth */
+@keyframes scene-pedal {
+  0%, 100% { transform: translateX(-5%) rotate(-3deg); }
+  50% { transform: translateX(5%) rotate(3deg); }
+}
+.scene-pedal { animation-name: scene-pedal; }
+
+/* Juggler bounces lightly while the balls fly */
+@keyframes scene-juggle {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6%); }
+  50% { transform: translateY(-2%); }
 }
-.scene-bounce { animation-name: scene-bounce; }
+.scene-juggle { animation-name: scene-juggle; }
 
-@keyframes scene-rock {
-  0%, 100% { transform: rotate(-1.4deg); }
-  50% { transform: rotate(1.4deg); }
+@keyframes scene-toss {
+  0%, 100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-14%) rotate(4deg); }
 }
-.scene-rock { animation-name: scene-rock; }
+.scene-toss { animation-name: scene-toss; }
+
+/* Wind gusts: paper leaves blow across the scene now and then, hidden between gusts */
+@keyframes scene-gust {
+  0% { transform: translateX(-3%); opacity: 0; }
+  2% { opacity: 1; }
+  28% { opacity: 1; }
+  32% { transform: translateX(103%); opacity: 0; }
+  100% { transform: translateX(103%); opacity: 0; }
+}
+.scene-gust {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  animation-name: scene-gust;
+  animation-timing-function: cubic-bezier(0.4, 0.1, 0.6, 0.9);
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+}
+
+@keyframes scene-leaf-flutter {
+  0% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-260%) rotate(130deg); }
+  50% { transform: translateY(80%) rotate(250deg); }
+  75% { transform: translateY(-140%) rotate(400deg); }
+  100% { transform: translateY(0) rotate(540deg); }
+}
+.scene-leaf {
+  position: absolute;
+  left: 0;
+  aspect-ratio: 1 / 1.7;
+  border-radius: 0 100% 0 100%;
+  background:
+    linear-gradient(135deg, transparent 47%, oklch(0.35 0.07 150 / 0.45) 49%, oklch(0.35 0.07 150 / 0.45) 51%, transparent 53%),
+    var(--leaf-tone);
+  filter: drop-shadow(0 3px 2px oklch(0.15 0.05 280 / 0.4));
+  animation-name: scene-leaf-flutter;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+.leaf-a { --leaf-tone: oklch(0.62 0.13 145); }
+.leaf-b { --leaf-tone: oklch(0.74 0.14 130); }
+.leaf-c { --leaf-tone: oklch(0.52 0.11 152); }
+
+/* Shooting star: crosses the right-hand sky in under two seconds once every five minutes */
+@keyframes scene-shooting-star {
+  0% { transform: translateX(0); opacity: 0; }
+  0.08% { opacity: 1; }
+  0.45% { opacity: 0.9; }
+  0.6% { transform: translateX(280%); opacity: 0; }
+  100% { transform: translateX(280%); opacity: 0; }
+}
+.scene-shooting-star {
+  position: absolute;
+  top: 5%;
+  left: 90%;
+  width: 8%;
+  height: 0.35%;
+  min-height: 2px;
+  border-radius: 9999px;
+  rotate: 168deg;
+  opacity: 0;
+  background: linear-gradient(to right, transparent, oklch(0.97 0.04 95 / 0.95));
+  filter: drop-shadow(0 0 4px oklch(0.97 0.05 95 / 0.8));
+  animation: scene-shooting-star 300s linear 6s infinite;
+}
+.scene-shooting-star::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  width: 6px;
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  border-radius: 9999px;
+  background: oklch(0.99 0.03 95);
+  box-shadow: 0 0 8px 2px oklch(0.97 0.06 95 / 0.8);
+}
 
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .scene-gust,
+  .scene-shooting-star {
+    display: none;
+  }
   .scene-cutout,
   .scene-drift,
   .scene-star,
