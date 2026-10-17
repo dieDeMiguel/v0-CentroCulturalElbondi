@@ -180,6 +180,73 @@ content:
                 label: Biografía
                 type: text
 
+  - name: proyectos
+    label: Proyectos
+    description: Cada proyecto aparece como una ficha en /proyectos y en el menú "Proyectos". El orden de la lista es el orden en el sitio.
+    type: file
+    path: content/proyectos.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: Título
+        type: string
+        required: true
+      - name: slug
+        label: Slug (URL)
+        description: Parte de la URL, por ejemplo "tambores-de-mawy". Solo minúsculas, números y guiones. No cambiar una vez publicado.
+        type: string
+        required: true
+        pattern:
+          regex: ^[a-z0-9]+(?:-[a-z0-9]+)*$
+          message: Solo minúsculas, números y guiones.
+      - name: description
+        label: Descripción corta
+        description: Se muestra en la tarjeta del proyecto.
+        type: text
+        required: true
+      - name: fullDescription
+        label: Descripción completa
+        description: Se muestra en la ficha del proyecto. Dejá una línea en blanco para separar párrafos.
+        type: text
+        required: true
+      - name: image
+        label: Imagen
+        type: image
+        required: true
+      - name: schedule
+        label: Cuándo
+        description: Opcional. Por ejemplo "Sábados 16:00 hs" o "Toda la semana".
+        type: string
+      - name: location
+        label: Lugar
+        type: string
+        default: El Bondi
+      - name: referent
+        label: Coordina
+        description: Opcional. Persona referente del proyecto.
+        type: string
+      - name: contact
+        label: Email de contacto
+        type: string
+        default: mailcolectivocultural@gmail.com
+      - name: whatsapp
+        label: WhatsApp
+        description: Opcional. Número con código de país, por ejemplo "5491154594403".
+        type: string
+      - name: instagram
+        label: Instagram
+        description: Opcional. URL completa, empezando con https://
+        type: string
+      - name: link
+        label: Enlace extra
+        description: Opcional. Por ejemplo "/talleres" o una URL completa. Se muestra como botón en la ficha.
+        type: string
+      - name: linkLabel
+        label: Texto del botón del enlace
+        description: Por ejemplo "Ver todos los talleres".
+        type: string
+
   - name: flyers
     label: Flyers de inicio
     type: file

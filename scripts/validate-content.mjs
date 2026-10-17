@@ -102,6 +102,27 @@ flyers.forEach((flyer, index) => {
   }
 })
 
+const proyectos = load('proyectos.json')
+const projectSlugs = new Map()
+
+proyectos.forEach((project, index) => {
+  const where = `proyectos.json #${index + 1} (${project?.title || project?.slug || 'sin título'})`
+  for (const field of ['slug', 'title', 'description', 'fullDescription', 'image']) {
+    if (isBlank(project[field])) errors.push(`${where}: falta "${field}"`)
+  }
+  if (!isBlank(project.slug)) {
+    if (!SLUG_RE.test(project.slug)) {
+      errors.push(`${where}: el slug "${project.slug}" solo puede tener minúsculas, números y guiones`)
+    }
+    if (projectSlugs.has(project.slug)) {
+      errors.push(`${where}: el slug "${project.slug}" ya se usa en ${projectSlugs.get(project.slug)}`)
+    } else {
+      projectSlugs.set(project.slug, where)
+    }
+  }
+  checkImage(where, project.image)
+})
+
 if (errors.length > 0) {
   console.error(`\nContenido inválido (${errors.length} problema${errors.length === 1 ? '' : 's'}):`)
   for (const error of errors) console.error(`  - ${error}`)
@@ -109,4 +130,4 @@ if (errors.length > 0) {
   process.exit(1)
 }
 
-console.log(`Contenido válido: ${eventos.length} eventos, ${talleres.length} talleres, ${flyers.length} flyers.`)
+console.log(`Contenido válido: ${eventos.length} eventos, ${talleres.length} talleres, ${flyers.length} flyers, ${proyectos.length} proyectos.`)

@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { projects } from '@/lib/proyectos'
 
 type NavChild = { label: string; href: string }
 type NavLink = { label: string; href?: string; children?: NavChild[] }
@@ -23,10 +24,10 @@ const navLinks: NavLink[] = [
   },
   { label: 'Eventos', href: '/programacion' },
   {
-    label: 'Aprender en el Bondi',
+    label: 'Proyectos',
     children: [
-      { label: 'Talleres', href: '/talleres' },
-      { label: 'Educación', href: '/educacion' },
+      { label: 'Todos los proyectos', href: '/proyectos' },
+      ...projects.map((project) => ({ label: project.title, href: `/proyectos/${project.slug}` })),
     ],
   },
   {
