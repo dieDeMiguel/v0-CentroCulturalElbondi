@@ -28,14 +28,10 @@ export function ImmersiveHero() {
             <HeroSceneMotion />
           </div>
           </div>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent via-background/60 to-background"
-          />
         </div>
       </section>
 
-      <section id="contenido" className="relative scroll-mt-20 px-4 pt-16 pb-16 md:pt-24 md:pb-24">
+      <section id="contenido" className="scroll-mt-20 px-4 py-16 md:py-24">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="font-display text-4xl tracking-wide text-balance text-foreground md:text-6xl lg:text-7xl">
             Un espacio para la comunidad
