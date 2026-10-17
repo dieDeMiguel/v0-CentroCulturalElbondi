@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from 'next'
+import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AnnouncementBar } from '@/components/announcement-bar'
 import { SplashScreen } from '@/components/splash-screen'
 import './globals.css'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL
@@ -46,10 +49,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es" className="dark bg-background overflow-x-clip">
-      <head>
-        <link rel="stylesheet" href="https://use.typekit.net/zwk2tqd.css" />
-      </head>
+    <html lang="es" className={`${inter.variable} dark bg-background overflow-x-clip`}>
       <body className="font-sans antialiased overflow-x-clip">
         <SplashScreen />
         <AnnouncementBar />

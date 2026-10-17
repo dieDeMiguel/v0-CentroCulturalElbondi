@@ -114,10 +114,10 @@
 }
 
 @theme inline {
-  --font-sans: 'laca', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'laca', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'laca', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'laca', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-scene-sky: rgb(32 54 85);
@@ -165,14 +165,14 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* One family across the site: Laca for body, UI and headings */
+  /* One family across the site: Inter for body, UI and headings */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
-  /* Minimal display titles: bold Laca on moon-cream, lifted off the page by a
+  /* Minimal display titles: bold Inter on moon-cream, lifted off the page by a
      single purple paper card, a quiet nod to the hero diorama */
   :is(h1, h2, h3).font-display {
     font-weight: 700;
