@@ -389,8 +389,52 @@ html {
   animation: scene-moon 7s ease-in-out infinite;
 }
 
+/* Living cutouts: masked copies of the scene that sway, swing and bob around a pivot */
+.scene-cutout {
+  position: absolute;
+  background-repeat: no-repeat;
+  -webkit-mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse closest-side at 50% 50%, #000 72%, transparent 100%);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@keyframes scene-sway {
+  0%, 100% { transform: rotate(-0.9deg); }
+  50% { transform: rotate(0.9deg) translateX(0.4%); }
+}
+.scene-sway { animation-name: scene-sway; }
+
+@keyframes scene-swing {
+  0%, 100% { transform: rotate(-1.6deg); }
+  50% { transform: rotate(1.6deg); }
+}
+.scene-swing { animation-name: scene-swing; }
+
+@keyframes scene-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-1.2%) rotate(-0.8deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-1.2%) rotate(0.8deg); }
+}
+.scene-bob { animation-name: scene-bob; }
+
+@keyframes scene-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6%); }
+}
+.scene-bounce { animation-name: scene-bounce; }
+
+@keyframes scene-rock {
+  0%, 100% { transform: rotate(-1.4deg); }
+  50% { transform: rotate(1.4deg); }
+}
+.scene-rock { animation-name: scene-rock; }
+
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
+  .scene-cutout,
   .scene-drift,
   .scene-star,
   .scene-bulb,

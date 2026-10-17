@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { HeroSceneMotion } from '@/components/hero-scene-motion'
+import { HeroSceneLife } from '@/components/hero-scene-life'
 
 export function ImmersiveHero() {
   return (
@@ -17,6 +18,7 @@ export function ImmersiveHero() {
           />
           {/* Locked to the image's aspect ratio so the logo stays on the banner when object-cover crops the sides on mobile. */}
           <div className="pointer-events-none absolute top-0 left-1/2 aspect-[1584/672] h-full -translate-x-1/2">
+            <HeroSceneLife />
             <Image
               src="/images/logo-dark.png"
               alt=""
