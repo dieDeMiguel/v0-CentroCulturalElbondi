@@ -172,15 +172,11 @@
     letter-spacing: -0.02em;
   }
 
-  /* Minimal display titles: bold Inter on moon-cream, lifted off the page by a
-     single purple paper card, a quiet nod to the hero diorama */
+  /* Minimal display titles: flat bold Inter, no shadow */
   :is(h1, h2, h3).font-display {
     font-weight: 700;
     line-height: 1.05;
     color: oklch(0.95 0.035 88);
-    text-shadow:
-      0.04em 0.05em 0 oklch(0.47 0.15 298),
-      0.06em 0.09em 0.12em oklch(0.08 0.04 290 / 0.5);
   }
 }
 
