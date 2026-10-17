@@ -1,7 +1,7 @@
 [
   {
-    "slug": "talleres",
     "title": "Talleres",
+    "slug": "talleres",
     "description": "Talleres artísticos, culturales y circenses para todas las edades: circo, danza, música, capoeira y mucho más.",
     "fullDescription": "Los talleres son una de las formas más lindas de habitar El Bondi. Durante toda la semana se dictan propuestas de circo, danza, música, percusión, capoeira y otras disciplinas, abiertas a todas las edades y niveles. Cada taller tiene su propio horario y tallerista, y un aporte sugerido pero no excluyente: si no podés aportar, venite igual.",
     "image": "/images/taller-malabares.jpg",
@@ -9,59 +9,42 @@
     "location": "El Bondi",
     "referent": "Marina",
     "contact": "mailcolectivocultural@gmail.com",
-    "whatsapp": "",
-    "instagram": "",
     "link": "/talleres",
     "linkLabel": "Ver todos los talleres y horarios"
   },
   {
-    "slug": "bachi-popular",
     "title": "Bachi Popular",
+    "slug": "bachi-popular",
     "description": "Bachillerato popular: escuela secundaria para personas adultas con título oficial, en el marco de la educación popular.",
     "fullDescription": "El Bachillerato Popular El Bondi nació en 2019 como un secundario para personas adultas con título oficial. Es un espacio educativo pensado desde la comunidad, para acompañar trayectorias y sostener el derecho a estudiar, con una forma de enseñar y aprender basada en la educación popular: en ronda, entre todas y todos.",
     "image": "/images/proyecto-bachi.png",
-    "schedule": "",
     "location": "El Bondi",
     "referent": "Noelia",
-    "contact": "mailcolectivocultural@gmail.com",
-    "whatsapp": "",
-    "instagram": "",
-    "link": "",
-    "linkLabel": ""
+    "contact": "mailcolectivocultural@gmail.com"
   },
   {
-    "slug": "educacion-popular",
     "title": "Educación Popular",
+    "slug": "educacion-popular",
     "description": "Apoyo escolar para infancias y encuentros para compartir saberes, experiencias y herramientas desde la educación popular.",
     "fullDescription": "En El Bondi también construimos espacios de educación popular, acompañamiento y encuentro. El apoyo escolar acompaña a chicos y chicas del barrio en su estudio, con una mirada cercana, comunitaria y solidaria. Además, organizamos encuentros para compartir saberes, experiencias y herramientas desde la educación popular.",
     "image": "/images/proyecto-educacion-popular.png",
-    "schedule": "",
-    "location": "El Bondi",
+    "location": "CC El Bondi",
     "referent": "Tania Gallas (Apoyo Escolar)",
-    "contact": "mailcolectivocultural@gmail.com",
-    "whatsapp": "",
-    "instagram": "",
-    "link": "",
-    "linkLabel": ""
+    "contact": "mailcolectivocultural@gmail.com"
   },
   {
-    "slug": "gloria-la-del-bondi",
     "title": "Gloria la del Bondi",
+    "slug": "gloria-la-del-bondi",
     "description": "Grupo vecinal y popular de teatro comunitario que cuenta en escena la historia del espacio, del pueblo y del país.",
     "fullDescription": "Gloria la del Bondi nació en junio de 2011 como grupo de teatro comunitario, con el apoyo del mítico grupo Catalinas Sur de La Boca. En 2013 estrenó \"Una historia gloriosa\", una obra que representa la historia del edificio (almacén, hotel, cine, algodonera, abandono y recuperación) junto a la del pueblo y el país. Es un grupo abierto a vecinas y vecinos de todas las edades, no hace falta experiencia previa.",
     "image": "/images/proyecto-gloria.png",
-    "schedule": "",
     "location": "El Bondi",
     "referent": "Pau Cid",
-    "contact": "mailcolectivocultural@gmail.com",
-    "whatsapp": "",
-    "instagram": "",
-    "link": "",
-    "linkLabel": ""
+    "contact": "mailcolectivocultural@gmail.com"
   },
   {
-    "slug": "radioactiva",
     "title": "Radioactiva Comunitaria 96.9",
+    "slug": "radioactiva",
     "description": "La radio comunitaria del pueblo: un medio de comunicación de radio y streaming con las voces de Maschwitz.",
     "fullDescription": "FM RadioActiva Comunitaria empezó a transmitir en diciembre de 2011 y es la primera radio comunitaria del Partido de Escobar. Es un medio sin fines de lucro y sin pertenencia partidaria, con las puertas abiertas a organizaciones, estudiantes, jóvenes, adultos y adultos mayores que quieran hacer radio.",
     "image": "/images/radio-estudio-activa.jpg",
@@ -69,24 +52,17 @@
     "location": "El Bondi",
     "referent": "Javi Paz",
     "contact": "mailcolectivocultural@gmail.com",
-    "whatsapp": "",
-    "instagram": "",
     "link": "/radio-espacio",
     "linkLabel": "Ir a la página de la radio"
   },
   {
-    "slug": "tambores-de-mawy",
     "title": "Tambores de Mawy",
+    "slug": "tambores-de-mawy",
     "description": "Cuerda de candombe que ensaya en El Bondi y sale a llenar de tambores las calles de Maschwitz.",
     "fullDescription": "Tambores de Mawy es la cuerda de candombe de El Bondi. Se juntan a ensayar, a aprender los toques y a compartir el ritmo, y salen a tocar en las fiestas, peñas y calles del pueblo. Si te dan ganas de sumarte, escribinos y te contamos cuándo ensayan.",
     "image": "/images/proyecto-tambores.png",
-    "schedule": "",
     "location": "El Bondi",
     "referent": "Pancho",
-    "contact": "mailcolectivocultural@gmail.com",
-    "whatsapp": "",
-    "instagram": "",
-    "link": "",
-    "linkLabel": ""
+    "contact": "mailcolectivocultural@gmail.com"
   }
 ]
