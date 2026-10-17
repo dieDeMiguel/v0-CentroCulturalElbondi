@@ -3,10 +3,31 @@ import { HeroSceneMotion } from '@/components/hero-scene-motion'
 import { HeroSceneLife } from '@/components/hero-scene-life'
 import { HeroSceneWind } from '@/components/hero-scene-wind'
 
+const SKY_STARS = [
+  { left: '6%', top: '55%', delay: '0s', size: '1.1%' },
+  { left: '17%', top: '25%', delay: '1.4s', size: '0.9%' },
+  { left: '29%', top: '70%', delay: '2.6s', size: '1.2%' },
+  { left: '41%', top: '35%', delay: '0.8s', size: '0.8%' },
+  { left: '56%', top: '60%', delay: '2s', size: '1%' },
+  { left: '68%', top: '22%', delay: '3s', size: '1.2%' },
+  { left: '79%', top: '65%', delay: '1.1s', size: '0.9%' },
+  { left: '91%', top: '32%', delay: '2.3s', size: '1.1%' },
+]
+
 export function ImmersiveHero() {
   return (
     <div>
       <section className="relative w-full overflow-hidden bg-background">
+        {/* Solid fill sampled from the illustration's top edge so the extra sky joins it seamlessly. */}
+        <div aria-hidden="true" className="relative h-20 w-full bg-scene-sky md:h-[9vw]">
+          {SKY_STARS.map((star) => (
+            <span
+              key={`${star.left}-${star.top}`}
+              className="scene-star"
+              style={{ left: star.left, top: star.top, animationDelay: star.delay, width: star.size }}
+            />
+          ))}
+        </div>
         <div className="relative h-[60svh] w-full md:h-auto md:aspect-[1584/672]">
           <div className="absolute inset-0">
           <Image
@@ -17,6 +38,7 @@ export function ImmersiveHero() {
             sizes="100vw"
             className="object-cover object-center"
           />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[14%] bg-gradient-to-b from-scene-sky to-transparent" />
           {/* Locked to the image's aspect ratio so the logo stays on the banner when object-cover crops the sides on mobile. */}
           <div className="pointer-events-none absolute top-0 left-1/2 aspect-[1584/672] h-full -translate-x-1/2">
             <HeroSceneLife />

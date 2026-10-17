@@ -120,6 +120,7 @@
   --font-heading: 'laca', sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-scene-sky: rgb(32 54 85);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
