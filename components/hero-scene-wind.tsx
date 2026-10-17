@@ -8,11 +8,14 @@ type Leaf = {
   tone: 'leaf-a' | 'leaf-b' | 'leaf-c'
 }
 
+// Plants bend on this gust's cycle so the trees react when the leaves blow past.
+export const PRIMARY_GUST = { cycle: 19, offset: 3, crossing: 5 }
+
 // Two gusts on different cycles so the wind never feels like a fixed loop.
 const gusts: { cycle: number; offset: number; leaves: Leaf[] }[] = [
   {
-    cycle: 19,
-    offset: 3,
+    cycle: PRIMARY_GUST.cycle,
+    offset: PRIMARY_GUST.offset,
     leaves: [
       { top: 22, delay: 0, flutter: 2.2, size: 1.1, tone: 'leaf-a' },
       { top: 30, delay: 0.4, flutter: 2.8, size: 0.9, tone: 'leaf-b' },
@@ -36,6 +39,19 @@ export function HeroSceneWind() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
       <span className="scene-shooting-star" />
+      <span className="scene-ufo-path">
+        <span className="scene-ufo">
+          <span className="ufo-beam" />
+          <span className="ufo-dome">
+            <span className="ufo-alien" />
+          </span>
+          <span className="ufo-saucer">
+            <span className="ufo-light" />
+            <span className="ufo-light" />
+            <span className="ufo-light" />
+          </span>
+        </span>
+      </span>
       {gusts.flatMap((gust, g) =>
         gust.leaves.map((leaf, i) => (
           <span
