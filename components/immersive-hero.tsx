@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { HeroSceneMotion } from '@/components/hero-scene-motion'
 import { HeroSceneLife } from '@/components/hero-scene-life'
 import { HeroSceneWind } from '@/components/hero-scene-wind'
+import { FileteTitle } from '@/components/filete-title'
 
 const SKY_STARS = [
   { left: '6%', top: '55%', delay: '0s', size: '1.1%' },
@@ -59,9 +60,11 @@ export function ImmersiveHero() {
 
       <section id="contenido" className="scroll-mt-20 px-4 py-16 md:py-24">
         <div className="mx-auto max-w-4xl text-center">
-          <h1 className="font-display text-4xl tracking-wide text-balance text-foreground md:text-6xl lg:text-7xl">
-            Un espacio para la comunidad
-          </h1>
+          <FileteTitle>
+            <h1 className="font-display text-4xl tracking-wide text-balance text-foreground md:text-6xl lg:text-7xl">
+              Un espacio para la comunidad
+            </h1>
+          </FileteTitle>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground md:text-xl">
             Donde el arte, la cultura y los vecinos se encuentran. Un centro cultural vivo,
             construido por y para la comunidad de Maschwitz.

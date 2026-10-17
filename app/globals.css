@@ -191,8 +191,14 @@
     -webkit-text-fill-color: transparent;
     /* Chained drop-shadows follow the glyph outline: each pastel sheet is
        lifted off the next by a soft, diffuse shadow like the diorama figures */
+    /* Fileteado lettering: a fine gold filete line traced around each glyph,
+       then a dark contour before the paper sheets, like a sign painter's outline */
+    --filete-gold: oklch(0.8 0.11 82);
+    -webkit-text-stroke: 0.014em var(--filete-gold);
+    paint-order: stroke fill;
     filter:
       drop-shadow(-0.5px -0.5px 0 oklch(1 0 0 / 0.6))
+      drop-shadow(0 0 0.6px oklch(0.16 0.05 295))
       drop-shadow(0.02em 0.03em 0.015em var(--paper-shade))
       drop-shadow(0.03em 0.04em 0 var(--paper-1))
       drop-shadow(0.02em 0.03em 0.02em var(--paper-shade))
@@ -201,6 +207,11 @@
       drop-shadow(0.035em 0.045em 0 var(--paper-3))
       drop-shadow(0.05em 0.09em 0.12em oklch(0.08 0.04 290 / 0.6));
   }
+}
+
+/* Cut-paper filigree lifted off the page with the same soft shadow as the titles */
+.filete-ornament {
+  filter: drop-shadow(0.15rem 0.3rem 0.4rem oklch(0.08 0.04 290 / 0.6));
 }
 
 /* Cinematic smooth scrolling */
