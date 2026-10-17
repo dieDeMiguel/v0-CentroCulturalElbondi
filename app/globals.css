@@ -487,11 +487,11 @@ html {
 /* Alien saucer: every two minutes, offset from the shooting star so they never share the sky */
 @keyframes scene-ufo-fly {
   0% { transform: translateX(-8%); opacity: 0; }
-  0.4% { opacity: 1; }
-  3% { transform: translateX(42%); }
-  5% { transform: translateX(44%); }
-  7% { transform: translateX(106%); opacity: 1; }
-  7.2% { transform: translateX(106%); opacity: 0; }
+  0.6% { opacity: 1; }
+  4.8% { transform: translateX(42%); }
+  8% { transform: translateX(44%); }
+  11.2% { transform: translateX(106%); opacity: 1; }
+  11.5% { transform: translateX(106%); opacity: 0; }
   100% { transform: translateX(106%); opacity: 0; }
 }
 .scene-ufo-path {
