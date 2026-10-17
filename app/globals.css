@@ -442,7 +442,84 @@ html {
 .leaf-b { --leaf-tone: oklch(0.74 0.14 130); }
 .leaf-c { --leaf-tone: oklch(0.52 0.11 152); }
 
-/* Shooting star: crosses the right-hand sky in under two seconds once every minute */
+  /* Jacarandá: layered paper canopy over the tree beside the stage */
+  .jacaranda {
+  position: absolute;
+  transform-origin: 50% 100%;
+  animation: scene-sway 8s ease-in-out 1.5s infinite;
+  will-change: transform;
+  }
+  .jacaranda-branch {
+  position: absolute;
+  border-radius: 999px;
+  background: oklch(0.4 0.06 45);
+  transform-origin: 50% 100%;
+  box-shadow: 0 2px 3px oklch(0.15 0.05 280 / 0.4);
+  }
+  .jacaranda-blob {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--blob-tone);
+  box-shadow: 0 3px 4px oklch(0.15 0.05 280 / 0.45);
+  }
+  .jacaranda-deep { --blob-tone: oklch(0.5 0.15 293); }
+  .jacaranda-mid { --blob-tone: oklch(0.62 0.15 298); }
+  .jacaranda-light { --blob-tone: oklch(0.74 0.12 305); }
+
+  /* Petals fall from the canopy down through the hero title */
+  .jacaranda-petals {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  --petal-start: calc(5rem + 18%);
+  --fall-distance: calc(60svh + 14rem);
+  }
+  @media (min-width: 768px) {
+  .jacaranda-petals {
+  --petal-start: calc(9vw + 6vw);
+  --fall-distance: calc(38vw + 16rem);
+  }
+  }
+  @keyframes petal-fall {
+  0% { transform: translate(0, 0); opacity: 0; }
+  6% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translate(var(--drift), var(--fall-distance)); opacity: 0; }
+  }
+  @keyframes petal-sway {
+  0%, 100% { transform: translateX(-14px) rotate(-35deg); }
+  50% { transform: translateX(14px) rotate(40deg); }
+  }
+  .petal-fall {
+  position: absolute;
+  top: var(--petal-start);
+  opacity: 0;
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+  }
+  .petal-sway {
+  display: block;
+  animation-name: petal-sway;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  }
+  .petal {
+  display: block;
+  aspect-ratio: 1 / 1.25;
+  border-radius: 60% 0 60% 60%;
+  background: var(--petal-tone);
+  box-shadow: 0 2px 2px oklch(0.15 0.05 280 / 0.3);
+  }
+  .petal-a { --petal-tone: oklch(0.62 0.15 298); }
+  .petal-b { --petal-tone: oklch(0.72 0.13 305); }
+  .petal-c { --petal-tone: oklch(0.54 0.16 293); }
+
+  /* Shooting star: crosses the right-hand sky in under two seconds once every minute */
 @keyframes scene-shooting-star {
   0% { transform: translateX(0); opacity: 0; }
   0.4% { opacity: 1; }
@@ -568,11 +645,13 @@ html {
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .scene-gust,
+  .jacaranda-petals,
   .scene-shooting-star,
   .scene-ufo-path {
     display: none;
   }
   .scene-cutout,
+  .jacaranda,
   .scene-drift,
   .scene-star,
   .scene-bulb,
