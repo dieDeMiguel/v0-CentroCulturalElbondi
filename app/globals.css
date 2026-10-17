@@ -470,22 +470,23 @@ html {
   /* Petals fall from the canopy down through the hero title */
   .jacaranda-petals {
   position: absolute;
-  inset: 0;
+  inset-inline: 0;
+  top: calc(5rem + 10svh);
+  height: 0;
   z-index: 10;
   pointer-events: none;
-  --petal-start: calc(5rem + 18%);
-  --fall-distance: calc(60svh + 14rem);
+  --fall-distance: calc(60svh + 30rem);
   }
   @media (min-width: 768px) {
   .jacaranda-petals {
-  --petal-start: calc(9vw + 6vw);
-  --fall-distance: calc(38vw + 16rem);
+  top: calc(9vw + 6vw);
+  --fall-distance: calc(38vw + 34rem);
   }
   }
   @keyframes petal-fall {
   0% { transform: translate(0, 0); opacity: 0; }
-  6% { opacity: 1; }
-  88% { opacity: 1; }
+  4% { opacity: 1; }
+  96% { opacity: 1; }
   100% { transform: translate(var(--drift), var(--fall-distance)); opacity: 0; }
   }
   @keyframes petal-sway {
@@ -494,7 +495,7 @@ html {
   }
   .petal-fall {
   position: absolute;
-  top: var(--petal-start);
+  top: 0;
   opacity: 0;
   animation-name: petal-fall;
   animation-timing-function: linear;

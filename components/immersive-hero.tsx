@@ -3,7 +3,6 @@ import { HeroSceneMotion } from '@/components/hero-scene-motion'
 import { HeroSceneLife } from '@/components/hero-scene-life'
 import { HeroSceneWind } from '@/components/hero-scene-wind'
 import { HeroJacaranda } from '@/components/hero-jacaranda'
-import { JacarandaPetals } from '@/components/jacaranda-petals'
 
 const SKY_STARS = [
   { left: '6%', top: '55%', delay: '0s', size: '1.1%' },
@@ -19,7 +18,6 @@ const SKY_STARS = [
 export function ImmersiveHero() {
   return (
     <div className="relative overflow-hidden">
-      <JacarandaPetals />
       <section className="relative w-full overflow-hidden bg-background">
         {/* Solid fill sampled from the illustration's top edge so the extra sky joins it seamlessly. */}
         <div aria-hidden="true" className="relative h-20 w-full bg-scene-sky md:h-[9vw]">

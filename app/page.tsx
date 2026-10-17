@@ -1,5 +1,6 @@
 import { Navbar } from '@/components/navbar'
 import { ImmersiveHero } from '@/components/immersive-hero'
+import { JacarandaPetals } from '@/components/jacaranda-petals'
 import { EventsSection } from '@/components/events-section'
 import { FlyersSection } from '@/components/flyers-section'
 import { WorkshopsSection } from '@/components/workshops-section'
@@ -22,9 +23,12 @@ export default function Home() {
       <Navbar />
 
       <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
-        <ImmersiveHero />
-        <LocationCta />
-        <EventsSection />
+        <div className="relative overflow-x-clip">
+          <JacarandaPetals landingSelector="#eventos h2" />
+          <ImmersiveHero />
+          <LocationCta />
+          <EventsSection />
+        </div>
         <FlyersSection />
         <WorkshopsSection />
         <InteractiveTimeline />
