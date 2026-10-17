@@ -1,14 +1,8 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AnnouncementBar } from '@/components/announcement-bar'
 import { SplashScreen } from '@/components/splash-screen'
 import './globals.css'
-
-const geist = Geist({
-  subsets: ['latin'],
-  variable: '--font-geist',
-})
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   ? process.env.NEXT_PUBLIC_SITE_URL
@@ -56,7 +50,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/zwk2tqd.css" />
       </head>
-      <body className={`${geist.variable} font-sans antialiased overflow-x-clip`}>
+      <body className="font-sans antialiased overflow-x-clip">
         <SplashScreen />
         <AnnouncementBar />
         {children}

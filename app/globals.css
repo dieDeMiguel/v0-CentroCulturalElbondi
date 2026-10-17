@@ -114,10 +114,10 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback', sans-serif;
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
-  --font-display: 'laca', sans-serif;
-  --font-heading: 'laca', sans-serif;
+  --font-sans: 'laca', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'laca', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'laca', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'laca', ui-sans-serif, system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-scene-sky: rgb(32 54 85);
@@ -165,9 +165,11 @@
   body {
     @apply bg-background text-foreground;
   }
-  /* Laca for standard headings; font-display (Dress) utility overrides for display headings */
+  /* One family across the site: Laca for body, UI and headings */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   /* Minimal display titles: bold Laca on moon-cream, lifted off the page by a
