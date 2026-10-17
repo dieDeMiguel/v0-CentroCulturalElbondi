@@ -6,5 +6,13 @@
     "caption": "Rock, teatro, teatro comunitario y Noche de Muertos Vol. II.",
     "href": "/programacion?categoria=evento",
     "cta": "Ver la programación"
+  },
+  {
+    "src": "/images/Cartel de talleres circenses y comunitarios.png",
+    "alt": "Talleres del Bondi",
+    "title": "Talleres",
+    "caption": "circo, ceramica, teatro, danza y más",
+    "href": "/programaci",
+    "cta": "Ver el evento"
   }
 ]
