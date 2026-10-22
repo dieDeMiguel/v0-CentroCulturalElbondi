@@ -10,7 +10,7 @@ const contentSecurityPolicy = [
   'media-src https://*.public.blob.vercel-storage.com',
   "connect-src 'self' https://formspree.io",
   'frame-src https://www.google.com',
-  "form-action 'self' https://formspree.io https://www.paypal.com",
+  "form-action 'self' https://formspree.io",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "object-src 'none'",
