@@ -48,6 +48,21 @@
     "instagram": "@ccelbondi"
   },
   {
+    "title": "Muestra: memorias para el futuro",
+    "slug": "muestra-memorias-para-el-futuro",
+    "description": "Muestra artística",
+    "fullDescription": "Muestra artística",
+    "image": "/images/ChatGPT Image 13 ago 2026, 14_39_43.png",
+    "calendarDate": "2026-11-06",
+    "date": "6 Nov 2026",
+    "time": "18:00 hs",
+    "eventType": "variedades",
+    "production": "externa",
+    "location": "Sala teatro - El Bondi",
+    "price": "Contribución sugerida",
+    "contact": "eventoscccelbondi@gmail.com"
+  },
+  {
     "title": "Festival de Murgas Uruguayas",
     "slug": "festival-de-murgas-uruguayas",
     "description": "Se viene el Tablado de Murgas al estilo uruguayo en Maschwitz! 🎭🥁\ndi.",
@@ -80,17 +95,17 @@
     "instagram": "@varietebajolasestrellas"
   },
   {
-    "title": "Muestra: memorias para el futuro",
-    "slug": "muestra-memorias-para-el-futuro",
-    "description": "Muestra artística",
-    "fullDescription": "Muestra artística",
-    "image": "/images/ChatGPT Image 13 ago 2026, 14_39_43.png",
-    "calendarDate": "2026-11-06",
-    "date": "6 Nov 2026",
-    "time": "18:00 hs",
+    "title": "Cine debate :Activación especial: proyección de Cuidadoras",
+    "slug": "proyeccion-de-cuidadoras",
+    "description": "Proyección del documental y debate junto a las directoras de la película,",
+    "fullDescription": "Proyección del documental y debate junto a las directoras de la película",
+    "image": "/images/ChatGPT Image 13 ago 2026, 14_39_43-2.png",
+    "calendarDate": "2026-10-20",
+    "date": "20noviembre",
+    "time": "18:00hs",
     "eventType": "variedades",
     "production": "externa",
-    "location": "Sala teatro - El Bondi",
+    "location": "El Bondi",
     "price": "Contribución sugerida",
     "contact": "eventoscccelbondi@gmail.com"
   },
@@ -154,20 +169,5 @@
     "price": "Contribución sugerida a la gorra",
     "contact": "eventoscccelbondi@gmail.com",
     "instagram": "@matemurga @glorialadelbondi"
-  },
-  {
-    "title": "Cine debate :Activación especial: proyección de Cuidadoras",
-    "slug": "proyeccion-de-cuidadoras",
-    "description": "Proyección del documental y debate junto a las directoras de la película,",
-    "fullDescription": "Proyección del documental y debate junto a las directoras de la película",
-    "image": "/images/ChatGPT Image 13 ago 2026, 14_39_43-2.png",
-    "calendarDate": "2026-10-20",
-    "date": "20noviembre",
-    "time": "18:00hs",
-    "eventType": "variedades",
-    "production": "externa",
-    "location": "El Bondi",
-    "price": "Contribución sugerida",
-    "contact": "eventoscccelbondi@gmail.com"
   }
 ]
