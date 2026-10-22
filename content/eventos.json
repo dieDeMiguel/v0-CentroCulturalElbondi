@@ -68,7 +68,7 @@
     "slug": "variete-bajo-las-estrellas-noviembre",
     "description": "El varieté del Bondi vuelve en noviembre con circo, danza, musica y humor a cielo abierto.",
     "fullDescription": "Una nueva edicion de Varieté Bajo las Estrellas, la produccion mas convocante del Colectivo Cultural. Circo, danza, musica y humor en una noche a cielo abierto para compartir en comunidad.",
-    "image": "/images/ChatGPT Image 13 ago 2026, 14_39_43.png",
+    "image": "/images/Cartel circense Variété bajo las estrellas.png",
     "calendarDate": "2026-11-14",
     "date": "14 Nov 2026",
     "time": "21:00 hs",
@@ -80,19 +80,19 @@
     "instagram": "@varietebajolasestrellas"
   },
   {
-    "title": "Teatro en el Bondi",
-    "slug": "teatro-noviembre",
-    "description": "Noche de teatro en el escenario del Bondi. Una propuesta escenica para cerrar noviembre.",
-    "fullDescription": "Una noche de teatro en el escenario del Bondi como parte de la programacion de noviembre. Produccion del Colectivo Cultural que celebra el trabajo escenico de nuestra comunidad.",
+    "title": "Muestra: memorias para el futuro",
+    "slug": "muestra-memorias-para-el-futuro",
+    "description": "Muestra artística",
+    "fullDescription": "Muestra artística",
     "image": "/images/ChatGPT Image 13 ago 2026, 14_39_43.png",
-    "calendarDate": "2026-11-28",
-    "date": "28 Nov 2026",
-    "time": "21:00 hs",
-    "eventType": "teatro",
-    "production": "bondi",
-    "location": "Salon principal - El Bondi",
+    "calendarDate": "2026-11-06",
+    "date": "6 Nov 2026",
+    "time": "18:00 hs",
+    "eventType": "variedades",
+    "production": "externa",
+    "location": "Sala teatro - El Bondi",
     "price": "Contribución sugerida",
-    "contact": "mailcolectivocultural@gmail.com"
+    "contact": "eventoscccelbondi@gmail.com"
   },
   {
     "title": "Tertulia Rebelde",
@@ -154,5 +154,20 @@
     "price": "Contribución sugerida a la gorra",
     "contact": "eventoscccelbondi@gmail.com",
     "instagram": "@matemurga @glorialadelbondi"
+  },
+  {
+    "title": "Cine debate :Activación especial: proyección de Cuidadoras",
+    "slug": "proyeccion-de-cuidadoras",
+    "description": "Proyección del documental y debate junto a las directoras de la película,",
+    "fullDescription": "Proyección del documental y debate junto a las directoras de la película",
+    "image": "/images/ChatGPT Image 13 ago 2026, 14_39_43-2.png",
+    "calendarDate": "2026-10-20",
+    "date": "20noviembre",
+    "time": "18:00hs",
+    "eventType": "variedades",
+    "production": "externa",
+    "location": "El Bondi",
+    "price": "Contribución sugerida",
+    "contact": "eventoscccelbondi@gmail.com"
   }
 ]
