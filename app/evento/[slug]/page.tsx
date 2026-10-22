@@ -2,6 +2,7 @@
 
 import { notFound, useParams } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Calendar,
   Clock,
@@ -77,10 +78,13 @@ export default function EventoPage() {
             {/* Event Image Card */}
             <Card className="overflow-hidden border-border/50">
               <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <img
+                <Image
                   src={item.image}
                   alt={item.title}
-                  className="size-full object-cover"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                  className="object-cover"
                 />
                 <Badge
                   className="absolute left-4 top-4 bg-primary/90 text-primary-foreground"
@@ -247,10 +251,12 @@ export default function EventoPage() {
                   href={`/evento/${rel.slug}`}
                   className="group relative flex h-[280px] flex-col overflow-hidden rounded-lg border border-border/50 bg-card shadow-sm transition-shadow duration-300 hover:shadow-xl"
                 >
-                  <img
+                  <Image
                     src={rel.image}
                     alt={rel.title}
-                    className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/70 via-40% to-black/10" />
                   <div className="relative mt-auto rounded-b-xl bg-black/60 p-4 backdrop-blur-[2px]">

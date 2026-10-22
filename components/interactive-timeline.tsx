@@ -289,7 +289,7 @@ export function InteractiveTimeline() {
                               transitionDelay: isActive ? `${imgIndex * 80}ms` : '0ms',
                             }}
                           >
-                            <Image src={img} alt="" fill className="object-cover" />
+                            <Image src={img} alt="" fill sizes="64px" className="object-cover" />
                           </div>
                         ))}
                       </div>

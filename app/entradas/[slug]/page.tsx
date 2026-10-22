@@ -2,6 +2,7 @@
 
 import { use, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import {
   ArrowLeft,
@@ -38,13 +39,30 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import { getItemBySlug } from '@/lib/data'
+import { submitToFormspree, isValidEmail } from '@/lib/formspree'
+import { TicketConfirmation } from '@/components/ticket-confirmation'
 
 type DeliveryOption = 'email' | 'download' | 'both'
 type IdentityType = 'named' | 'anonymous'
 
-export default function EntradasPage({ params }: { params: Promise<{ slug: string }> }) {
+type Completion = 'rsvp' | 'payment-pending' | 'payment-returned'
+
+export default function EntradasPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>
+  searchParams: Promise<{ confirmado?: string }>
+}) {
   const { slug } = use(params)
+  const { confirmado } = use(searchParams)
   const event = getItemBySlug(slug)
+
+  const [completion, setCompletion] = useState<Completion | null>(
+    confirmado === '1' ? 'payment-returned' : null,
+  )
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const [step, setStep] = useState(1)
   const [quantity, setQuantity] = useState(1)
@@ -83,31 +101,95 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
     }).format(amount)
   }
 
-  const handlePayPal = () => {
+  const deliveryLabel =
+    delivery === 'email' ? 'Por email' : delivery === 'download' ? 'Descarga directa' : 'Email + Descarga'
+
+  const ticketFields = (tipo: string) => ({
+    _subject: `${tipo}: ${event.title} (x${quantity})`,
+    tipo,
+    evento: event.title,
+    slug,
+    fecha: `${event.date} - ${event.time}`,
+    cantidad: String(quantity),
+    precio_unitario: isFree ? 'Gratis' : formatAmount(numericPrice),
+    total: isFree ? 'Gratis' : formatAmount(totalPrice),
+    entrega: deliveryLabel,
+    nombre: identity === 'anonymous' ? 'Anonimo' : name.trim(),
+    email: email.trim(),
+    telefono: identity === 'anonymous' ? '' : phone.trim(),
+  })
+
+  const handleFreeConfirm = async () => {
+    setSubmitting(true)
+    setSubmitError(null)
+    const result = await submitToFormspree(ticketFields('Entrada gratuita'))
+    setSubmitting(false)
+    if (result.ok) setCompletion('rsvp')
+    else setSubmitError(result.error)
+  }
+
+  const handlePayPal = async () => {
     if (isFree) return
+
+    // Open synchronously so the browser doesn't treat it as a blocked popup after the await.
+    const paypalWindow = window.open('about:blank', '_blank')
+    setSubmitting(true)
+    setSubmitError(null)
+
+    const result = await submitToFormspree({
+      ...ticketFields('Pago PayPal pendiente de verificar'),
+      nota: `Verificar en PayPal que se recibieron ${formatAmount(totalPrice)} antes de enviar la entrada.`,
+    })
+    setSubmitting(false)
+
+    if (!result.ok) {
+      paypalWindow?.close()
+      setSubmitError(result.error)
+      return
+    }
 
     const params = new URLSearchParams({
       cmd: '_donations',
       business: 'mailcolectivocultural@gmail.com',
       item_name: `Entrada: ${event.title} x${quantity}`,
-      amount: totalPrice.toString(),
       currency_code: 'ARS',
       no_note: '1',
-      return: typeof window !== 'undefined' ? `${window.location.origin}/entradas/${slug}?confirmado=1` : '',
+      return: `${window.location.origin}/entradas/${slug}?confirmado=1`,
     })
+    // "Contribucion sugerida" without a number: let the buyer choose the amount in PayPal.
+    if (totalPrice > 0) params.set('amount', totalPrice.toString())
+    const paypalUrl = `https://www.paypal.com/cgi-bin/webscr?${params.toString()}`
 
-    window.open(`https://www.paypal.com/cgi-bin/webscr?${params.toString()}`, '_blank')
+    if (paypalWindow) paypalWindow.location.href = paypalUrl
+    else window.location.href = paypalUrl
+    setCompletion('payment-pending')
   }
 
-  const handleReservationSubmit = () => {
-    // In a real app, this would send to an API
-    setReservationSubmitted(true)
+  const handleReservationSubmit = async () => {
+    setSubmitting(true)
+    setSubmitError(null)
+    const result = await submitToFormspree({
+      _subject: `Reserva taller: ${event.title}`,
+      tipo: 'Reserva de taller',
+      taller: event.title,
+      slug,
+      fecha: `${event.date} - ${event.time}`,
+      precio: event.price,
+      nombre: reservationName.trim(),
+      email: reservationEmail.trim(),
+      telefono: reservationPhone.trim(),
+      mensaje: reservationMessage.trim(),
+    })
+    setSubmitting(false)
+    if (result.ok) setReservationSubmitted(true)
+    else setSubmitError(result.error)
   }
 
   const canProceedStep1 = quantity > 0
   const canProceedStep2 = delivery !== undefined
-  const canProceedStep3 = identity === 'anonymous' || (name.trim() && email.trim())
-  const canSubmitReservation = reservationName.trim() && reservationEmail.trim()
+  const canProceedStep3 = isValidEmail(email) && (identity === 'anonymous' || name.trim().length > 0)
+  const canSubmitReservation = reservationName.trim().length > 0 && isValidEmail(reservationEmail)
+  const isLocked = completion !== null
 
   const steps = isWorkshop
     ? [
@@ -156,7 +238,7 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
         {/* Hero */}
         <section className="relative overflow-hidden">
           <div className="absolute inset-0">
-            <img src={event.image} alt="" className="size-full object-cover" />
+            <Image src={event.image} alt="" fill priority sizes="100vw" className="object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40" />
           </div>
           <div className="relative mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-20">
@@ -400,8 +482,14 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
                   </div>
                 </div>
 
+                {submitError && (
+                  <p role="alert" className="rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
+                    {submitError}
+                  </p>
+                )}
+
                 <div className="flex gap-3">
-                  <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(1)}>
+                  <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(1)} disabled={submitting}>
                     <ArrowLeft className="size-4" />
                     Atras
                   </Button>
@@ -409,9 +497,9 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
                     size="lg"
                     className="flex-1 gap-2 rounded-lg"
                     onClick={handleReservationSubmit}
-                    disabled={!canSubmitReservation}
+                    disabled={!canSubmitReservation || submitting}
                   >
-                    Enviar reserva
+                    {submitting ? 'Enviando...' : 'Enviar reserva'}
                     <Mail className="size-4" />
                   </Button>
                 </div>
@@ -507,7 +595,7 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={event.image} alt="" className="size-full object-cover" />
+          <Image src={event.image} alt="" fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/40" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 py-16 lg:px-8 lg:py-20">
@@ -541,17 +629,17 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
           {steps.map((s) => (
             <button
               key={s.num}
-              onClick={() => { if (s.num < step) setStep(s.num) }}
+              onClick={() => { if (s.num < step && !isLocked) setStep(s.num) }}
               className={`flex shrink-0 items-center gap-2 rounded-lg px-4 py-1.5 text-sm font-medium transition-colors ${
-                step === s.num
+                step === s.num && !isLocked
                   ? 'bg-primary text-primary-foreground'
-                  : step > s.num
+                  : step > s.num || isLocked
                     ? 'bg-primary/10 text-primary'
                     : 'bg-muted text-muted-foreground'
-              } ${s.num < step ? 'cursor-pointer hover:bg-primary/20' : s.num > step ? 'cursor-default' : ''}`}
-              disabled={s.num > step}
+              } ${s.num < step && !isLocked ? 'cursor-pointer hover:bg-primary/20' : s.num > step ? 'cursor-default' : ''}`}
+              disabled={s.num > step || isLocked}
             >
-              {step > s.num ? <Check className="size-3.5" /> : <span>{s.num}</span>}
+              {step > s.num || isLocked ? <Check className="size-3.5" /> : <span>{s.num}</span>}
               <span className="hidden sm:inline">{s.label}</span>
             </button>
           ))}
@@ -560,8 +648,62 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
 
       {/* Content */}
       <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8 lg:py-14">
+        {completion === 'rsvp' && (
+          <TicketConfirmation
+            variant="success"
+            title="Asistencia registrada"
+            description={
+              <>
+                Registramos {quantity > 1 ? `tus ${quantity} entradas` : 'tu entrada'} para <strong>{event.title}</strong>.
+                Te escribiremos a <strong>{email}</strong> con la confirmacion.
+              </>
+            }
+            nextSteps={[
+              'Revisa tu bandeja de entrada (y spam) en los proximos dias',
+              `Presentate el ${event.date} a las ${event.time} en ${event.location}`,
+              'Si no podes asistir, avisanos respondiendo el email',
+            ]}
+          />
+        )}
+
+        {completion === 'payment-pending' && (
+          <TicketConfirmation
+            variant="pending"
+            title="Completa el pago en PayPal"
+            description={
+              <>
+                Abrimos PayPal en una nueva pestana para pagar <strong>{formatAmount(totalPrice)}</strong>.
+                Ya registramos tu pedido: cuando verifiquemos el pago te enviamos la entrada a <strong>{email}</strong>.
+              </>
+            }
+            nextSteps={[
+              'Completa el pago en la pestana de PayPal',
+              'Verificamos el pago manualmente (puede demorar hasta 24 horas)',
+              'Recibi tu entrada por email y presentala el dia del evento',
+            ]}
+          />
+        )}
+
+        {completion === 'payment-returned' && (
+          <TicketConfirmation
+            variant="success"
+            title="Gracias por tu pago"
+            description={
+              <>
+                Recibimos tu regreso desde PayPal para <strong>{event.title}</strong>. Vamos a verificar el pago y te
+                enviaremos la entrada al email que nos dejaste.
+              </>
+            }
+            nextSteps={[
+              'Verificamos el pago manualmente (puede demorar hasta 24 horas)',
+              'Revisa tu bandeja de entrada (y spam)',
+              'Presenta tu entrada el dia del evento',
+            ]}
+          />
+        )}
+
         {/* Step 1: Event details + quantity */}
-        {step === 1 && (
+        {!isLocked && step === 1 && (
           <ScrollReveal>
             <div className="grid gap-8 lg:grid-cols-5">
               {/* Left: event info */}
@@ -683,7 +825,7 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
         )}
 
         {/* Step 2: Delivery preference */}
-        {step === 2 && (
+        {!isLocked && step === 2 && (
           <ScrollReveal>
             <div className="mx-auto max-w-xl flex flex-col gap-8">
               <div>
@@ -754,7 +896,7 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
         )}
 
         {/* Step 3: Identity + contact info */}
-        {step === 3 && (
+        {!isLocked && step === 3 && (
           <ScrollReveal>
             <div className="mx-auto max-w-xl flex flex-col gap-8">
               <div>
@@ -827,11 +969,11 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
                 </div>
               )}
 
-              {identity === 'anonymous' && (delivery === 'email' || delivery === 'both') && (
+              {identity === 'anonymous' && (
                 <div>
                   <Label htmlFor="anon-email" className="text-sm font-medium">
                     Email *
-                    <span className="ml-1 text-xs text-primary">(para recibir tu entrada)</span>
+                    <span className="ml-1 text-xs text-primary">(solo para enviarte la entrada)</span>
                   </Label>
                   <Input
                     id="anon-email"
@@ -864,7 +1006,7 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
         )}
 
         {/* Step 4: Summary + pay */}
-        {step === 4 && (
+        {!isLocked && step === 4 && (
           <ScrollReveal>
             <div className="mx-auto max-w-xl flex flex-col gap-8">
               <div className="rounded-lg border border-border bg-card p-6">
@@ -950,17 +1092,24 @@ export default function EntradasPage({ params }: { params: Promise<{ slug: strin
                 </ol>
               </div>
 
+              {submitError && (
+                <p role="alert" className="rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
+                  {submitError}
+                </p>
+              )}
+
               <div className="flex gap-3">
-                <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(3)}>
+                <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(3)} disabled={submitting}>
                   <ArrowLeft className="size-4" />
                   Atras
                 </Button>
                 <Button
                   size="lg"
                   className="flex-1 gap-2 rounded-lg"
-                  onClick={isFree ? () => alert('Entrada confirmada! Recibirás un email con tu entrada.') : handlePayPal}
+                  onClick={isFree ? handleFreeConfirm : handlePayPal}
+                  disabled={submitting}
                 >
-                  {isFree ? 'Confirmar asistencia' : 'Pagar con PayPal'}
+                  {submitting ? 'Enviando...' : isFree ? 'Confirmar asistencia' : 'Pagar con PayPal'}
                   <ArrowRight className="size-4" />
                 </Button>
               </div>

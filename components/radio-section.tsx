@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { radio } from '@/lib/radio'
@@ -13,9 +14,12 @@ export function RadioSection() {
         {/* Radio Image */}
         <ScrollReveal direction="left" className="w-full max-w-md shrink-0 lg:w-2/5">
           <div className="group relative overflow-hidden rounded-lg border border-primary-foreground/10 shadow-2xl">
-            <img
+            <Image
               src={radio.home.image}
               alt={radio.home.imageAlt}
+              width={800}
+              height={800}
+              sizes="(max-width: 1024px) 100vw, 448px"
               className="aspect-square w-full object-cover transition-transform duration-700 ease-cinematic group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
