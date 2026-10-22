@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -41,13 +42,14 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/50 shadow-lg shadow-black/5 backdrop-blur-xl backdrop-saturate-150 supports-[backdrop-filter]:bg-background/40">
       <div className="mx-auto flex h-[clamp(3.5rem,3rem+2.5vw,5rem)] max-w-7xl items-center justify-between gap-4 px-4 lg:px-8">
-        <a href="/" className="flex min-w-0 flex-shrink-0">
+        <Link href="/" className="flex min-w-0 flex-shrink-0">
+          {/* eslint-disable-next-line @next/next/no-img-element -- small logo; fluid clamp() height doesn't fit next/image's fixed sizing */}
           <img
             src="/images/logo-white.png"
             alt="El Bondi - Centro Cultural Comunitario"
             className="h-[clamp(1.75rem,1.5rem+1vw,2.25rem)] w-auto"
           />
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Navegacion principal">
           {navLinks.map((link) =>

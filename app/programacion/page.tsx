@@ -8,7 +8,6 @@ import {
   Calendar as CalendarIcon,
   X,
   MapPin,
-  Clock,
   Users,
   Filter,
   ChevronDown,
@@ -463,6 +462,7 @@ function ProgramCard({ item, extraDates = 0 }: { item: EventItem; extraDates?: n
           src={item.image}
           alt={item.title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />

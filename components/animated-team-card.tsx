@@ -16,6 +16,7 @@ export function AnimatedTeamCard({ name, role, bio, image }: AnimatedTeamCardPro
           src={image}
           alt={name}
           fill
+          sizes="(max-width: 640px) 100vw, 400px"
           className="object-cover grayscale"
         />
       </div>

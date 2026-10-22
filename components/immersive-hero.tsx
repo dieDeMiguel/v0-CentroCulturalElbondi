@@ -24,7 +24,6 @@ export function ImmersiveHero() {
   const [isMuted, setIsMuted] = useState(true)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0.5, y: 0.5 })
-  const [isLoaded, setIsLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
@@ -63,11 +62,6 @@ export function ImmersiveHero() {
     return () => {
       if (fadeRafRef.current) cancelAnimationFrame(fadeRafRef.current)
     }
-  }, [])
-
-  // Video load handler
-  const handleVideoLoad = useCallback(() => {
-    setIsLoaded(true)
   }, [])
 
   const handlePlayToggle = useCallback(() => {
@@ -169,7 +163,6 @@ export function ImmersiveHero() {
               loop
               preload="auto"
               poster="/images/hero.jpg"
-              onLoadedData={handleVideoLoad}
               className="size-full object-cover"
             >
               <track kind="captions" />

@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { X, ChevronLeft, ChevronRight, Home, Users, Handshake, Sparkles, ArrowRight } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -314,11 +314,13 @@ export default function CentroCulturalPage() {
                   className="group mb-4 block w-full overflow-hidden rounded-lg focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:outline-none"
                   aria-label={`Ver imagen: ${image.alt}`}
                 >
-                  <img
+                  <Image
                     src={image.src}
                     alt={image.alt}
-                    className="w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
+                    width={800}
+                    height={600}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="h-auto w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </button>
               </ScrollReveal>
@@ -354,11 +356,16 @@ export default function CentroCulturalPage() {
               <ChevronLeft className="size-5" />
             </button>
 
-            <img
-              src={galleryImages[lightboxIndex]?.src}
-              alt={galleryImages[lightboxIndex]?.alt}
-              className="max-h-[75vh] w-auto rounded-lg object-contain"
-            />
+            {galleryImages[lightboxIndex] && (
+              <Image
+                src={galleryImages[lightboxIndex].src}
+                alt={galleryImages[lightboxIndex].alt}
+                width={1600}
+                height={1200}
+                sizes="90vw"
+                className="h-auto max-h-[75vh] w-auto rounded-lg object-contain"
+              />
+            )}
 
             <button
               onClick={goNext}

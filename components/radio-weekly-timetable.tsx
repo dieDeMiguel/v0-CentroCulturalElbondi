@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { Clock, Radio, Music, Mic, MessageSquare, Newspaper, Users, Heart, ChevronDown } from 'lucide-react'
+import { Clock, Radio, Music, Mic, MessageSquare, Newspaper, Heart, ChevronDown } from 'lucide-react'
 
 interface RadioProgram {
   id: number
@@ -110,11 +110,6 @@ export function RadioWeeklyTimetable({ programs }: RadioWeeklyTimetableProps) {
 
     return data
   }, [programs])
-
-  // Find days that have programs
-  const daysWithPrograms = useMemo(() => {
-    return DAYS.filter(day => timetableData[day].length > 0)
-  }, [timetableData])
 
   const toggleDay = (day: Day) => {
     setExpandedDay(expandedDay === day ? null : day)

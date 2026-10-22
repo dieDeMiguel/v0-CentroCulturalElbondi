@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { MapPin, ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { useParallax } from '@/hooks/use-parallax'
@@ -31,13 +32,13 @@ export function LocationCta() {
               </div>
             </div>
 
-            <a
+            <Link
               href="/#ubicacion"
               className="group inline-flex shrink-0 items-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
             >
               Ver ubicación
               <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </a>
+            </Link>
           </div>
         </ScrollReveal>
       </div>

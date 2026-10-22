@@ -60,6 +60,7 @@ export async function renderOgImage() {
         }}
       >
         {/* Background photo */}
+        {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse (Satori) renders plain <img>; next/image isn't supported */}
         <img
           src={heroSrc}
           alt=""

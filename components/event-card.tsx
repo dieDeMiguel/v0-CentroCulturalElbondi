@@ -18,7 +18,7 @@ interface EventCardProps {
   production?: EventItem['production']
 }
 
-export function EventCard({ slug, title, description, image, date, time, location, price, category = 'evento', production }: EventCardProps) {
+export function EventCard({ slug, title, description, image, date, time, location, price, production }: EventCardProps) {
   const isBondi = production === 'bondi'
   const productionLabel = getProductionLabel(production)
 
@@ -37,6 +37,7 @@ export function EventCard({ slug, title, description, image, date, time, locatio
           src={image}
           alt={title}
           fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 ease-cinematic group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
