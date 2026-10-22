@@ -18,7 +18,7 @@ interface EventCardProps {
   production?: EventItem['production']
 }
 
-export function EventCard({ slug, title, description, image, date, time, location, price, category = 'evento', production }: EventCardProps) {
+export function EventCard({ slug, title, description, image, date, time, location, price, production }: EventCardProps) {
   const isBondi = production === 'bondi'
   const productionLabel = getProductionLabel(production)
 

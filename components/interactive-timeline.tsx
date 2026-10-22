@@ -113,7 +113,6 @@ export function InteractiveTimeline() {
   const [pointerIndex, setPointerIndex] = useState<number | null>(null)
   const [fillHeight, setFillHeight] = useState(0)
 
-  const listRef = useRef<HTMLUListElement>(null)
   const itemRefs = useRef<(HTMLLIElement | null)[]>([])
 
   const currentIndex = pointerIndex ?? activeIndex

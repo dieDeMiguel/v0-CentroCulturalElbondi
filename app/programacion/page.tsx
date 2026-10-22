@@ -8,7 +8,6 @@ import {
   Calendar as CalendarIcon,
   X,
   MapPin,
-  Clock,
   Users,
   Filter,
   ChevronDown,

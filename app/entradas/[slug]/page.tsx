@@ -17,7 +17,6 @@ import {
   Plus,
   User,
   UserX,
-  Phone,
   Users,
   CheckCircle,
   Home,
@@ -333,9 +332,11 @@ export default function EntradasPage({
                     <div className="rounded-lg border border-border bg-card p-5">
                       <h3 className="text-sm font-semibold text-foreground">Instructor/a</h3>
                       <div className="mt-3 flex items-center gap-3">
-                        <img
+                        <Image
                           src={event.instructor.avatar}
                           alt={event.instructor.name}
+                          width={40}
+                          height={40}
                           className="size-10 rounded-full object-cover"
                         />
                         <div>
@@ -737,9 +738,11 @@ export default function EntradasPage({
                   <div className="rounded-lg border border-border bg-card p-5">
                     <h3 className="text-sm font-semibold text-foreground">Presentado por</h3>
                     <div className="mt-3 flex items-center gap-3">
-                      <img
+                      <Image
                         src={event.instructor.avatar}
                         alt={event.instructor.name}
+                        width={40}
+                        height={40}
                         className="size-10 rounded-full object-cover"
                       />
                       <div>

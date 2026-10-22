@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { X, ChevronLeft, ChevronRight, Home, Users, Handshake, Sparkles, ArrowRight } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
