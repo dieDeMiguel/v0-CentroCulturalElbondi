@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/dialog'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
-import { InteractiveGlow } from '@/components/interactive-glow'
 import { PaperBuildingScene } from '@/components/paper-building-scene'
 import { AnimatedTeamCard } from '@/components/animated-team-card'
 import integrantesData from '@/content/integrantes.json'
@@ -139,8 +138,7 @@ export default function CentroCulturalPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative isolate flex flex-col overflow-hidden border-b border-border/40 bg-primary pt-16 lg:pt-24">
-        <InteractiveGlow />
+      <section className="relative z-10 flex flex-col overflow-x-clip bg-primary pt-16 lg:pt-24">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
             <InteractivePageHeader
@@ -155,7 +153,7 @@ export default function CentroCulturalPage() {
       </section>
 
       {/* El espacio (building history) Section */}
-      <section className="border-t border-border/40 py-16 lg:py-24">
+      <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <ScrollReveal>
             <h2 className="text-center font-display text-3xl tracking-wide text-foreground md:text-4xl lg:text-5xl">

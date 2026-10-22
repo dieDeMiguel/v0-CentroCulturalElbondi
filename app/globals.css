@@ -245,7 +245,23 @@ html {
 .paper-scene {
   --jacaranda-deep: oklch(0.58 0.15 295);
   --jacaranda-light: oklch(0.74 0.11 295);
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%);
+  --petal-reach: 34rem;
+}
+@media (min-width: 768px) {
+  .paper-scene {
+    --petal-reach: 38rem;
+  }
+}
+/* Tints the illustration's navy night sky toward the hero purple, then fades it out completely at the top */
+.paper-scene-sky {
+  background: linear-gradient(
+    to bottom,
+    var(--primary) 0%,
+    var(--primary) 6%,
+    color-mix(in oklch, var(--primary) 70%, transparent) 22%,
+    color-mix(in oklch, var(--primary) 25%, transparent) 40%,
+    transparent 58%
+  );
 }
 .jacaranda-petal {
   border-radius: 80% 0 80% 0;

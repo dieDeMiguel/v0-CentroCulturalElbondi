@@ -10,7 +10,7 @@ const JACARANDAS = [
   { x: 95.5, y: 26, spread: 3.5 },
 ]
 
-const PETALS_PER_TREE = 7
+const PETALS_PER_TREE = 8
 
 // Deterministic pseudo-random so server and client render the same petals.
 function seeded(n: number) {
@@ -22,16 +22,18 @@ const petals = JACARANDAS.flatMap((tree, treeIndex) =>
   Array.from({ length: PETALS_PER_TREE }, (_, i) => {
     const seed = treeIndex * 31 + i * 7 + 1
     const r = (k: number) => seeded(seed + k)
+    // Most petals keep falling past the illustration into the next section.
+    const reach = r(9) < 0.2 ? 0.1 : 0.45 + r(10) * 0.55
     return {
       id: `${treeIndex}-${i}`,
       left: tree.x + (r(1) - 0.5) * tree.spread * 2,
       top: tree.y + (r(2) - 0.5) * 6,
       size: 9 + r(3) * 8,
-      duration: 7 + r(4) * 6,
-      delay: -r(5) * 13,
-      sway: (r(6) - 0.5) * 9,
-      drift: (r(7) - 0.3) * 6,
-      fall: 100 - tree.y + 4,
+      duration: 10 + r(4) * 8 + reach * 6,
+      delay: -r(5) * 20,
+      sway: (r(6) - 0.5) * 10,
+      drift: (r(7) - 0.5) * 16,
+      fall: `calc(${100 - tree.y}cqh + var(--petal-reach) * ${reach.toFixed(2)})`,
       light: r(8) > 0.55,
     }
   }),
@@ -39,7 +41,7 @@ const petals = JACARANDAS.flatMap((tree, treeIndex) =>
 
 export function PaperBuildingScene() {
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full overflow-x-clip">
       <div
         className="paper-scene relative left-1/2 aspect-[1842/442] w-full min-w-[860px] -translate-x-1/2"
         style={{ containerType: 'size' }}
@@ -52,6 +54,8 @@ export function PaperBuildingScene() {
           sizes="(min-width: 860px) 100vw, 860px"
           className="object-cover object-bottom"
         />
+
+        <div aria-hidden="true" className="paper-scene-sky pointer-events-none absolute inset-0" />
 
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 [perspective:600px]">
           {petals.map((petal) => (
@@ -69,7 +73,7 @@ export function PaperBuildingScene() {
                   animationDelay: `${petal.delay}s`,
                   '--sway': `${petal.sway}cqw`,
                   '--drift': `${petal.drift}cqw`,
-                  '--fall': `${petal.fall}cqh`,
+                  '--fall': petal.fall,
                 } as CSSProperties
               }
             />
