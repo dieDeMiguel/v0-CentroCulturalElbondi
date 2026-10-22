@@ -13,6 +13,7 @@ import {
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
 import { InteractiveGlow } from '@/components/interactive-glow'
+import { PaperBuildingScene } from '@/components/paper-building-scene'
 import { AnimatedTeamCard } from '@/components/animated-team-card'
 import integrantesData from '@/content/integrantes.json'
 import {
@@ -138,7 +139,7 @@ export default function CentroCulturalPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
+      <section className="relative isolate flex flex-col overflow-hidden border-b border-border/40 bg-primary pt-16 lg:pt-24">
         <InteractiveGlow />
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
@@ -147,6 +148,9 @@ export default function CentroCulturalPage() {
               description="Más de 15 años construyendo comunidad a través de la cultura, la educación y la comunicación en Maschwitz."
             />
           </ScrollReveal>
+        </div>
+        <div className="relative z-10 mt-6 md:mt-8">
+          <PaperBuildingScene />
         </div>
       </section>
 
