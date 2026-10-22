@@ -3,14 +3,19 @@ import type { CSSProperties } from 'react'
 
 /** Jacaranda canopies in the illustration, as % of its width / height. */
 const JACARANDAS = [
-  { x: 4.3, y: 26, spread: 4 },
-  { x: 13.8, y: 28, spread: 4.5 },
-  { x: 29.6, y: 27, spread: 4 },
-  { x: 82, y: 28, spread: 4.5 },
-  { x: 95.5, y: 26, spread: 3.5 },
+  { x: 5, y: 24, spread: 4 },
+  { x: 16, y: 26, spread: 4 },
+  { x: 27, y: 24, spread: 4 },
+  { x: 40, y: 25, spread: 4 },
+  { x: 48, y: 28, spread: 3 },
+  { x: 56, y: 26, spread: 4 },
+  { x: 67, y: 24, spread: 4 },
+  { x: 77, y: 27, spread: 3 },
+  { x: 86, y: 26, spread: 4 },
+  { x: 95, y: 24, spread: 3.5 },
 ]
 
-const PETALS_PER_TREE = 8
+const PETALS_PER_TREE = 5
 
 // Deterministic pseudo-random so server and client render the same petals.
 function seeded(n: number) {
@@ -43,12 +48,12 @@ export function PaperBuildingScene() {
   return (
     <div className="relative w-full overflow-x-clip">
       <div
-        className="paper-scene relative left-1/2 aspect-[1842/442] w-full min-w-[860px] -translate-x-1/2"
+        className="paper-scene relative left-1/2 aspect-[1584/562] w-full min-w-[860px] -translate-x-1/2"
         style={{ containerType: 'size' }}
       >
         <Image
           src="/images/bondi-edificio-papel.png"
-          alt="Ilustración en papel del edificio de El Bondi: fachadas de colores, el portal con arco arcoíris cubierto de enredadera, acróbatas aéreas y jacarandás florecidas"
+          alt="Ilustración en papel del edificio de El Bondi: fachadas de colores, el portal con arco arcoíris cubierto de enredadera y una hilera de jacarandás florecidas detrás de los techos"
           fill
           priority
           sizes="(min-width: 860px) 100vw, 860px"
