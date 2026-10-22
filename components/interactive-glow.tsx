@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useSyncExternalStore } from 'react'
+
+const subscribeNoop = () => () => {}
 
 /**
  * Minimal, on-trend cursor spotlight for the purple page headers.
@@ -15,12 +17,12 @@ import { useEffect, useRef, useState } from 'react'
  */
 export function InteractiveGlow() {
   const overlayRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
-
   // Render only on the client, after hydration, to avoid SSR mismatch.
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    () => true,
+    () => false,
+  )
 
   useEffect(() => {
     if (!mounted) return

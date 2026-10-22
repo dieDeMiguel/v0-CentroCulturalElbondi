@@ -12,7 +12,6 @@ import {
   MapPin,
   Ticket,
   Mail,
-  Download,
   Check,
   Minus,
   Plus,
@@ -42,7 +41,6 @@ import { getItemBySlug } from '@/lib/data'
 import { submitToFormspree, isValidEmail } from '@/lib/formspree'
 import { TicketConfirmation } from '@/components/ticket-confirmation'
 
-type DeliveryOption = 'email' | 'download' | 'both'
 type IdentityType = 'named' | 'anonymous'
 
 type Completion = 'rsvp' | 'payment-pending' | 'payment-returned'
@@ -66,7 +64,6 @@ export default function EntradasPage({
 
   const [step, setStep] = useState(1)
   const [quantity, setQuantity] = useState(1)
-  const [delivery, setDelivery] = useState<DeliveryOption>('email')
   const [identity, setIdentity] = useState<IdentityType>('named')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -101,9 +98,6 @@ export default function EntradasPage({
     }).format(amount)
   }
 
-  const deliveryLabel =
-    delivery === 'email' ? 'Por email' : delivery === 'download' ? 'Descarga directa' : 'Email + Descarga'
-
   const ticketFields = (tipo: string) => ({
     _subject: `${tipo}: ${event.title} (x${quantity})`,
     tipo,
@@ -113,7 +107,7 @@ export default function EntradasPage({
     cantidad: String(quantity),
     precio_unitario: isFree ? 'Gratis' : formatAmount(numericPrice),
     total: isFree ? 'Gratis' : formatAmount(totalPrice),
-    entrega: deliveryLabel,
+    entrega: 'Por email',
     nombre: identity === 'anonymous' ? 'Anonimo' : name.trim(),
     email: email.trim(),
     telefono: identity === 'anonymous' ? '' : phone.trim(),
@@ -186,8 +180,7 @@ export default function EntradasPage({
   }
 
   const canProceedStep1 = quantity > 0
-  const canProceedStep2 = delivery !== undefined
-  const canProceedStep3 = isValidEmail(email) && (identity === 'anonymous' || name.trim().length > 0)
+  const canProceedDetails = isValidEmail(email) && (identity === 'anonymous' || name.trim().length > 0)
   const canSubmitReservation = reservationName.trim().length > 0 && isValidEmail(reservationEmail)
   const isLocked = completion !== null
 
@@ -198,9 +191,8 @@ export default function EntradasPage({
       ]
     : [
         { num: 1, label: 'Evento' },
-        { num: 2, label: 'Entrega' },
-        { num: 3, label: 'Datos' },
-        { num: 4, label: isFree ? 'Confirmar' : 'Pagar' },
+        { num: 2, label: 'Datos' },
+        { num: 3, label: isFree ? 'Confirmar' : 'Pagar' },
       ]
 
   // Workshop reservation flow
@@ -824,79 +816,8 @@ export default function EntradasPage({
           </ScrollReveal>
         )}
 
-        {/* Step 2: Delivery preference */}
+        {/* Step 2: Identity + contact info */}
         {!isLocked && step === 2 && (
-          <ScrollReveal>
-            <div className="mx-auto max-w-xl flex flex-col gap-8">
-              <div>
-                <h2 className="text-lg font-semibold text-foreground">Como queres recibir tu entrada?</h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Selecciona como preferis obtener tus {quantity > 1 ? 'entradas' : 'entrada'}.
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-3">
-                {([
-                  { value: 'email' as DeliveryOption, icon: Mail, label: 'Recibir por email', desc: 'Te enviamos la entrada a tu correo electronico para que la presentes desde tu celular.' },
-                  { value: 'download' as DeliveryOption, icon: Download, label: 'Descargar directamente', desc: 'Descarga la entrada en formato PDF para imprimirla o guardarla en tu dispositivo.' },
-                  { value: 'both' as DeliveryOption, icon: Ticket, label: 'Ambas opciones', desc: 'Recibila por email y tambien descargala al instante. Asi la tenes por las dudas.' },
-                ]).map((opt) => (
-                  <button
-                    key={opt.value}
-                    onClick={() => setDelivery(opt.value)}
-                    className={`flex items-start gap-4 rounded-lg border-2 p-5 text-left transition-all ${
-                      delivery === opt.value
-                        ? 'border-primary bg-primary/5'
-                        : 'border-border bg-card hover:border-primary/40'
-                    }`}
-                  >
-                    <span
-                      className={`mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-lg transition-colors ${
-                        delivery === opt.value
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-muted text-muted-foreground'
-                      }`}
-                    >
-                      <opt.icon className="size-5" />
-                    </span>
-                    <div>
-                      <p className="text-sm font-semibold text-foreground">{opt.label}</p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{opt.desc}</p>
-                    </div>
-                    <span
-                      className={`ml-auto mt-1 flex size-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-                        delivery === opt.value
-                          ? 'border-primary bg-primary'
-                          : 'border-muted-foreground/40'
-                      }`}
-                    >
-                      {delivery === opt.value && <Check className="size-3 text-primary-foreground" />}
-                    </span>
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex gap-3">
-                <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(1)}>
-                  <ArrowLeft className="size-4" />
-                  Atras
-                </Button>
-                <Button
-                  size="lg"
-                  className="flex-1 gap-2 rounded-lg"
-                  onClick={() => setStep(3)}
-                  disabled={!canProceedStep2}
-                >
-                  Continuar
-                  <ArrowRight className="size-4" />
-                </Button>
-              </div>
-            </div>
-          </ScrollReveal>
-        )}
-
-        {/* Step 3: Identity + contact info */}
-        {!isLocked && step === 3 && (
           <ScrollReveal>
             <div className="mx-auto max-w-xl flex flex-col gap-8">
               <div>
@@ -942,9 +863,7 @@ export default function EntradasPage({
                   <div>
                     <Label htmlFor="buyer-email" className="text-sm font-medium">
                       Email *
-                      {(delivery === 'email' || delivery === 'both') && (
-                        <span className="ml-1 text-xs text-primary">(para recibir tu entrada)</span>
-                      )}
+                      <span className="ml-1 text-xs text-primary">(para recibir tu entrada)</span>
                     </Label>
                     <Input
                       id="buyer-email"
@@ -987,15 +906,15 @@ export default function EntradasPage({
               )}
 
               <div className="flex gap-3">
-                <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(2)}>
+                <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(1)}>
                   <ArrowLeft className="size-4" />
                   Atras
                 </Button>
                 <Button
                   size="lg"
                   className="flex-1 gap-2 rounded-lg"
-                  onClick={() => setStep(4)}
-                  disabled={!canProceedStep3}
+                  onClick={() => setStep(3)}
+                  disabled={!canProceedDetails}
                 >
                   Continuar
                   <ArrowRight className="size-4" />
@@ -1005,8 +924,8 @@ export default function EntradasPage({
           </ScrollReveal>
         )}
 
-        {/* Step 4: Summary + pay */}
-        {!isLocked && step === 4 && (
+        {/* Step 3: Summary + pay */}
+        {!isLocked && step === 3 && (
           <ScrollReveal>
             <div className="mx-auto max-w-xl flex flex-col gap-8">
               <div className="rounded-lg border border-border bg-card p-6">
@@ -1027,9 +946,7 @@ export default function EntradasPage({
                   </div>
                   <div className="flex items-center justify-between border-b border-border pb-3">
                     <span className="text-sm text-muted-foreground">Entrega</span>
-                    <span className="text-sm font-medium text-foreground">
-                      {delivery === 'email' ? 'Por email' : delivery === 'download' ? 'Descarga directa' : 'Email + Descarga'}
-                    </span>
+                    <span className="text-sm font-medium text-foreground">Por email</span>
                   </div>
                   <div className="flex items-center justify-between border-b border-border pb-3">
                     <span className="text-sm text-muted-foreground">Comprador</span>
@@ -1062,7 +979,7 @@ export default function EntradasPage({
                     <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                       {isFree
                         ? 'Tu entrada gratuita sera enviada al correo proporcionado. Presentala el dia del evento.'
-                        : 'Al hacer click seras redirigido a PayPal para completar tu pago de forma segura. Una vez confirmado, recibiras tu entrada segun el metodo elegido.'}
+                        : 'Al hacer click seras redirigido a PayPal para completar tu pago de forma segura. Una vez verificado el pago, recibiras tu entrada por email.'}
                     </p>
                   </div>
                 </div>
@@ -1075,11 +992,7 @@ export default function EntradasPage({
                   {[
                     isFree ? 'Confirma tu asistencia con el boton de abajo' : 'Hace click en el boton para ir a PayPal',
                     isFree ? 'Recibi la confirmacion por email' : 'Completa el pago de forma segura en PayPal',
-                    delivery === 'email'
-                      ? 'Recibi tu entrada por email'
-                      : delivery === 'download'
-                        ? 'Descarga tu entrada en formato PDF'
-                        : 'Recibi tu entrada por email y descargala tambien',
+                    'Recibi tu entrada por email',
                     'Presenta tu entrada el dia del evento',
                   ].map((stepText, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm">
@@ -1099,7 +1012,7 @@ export default function EntradasPage({
               )}
 
               <div className="flex gap-3">
-                <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(3)} disabled={submitting}>
+                <Button variant="outline" size="lg" className="gap-2 rounded-lg" onClick={() => setStep(2)} disabled={submitting}>
                   <ArrowLeft className="size-4" />
                   Atras
                 </Button>

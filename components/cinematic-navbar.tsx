@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -65,16 +66,17 @@ export function CinematicNavbar() {
     >
       <div className="mx-auto flex h-[clamp(3.5rem,3rem+2.5vw,5rem)] max-w-7xl items-center justify-between gap-4 px-4 lg:px-8">
         {/* Logo - always visible in left corner, bigger when not scrolled */}
-        <a 
-          href="/" 
+        <Link
+          href="/"
           className="flex min-w-0 flex-shrink-0 items-center transition-all duration-500"
         >
+          {/* eslint-disable-next-line @next/next/no-img-element -- small logo; fluid clamp() height doesn't fit next/image's fixed sizing */}
           <img
             src="/images/logo-white.png"
             alt="El Bondi - Centro Cultural Comunitario"
             className="h-[clamp(1.75rem,1.5rem+1vw,2.25rem)] w-auto"
           />
-        </a>
+        </Link>
 
         {/* Navigation links */}
         <nav 
