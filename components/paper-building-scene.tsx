@@ -3,16 +3,16 @@ import type { CSSProperties } from 'react'
 
 /** Jacaranda canopies in the illustration, as % of its width / height. */
 const JACARANDAS = [
-  { x: 5, y: 24, spread: 4 },
-  { x: 16, y: 26, spread: 4 },
-  { x: 27, y: 24, spread: 4 },
-  { x: 40, y: 25, spread: 4 },
-  { x: 48, y: 28, spread: 3 },
-  { x: 56, y: 26, spread: 4 },
-  { x: 67, y: 24, spread: 4 },
-  { x: 77, y: 27, spread: 3 },
-  { x: 86, y: 26, spread: 4 },
-  { x: 95, y: 24, spread: 3.5 },
+  { x: 5, y: 22, spread: 4 },
+  { x: 14, y: 24, spread: 4 },
+  { x: 25, y: 20, spread: 4.5 },
+  { x: 38, y: 22, spread: 4 },
+  { x: 47, y: 29, spread: 3 },
+  { x: 55, y: 25, spread: 4 },
+  { x: 64, y: 20, spread: 4 },
+  { x: 75, y: 24, spread: 4 },
+  { x: 86, y: 25, spread: 4 },
+  { x: 95, y: 20, spread: 3.5 },
 ]
 
 const PETALS_PER_TREE = 5
@@ -48,16 +48,24 @@ export function PaperBuildingScene() {
   return (
     <div className="relative w-full overflow-x-clip">
       <div
-        className="paper-scene relative left-1/2 aspect-[1584/562] w-full min-w-[860px] -translate-x-1/2"
+        className="paper-scene relative left-1/2 aspect-[1744/608] w-full min-w-[860px] -translate-x-1/2"
         style={{ containerType: 'size' }}
       >
         <Image
-          src="/images/bondi-edificio-papel.png"
-          alt="Ilustración en papel del edificio de El Bondi: fachadas de colores, el portal con arco arcoíris cubierto de enredadera y una hilera de jacarandás florecidas detrás de los techos"
+          src="/images/bondi-edificio-papel-v4.png"
+          alt="Ilustración en papel del edificio de El Bondi: fachadas de colores con el cartel del centro cultural, el portal con arco arcoíris cubierto de enredadera, pequeños árboles verdes en las esquinas y una hilera de jacarandás florecidas detrás de los techos"
           fill
           priority
           sizes="(min-width: 860px) 100vw, 860px"
           className="object-cover object-bottom"
+        />
+
+        <Image
+          src="/images/logo-dark.png"
+          alt=""
+          width={1200}
+          height={306}
+          className="pointer-events-none absolute left-[42.3%] top-[70.8%] w-[14%] opacity-90 mix-blend-multiply"
         />
 
         <div aria-hidden="true" className="paper-scene-sky pointer-events-none absolute inset-0" />

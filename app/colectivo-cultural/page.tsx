@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Home, ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
-import { InteractiveGlow } from '@/components/interactive-glow'
+import { PaperGalponScene } from '@/components/paper-galpon-scene'
 import { EstructuraOrganizacional } from '@/components/estructura-organizacional'
 import {
   Breadcrumb,
@@ -49,8 +49,7 @@ export default function ColectivoCulturalPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
-        <InteractiveGlow />
+      <section className="relative flex flex-col overflow-x-clip border-b border-border/40 bg-primary pt-16 lg:pt-24">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
             <InteractivePageHeader
@@ -58,6 +57,9 @@ export default function ColectivoCulturalPage() {
               description="La organización que dio vida a El Bondi. El Colectivo Cultural de Ingeniero Maschwitz es una entidad asamblearia y autogestiva que existe desde antes del espacio, y del cual el centro cultural es su proyecto más grande."
             />
           </ScrollReveal>
+        </div>
+        <div className="mt-6 lg:mt-2">
+          <PaperGalponScene />
         </div>
       </section>
 
