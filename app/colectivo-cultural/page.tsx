@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Home, ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
-import { PaperGalponScene } from '@/components/paper-galpon-scene'
+import { PaperGalponScene, GalponFallingLights } from '@/components/paper-galpon-scene'
 import { EstructuraOrganizacional } from '@/components/estructura-organizacional'
 import {
   Breadcrumb,
@@ -49,7 +49,7 @@ export default function ColectivoCulturalPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative flex flex-col overflow-x-clip border-b border-border/40 bg-primary pt-16 lg:pt-24">
+      <section className="relative z-10 flex flex-col overflow-x-clip border-b border-border/40 bg-primary pt-16 lg:pt-24">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
             <InteractivePageHeader
@@ -58,8 +58,9 @@ export default function ColectivoCulturalPage() {
             />
           </ScrollReveal>
         </div>
-        <div className="mt-6 lg:mt-2">
+        <div className="relative mt-6 lg:mt-2">
           <PaperGalponScene />
+          <GalponFallingLights />
         </div>
       </section>
 
