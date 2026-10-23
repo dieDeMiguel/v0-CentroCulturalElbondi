@@ -58,7 +58,7 @@ export default function ColectivoCulturalPage() {
             />
           </ScrollReveal>
         </div>
-        <div className="relative mt-6 lg:mt-2">
+        <div className="relative z-10 mt-6 md:mt-8">
           <PaperGalponScene />
           <GalponFallingLights />
         </div>
