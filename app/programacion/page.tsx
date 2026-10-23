@@ -193,14 +193,20 @@ function ProgramacionContent() {
             </div>
           </InteractivePageHeader>
         </div>
-        <div aria-hidden="true" className="pointer-events-none mx-auto mt-10 w-full max-w-7xl px-4 lg:px-8">
-  <div className="relative mx-auto aspect-[1584/672] w-full">
+        <div aria-hidden="true" className="pointer-events-none mt-10 w-full">
+  <div
+  className="relative aspect-[1584/672] w-full"
+  style={{
+  maskImage: 'linear-gradient(to bottom, transparent 0%, black 28%)',
+  WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 28%)',
+  }}
+  >
   <Image
   src="/images/eventos-bondi-show.png"
   alt=""
   fill
   priority
-  sizes="(min-width: 1280px) 1216px, 100vw"
+  sizes="100vw"
   className="object-cover"
   />
           </div>
