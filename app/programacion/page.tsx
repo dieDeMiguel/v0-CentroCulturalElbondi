@@ -157,6 +157,23 @@ function ProgramacionContent() {
       {/* Hero header */}
       <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
         <InteractiveGlow />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[62%] md:block"
+          style={{
+            maskImage: 'radial-gradient(ellipse 58% 62% at 55% 50%, black 60%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 58% 62% at 55% 50%, black 60%, transparent 100%)',
+          }}
+        >
+          <Image
+            src="/images/eventos-circo-papel.png"
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 768px) 62vw, 0px"
+            className="object-cover object-center"
+          />
+        </div>
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <InteractivePageHeader
             title="Eventos"
