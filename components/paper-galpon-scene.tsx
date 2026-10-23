@@ -10,7 +10,7 @@ export function PaperGalponScene() {
         style={{ containerType: 'size' }}
       >
         <Image
-          src="/images/colectivo-galpon-papel-v4.png"
+          src="/images/colectivo-galpon-papel-v5.png"
           alt="Ilustración en papel recortado del interior del galpón del Colectivo Cultural: paredes de ladrillo con enredaderas, mural de papeles de colores y guarda geométrica a los costados, cabreadas de madera bajo un cielo morado estrellado, pared violeta con ventanal en arco, cartel de marquesina con luces, guirnaldas de lamparitas, faroles de papel y un pequeño escenario de madera"
           fill
           priority
