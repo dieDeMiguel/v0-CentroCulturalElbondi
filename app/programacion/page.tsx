@@ -28,7 +28,6 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
-import { InteractiveGlow } from '@/components/interactive-glow'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -155,25 +154,7 @@ function ProgramacionContent() {
       </section>
 
       {/* Hero header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary pt-16 pb-[calc(15.6vw+1.5rem)] lg:pt-24 xl:pb-[calc(200px+2rem)]">
-        <InteractiveGlow />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute top-0 right-0 bottom-[min(13vw,170px)] -z-10 hidden w-[62%] md:block"
-          style={{
-            maskImage: 'radial-gradient(ellipse 58% 62% at 55% 50%, black 60%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse 58% 62% at 55% 50%, black 60%, transparent 100%)',
-          }}
-        >
-          <Image
-            src="/images/eventos-circo-papel.png"
-            alt=""
-            fill
-            priority
-            sizes="(min-width: 768px) 62vw, 0px"
-            className="object-cover object-center"
-          />
-        </div>
+      <section className="relative isolate overflow-hidden border-b border-border/40 bg-primary pt-16 lg:pt-24">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <InteractivePageHeader
             title="Eventos"
@@ -212,16 +193,14 @@ function ProgramacionContent() {
             </div>
           </InteractivePageHeader>
         </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-4 lg:px-8"
-        >
-          <div className="relative aspect-[2544/397] w-full max-w-7xl">
+        <div aria-hidden="true" className="pointer-events-none mx-auto mt-10 w-full max-w-7xl px-4 lg:px-8">
+          <div className="relative mx-auto aspect-[1522/588] w-full max-w-5xl">
             <Image
-              src="/images/eventos-cirquenses.png"
+              src="/images/eventos-troupe.png"
               alt=""
               fill
-              sizes="(min-width: 1280px) 1280px, 100vw"
+              priority
+              sizes="(min-width: 1024px) 1024px, 100vw"
               className="object-contain object-bottom drop-shadow-lg"
             />
           </div>
