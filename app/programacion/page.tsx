@@ -194,15 +194,25 @@ function ProgramacionContent() {
           </InteractivePageHeader>
         </div>
         <div aria-hidden="true" className="pointer-events-none mx-auto mt-10 w-full max-w-7xl px-4 lg:px-8">
-          <div className="relative mx-auto aspect-[1584/598] w-full max-w-5xl">
-            <Image
-              src="/images/eventos-troupe.png"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 1024px) 1024px, 100vw"
-              className="object-contain object-bottom drop-shadow-lg"
-            />
+  <div
+  className="relative mx-auto aspect-[1584/672] w-full max-w-5xl"
+  style={{
+  maskImage:
+  "linear-gradient(to bottom, transparent 0%, black 10%, black 100%), linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+  maskComposite: "intersect",
+  WebkitMaskImage:
+  "linear-gradient(to bottom, transparent 0%, black 10%, black 100%), linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+  WebkitMaskComposite: "source-in",
+  }}
+  >
+  <Image
+  src="/images/eventos-bondi-show.png"
+  alt=""
+  fill
+  priority
+  sizes="(min-width: 1024px) 1024px, 100vw"
+  className="object-contain object-bottom"
+  />
           </div>
         </div>
       </section>
