@@ -194,7 +194,7 @@ function ProgramacionContent() {
           </InteractivePageHeader>
         </div>
         <div aria-hidden="true" className="pointer-events-none mx-auto mt-10 w-full max-w-7xl px-4 lg:px-8">
-          <div className="relative mx-auto aspect-[1522/588] w-full max-w-5xl">
+          <div className="relative mx-auto aspect-[1584/598] w-full max-w-5xl">
             <Image
               src="/images/eventos-troupe.png"
               alt=""
