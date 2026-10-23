@@ -12,8 +12,8 @@ export function PaperGalponScene() {
         style={{ containerType: 'size' }}
       >
         <Image
-          src="/images/colectivo-galpon-papel-v2.png"
-          alt="Ilustración en papel del galpón del Colectivo Cultural de noche bajo un cielo azul con luna y estrellas: techo completo de cabreadas de hierro oxidado, pared de ladrillo violeta con ventanal en arco, cartel de marquesina con luces, guirnaldas de lamparitas, murales geométricos, enredadera y un pequeño escenario de madera"
+          src="/images/colectivo-galpon-papel-v3.png"
+          alt="Ilustración en papel del interior del galpón del Colectivo Cultural de noche: paredes de ladrillo con murales geométricos y enredadera a los costados, cabreadas de hierro oxidado bajo un cielo morado estrellado, pared violeta con ventanal en arco, cartel de marquesina con luces, guirnaldas de lamparitas, faroles de papel y un pequeño escenario de madera"
           fill
           priority
           sizes="(min-width: 760px) 100vw, 760px"
@@ -22,8 +22,8 @@ export function PaperGalponScene() {
 
         <p
           aria-hidden="true"
-          className="pointer-events-none absolute left-[42.8%] top-[38%] flex h-[10%] w-[14.4%] items-center justify-center text-center font-display leading-none tracking-wide"
-          style={{ fontSize: '1.7cqw', color: 'oklch(0.38 0.13 25)' }}
+          className="pointer-events-none absolute left-[44.6%] top-[58.6%] flex h-[9%] w-[10.8%] items-center justify-center text-center font-display leading-none tracking-wide"
+          style={{ fontSize: '1.35cqw', color: 'oklch(0.38 0.13 25)' }}
         >
           Colectivo Cultural
         </p>
@@ -35,5 +35,5 @@ export function PaperGalponScene() {
 }
 
 export function GalponFallingLights() {
-  return <FallingLights className="inset-x-0 top-[46%] h-[calc(54%+9rem)] lg:h-[calc(54%+11.5rem)]" />
+  return <FallingLights className="inset-x-0 top-[40%] h-[calc(60%+9rem)] lg:h-[calc(60%+11.5rem)]" />
 }
