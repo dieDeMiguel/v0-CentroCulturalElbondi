@@ -11,21 +11,13 @@ export function PaperGalponScene() {
       >
         <Image
           src="/images/colectivo-galpon-papel-v5.png"
-          alt="Ilustración en papel recortado del interior del galpón del Colectivo Cultural: paredes de ladrillo con enredaderas, mural de papeles de colores y guarda geométrica a los costados, cabreadas de madera bajo un cielo morado estrellado, pared violeta con ventanal en arco, cartel de marquesina con luces, guirnaldas de lamparitas, faroles de papel y un pequeño escenario de madera"
+          alt="Ilustración en papel recortado del interior del galpón del Colectivo Cultural: paredes de ladrillo con enredaderas, mural de papeles de colores y guarda geométrica a los costados, cabreadas de madera bajo un cielo morado estrellado, pared violeta con ventanal en arco, marquesina iluminada, guirnaldas de lamparitas, faroles de papel y un pequeño escenario de madera"
           fill
           priority
           sizes="(min-width: 860px) 100vw, 860px"
           className="object-cover"
           style={{ objectPosition: '50% 25%' }}
         />
-
-        <p
-          aria-hidden="true"
-          className="pointer-events-none absolute left-[45.7%] top-[67%] flex h-[7.6%] w-[8.6%] items-center justify-center text-center font-display leading-none tracking-wide"
-          style={{ fontSize: '1.15cqw', color: 'oklch(0.38 0.13 25)' }}
-        >
-          Colectivo Cultural
-        </p>
 
         <div aria-hidden="true" className="paper-scene-sky pointer-events-none absolute inset-0" />
       </div>
