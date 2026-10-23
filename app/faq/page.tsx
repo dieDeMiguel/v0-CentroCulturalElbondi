@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { Home } from 'lucide-react'
 import {
   Accordion,
@@ -54,7 +55,7 @@ export default function FaqPage() {
       </section>
 
       {/* Header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
+      <section className="relative isolate flex min-h-[384px] flex-col overflow-hidden border-b border-border/40 bg-primary pt-16 lg:pt-24">
         <InteractiveGlow />
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
@@ -63,6 +64,24 @@ export default function FaqPage() {
               description="Encontrá las respuestas a las preguntas más comunes sobre El Bondi, nuestros eventos, talleres, la radio comunitaria y cómo colaborar."
             />
           </ScrollReveal>
+        </div>
+        <div aria-hidden="true" className="pointer-events-none mt-10 w-full">
+          <div
+            className="relative aspect-[1600/656] w-full"
+            style={{
+              maskImage: 'linear-gradient(to bottom, transparent 0%, black 28%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 28%)',
+            }}
+          >
+            <Image
+              src="/images/faq-handstands-musicos.png"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 
