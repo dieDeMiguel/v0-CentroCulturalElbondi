@@ -155,11 +155,11 @@ function ProgramacionContent() {
       </section>
 
       {/* Hero header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
+      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary pt-16 pb-[calc(15.6vw+1.5rem)] lg:pt-24 xl:pb-[calc(200px+2rem)]">
         <InteractiveGlow />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-[62%] md:block"
+          className="pointer-events-none absolute top-0 right-0 bottom-[min(13vw,170px)] -z-10 hidden w-[62%] md:block"
           style={{
             maskImage: 'radial-gradient(ellipse 58% 62% at 55% 50%, black 60%, transparent 100%)',
             WebkitMaskImage: 'radial-gradient(ellipse 58% 62% at 55% 50%, black 60%, transparent 100%)',
@@ -211,6 +211,20 @@ function ProgramacionContent() {
               </div>
             </div>
           </InteractivePageHeader>
+        </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-4 lg:px-8"
+        >
+          <div className="relative aspect-[2544/397] w-full max-w-7xl">
+            <Image
+              src="/images/eventos-cirquenses.png"
+              alt=""
+              fill
+              sizes="(min-width: 1280px) 1280px, 100vw"
+              className="object-contain object-bottom drop-shadow-lg"
+            />
+          </div>
         </div>
       </section>
 
