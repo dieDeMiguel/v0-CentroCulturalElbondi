@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import { FireJuggler } from '@/components/fire-juggler'
 import { Home } from 'lucide-react'
 import {
   Accordion,
@@ -65,23 +65,8 @@ export default function FaqPage() {
             />
           </ScrollReveal>
         </div>
-        <div aria-hidden="true" className="pointer-events-none mt-10 w-full">
-          <div
-            className="relative aspect-[1600/656] w-full"
-            style={{
-              maskImage: 'linear-gradient(to bottom, transparent 0%, black 28%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 28%)',
-            }}
-          >
-            <Image
-              src="/images/faq-handstands-musicos.png"
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
+        <div className="mt-6 w-full px-4">
+          <FireJuggler />
         </div>
       </section>
 
