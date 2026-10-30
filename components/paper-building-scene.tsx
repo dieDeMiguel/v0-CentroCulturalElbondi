@@ -1,5 +1,5 @@
-import Image from 'next/image'
 import type { CSSProperties } from 'react'
+import { preload } from 'react-dom'
 
 /** Jacaranda canopies in the illustration, as % of its width / height. */
 const JACARANDAS = [
@@ -44,27 +44,46 @@ const petals = JACARANDAS.flatMap((tree, treeIndex) =>
   }),
 )
 
+const HERO_SRC = '/images/bondi-edificio-papel-v4-1744.webp'
+const HERO_SRCSET =
+  '/images/bondi-edificio-papel-v4-960.webp 960w, /images/bondi-edificio-papel-v4-1744.webp 1744w'
+const HERO_SIZES = '(min-width: 860px) 100vw, 860px'
+
 export function PaperBuildingScene() {
+  // Hoists a responsive preload into <head> so the hero starts downloading before CSS/JS.
+  preload(HERO_SRC, {
+    as: 'image',
+    imageSrcSet: HERO_SRCSET,
+    imageSizes: HERO_SIZES,
+    fetchPriority: 'high',
+  })
+  preload('/images/logo-dark.webp', { as: 'image', fetchPriority: 'high' })
+
   return (
     <div className="relative w-full overflow-x-clip">
       <div
         className="paper-scene relative left-1/2 aspect-[1744/608] w-full min-w-[860px] -translate-x-1/2"
         style={{ containerType: 'size' }}
       >
-        <Image
-          src="/images/bondi-edificio-papel-v4.png"
+        <img
+          src={HERO_SRC}
+          srcSet={HERO_SRCSET}
+          sizes={HERO_SIZES}
           alt="Ilustración en papel del edificio de El Bondi: fachadas de colores con el cartel del centro cultural, el portal con arco arcoíris cubierto de enredadera, pequeños árboles verdes en las esquinas y una hilera de jacarandás florecidas detrás de los techos"
-          fill
-          priority
-          sizes="(min-width: 860px) 100vw, 860px"
-          className="object-cover object-bottom"
+          width={1744}
+          height={608}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 size-full object-cover object-bottom"
         />
 
-        <Image
-          src="/images/logo-dark.png"
+        <img
+          src="/images/logo-dark.webp"
           alt=""
-          width={1200}
-          height={306}
+          width={600}
+          height={153}
+          fetchPriority="high"
+          decoding="async"
           className="pointer-events-none absolute left-[42.3%] top-[70.8%] w-[14%] opacity-90 mix-blend-multiply"
         />
 

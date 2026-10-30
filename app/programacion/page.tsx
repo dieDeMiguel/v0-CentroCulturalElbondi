@@ -154,7 +154,7 @@ function ProgramacionContent() {
       </section>
 
       {/* Hero header */}
-      <section className="relative isolate overflow-hidden border-b border-border/40 bg-primary pt-16 lg:pt-24">
+      <section className="relative isolate overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <InteractivePageHeader
             title="Eventos"
@@ -192,24 +192,6 @@ function ProgramacionContent() {
               </div>
             </div>
           </InteractivePageHeader>
-        </div>
-        <div aria-hidden="true" className="pointer-events-none mt-10 w-full">
-  <div
-  className="relative aspect-[1584/672] w-full"
-  style={{
-  maskImage: 'linear-gradient(to bottom, transparent 0%, black 28%)',
-  WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 28%)',
-  }}
-  >
-  <Image
-  src="/images/eventos-bondi-show.png"
-  alt=""
-  fill
-  priority
-  sizes="100vw"
-  className="object-cover"
-  />
-          </div>
         </div>
       </section>
 

@@ -1,7 +1,20 @@
-import Image from 'next/image'
+import { preload } from 'react-dom'
 import { FallingLights } from '@/components/falling-lights'
 
+const HERO_SRC = '/images/colectivo-galpon-papel-v5-1584.webp'
+const HERO_SRCSET =
+  '/images/colectivo-galpon-papel-v5-960.webp 960w, /images/colectivo-galpon-papel-v5-1584.webp 1584w'
+const HERO_SIZES = '(min-width: 860px) 100vw, 860px'
+
 export function PaperGalponScene() {
+  // Hoists a responsive preload into <head> so the hero starts downloading before CSS/JS.
+  preload(HERO_SRC, {
+    as: 'image',
+    imageSrcSet: HERO_SRCSET,
+    imageSizes: HERO_SIZES,
+    fetchPriority: 'high',
+  })
+
   return (
     <div className="relative w-full overflow-x-clip">
       {/* Same aspect and min-width as PaperBuildingScene so both heroes share the same height. */}
@@ -9,13 +22,16 @@ export function PaperGalponScene() {
         className="relative left-1/2 aspect-[1744/608] w-full min-w-[860px] -translate-x-1/2"
         style={{ containerType: 'size' }}
       >
-        <Image
-          src="/images/colectivo-galpon-papel-v5.png"
+        <img
+          src={HERO_SRC}
+          srcSet={HERO_SRCSET}
+          sizes={HERO_SIZES}
           alt="Ilustración en papel recortado del interior del galpón del Colectivo Cultural: paredes de ladrillo con enredaderas, mural de papeles de colores y guarda geométrica a los costados, cabreadas de madera bajo un cielo morado estrellado, pared violeta con ventanal en arco, marquesina iluminada, guirnaldas de lamparitas, faroles de papel y un pequeño escenario de madera"
-          fill
-          priority
-          sizes="(min-width: 860px) 100vw, 860px"
-          className="object-cover"
+          width={1584}
+          height={672}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 size-full object-cover"
           style={{ objectPosition: '50% 25%' }}
         />
 
