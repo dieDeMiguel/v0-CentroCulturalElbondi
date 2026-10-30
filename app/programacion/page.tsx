@@ -154,12 +154,18 @@ function ProgramacionContent() {
       </section>
 
       {/* Hero header */}
-      <section className="relative isolate overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
+      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <InteractivePageHeader
             title="Eventos"
             description="Descubrí eventos en El Bondi"
-          >
+          />
+        </div>
+      </section>
+
+      {/* Search */}
+      <section className="bg-background pt-8 lg:pt-10">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
             <form
               role="search"
               aria-label="Buscar eventos"
@@ -167,16 +173,13 @@ function ProgramacionContent() {
                 e.preventDefault()
                 document.getElementById('resultados')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
               }}
-              className="mt-8 flex w-full max-w-2xl flex-col gap-4"
+              className="flex w-full max-w-2xl flex-col gap-3"
             >
-              <label
-                htmlFor="event-search"
-                className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/90"
-              >
+              <label htmlFor="event-search" className="sr-only">
                 {'¿Qué querés ver?'}
               </label>
 
-              <div className="relative flex items-center rounded-full border-2 border-primary-foreground/25 bg-background shadow-xl shadow-foreground/20 transition-colors focus-within:border-primary-foreground">
+              <div className="relative flex items-center rounded-full border-2 border-border bg-card transition-colors focus-within:border-primary">
                 <Search aria-hidden="true" className="pointer-events-none absolute left-5 size-5 text-primary" />
                 <Input
                   id="event-search"
@@ -214,34 +217,12 @@ function ProgramacionContent() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Categorías rápidas">
-                {EVENT_TYPES.map((type) => {
-                  const isActive = selectedTypes.length === 1 && selectedTypes[0] === type.value
-                  return (
-                    <button
-                      key={type.value}
-                      type="button"
-                      aria-pressed={isActive}
-                      onClick={() => setSelectedTypes(isActive ? [] : [type.value])}
-                      className={`min-h-10 rounded-full border px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-primary ${
-                        isActive
-                          ? 'border-primary-foreground bg-primary-foreground text-primary'
-                          : 'border-primary-foreground/40 text-primary-foreground hover:border-primary-foreground hover:bg-primary-foreground/10'
-                      }`}
-                    >
-                      {type.label}
-                    </button>
-                  )
-                })}
-              </div>
-
-              <p id="event-search-status" aria-live="polite" className="text-sm text-primary-foreground/85">
+              <p id="event-search-status" aria-live="polite" className="sr-only">
                 {hasActiveFilters
                   ? `${filtered.length} ${filtered.length === 1 ? 'evento encontrado' : 'eventos encontrados'}`
                   : `${allItems.length} eventos en cartelera`}
               </p>
             </form>
-          </InteractivePageHeader>
         </div>
       </section>
 
