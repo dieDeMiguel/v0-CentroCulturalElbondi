@@ -4,7 +4,7 @@ import { FallingLights } from '@/components/falling-lights'
 const HERO_SRC = '/images/colectivo-galpon-papel-v5-1584.webp'
 const HERO_SRCSET =
   '/images/colectivo-galpon-papel-v5-960.webp 960w, /images/colectivo-galpon-papel-v5-1584.webp 1584w'
-const HERO_SIZES = '(min-width: 860px) 100vw, 860px'
+const HERO_SIZES = '(min-width: 860px) 100vw, (min-width: 768px) 860px, 620px'
 
 export function PaperGalponScene() {
   // Hoists a responsive preload into <head> so the hero starts downloading before CSS/JS.
@@ -19,7 +19,7 @@ export function PaperGalponScene() {
     <div className="relative w-full overflow-x-clip">
       {/* Same aspect and min-width as PaperBuildingScene so both heroes share the same height. */}
       <div
-        className="relative left-1/2 aspect-[1744/608] w-full min-w-[860px] -translate-x-1/2"
+        className="relative left-1/2 aspect-[1744/608] w-full min-w-[620px] -translate-x-1/2 md:min-w-[860px]"
         style={{ containerType: 'size' }}
       >
         <img

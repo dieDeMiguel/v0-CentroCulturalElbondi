@@ -47,7 +47,7 @@ const petals = JACARANDAS.flatMap((tree, treeIndex) =>
 const HERO_SRC = '/images/bondi-edificio-papel-v4-1744.webp'
 const HERO_SRCSET =
   '/images/bondi-edificio-papel-v4-960.webp 960w, /images/bondi-edificio-papel-v4-1744.webp 1744w'
-const HERO_SIZES = '(min-width: 860px) 100vw, 860px'
+const HERO_SIZES = '(min-width: 860px) 100vw, (min-width: 768px) 860px, 620px'
 
 export function PaperBuildingScene() {
   // Hoists a responsive preload into <head> so the hero starts downloading before CSS/JS.
@@ -62,7 +62,7 @@ export function PaperBuildingScene() {
   return (
     <div className="relative w-full overflow-x-clip">
       <div
-        className="paper-scene relative left-1/2 aspect-[1744/608] w-full min-w-[860px] -translate-x-1/2"
+        className="paper-scene relative left-1/2 aspect-[1744/608] w-full min-w-[620px] -translate-x-1/2 md:min-w-[860px]"
         style={{ containerType: 'size' }}
       >
         <img
