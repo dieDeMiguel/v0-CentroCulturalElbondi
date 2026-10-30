@@ -5,7 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {
   Search,
-  ArrowRight,
   Calendar as CalendarIcon,
   X,
   MapPin,
@@ -173,14 +172,14 @@ function ProgramacionContent() {
                 e.preventDefault()
                 document.getElementById('resultados')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
               }}
-              className="flex w-full max-w-2xl flex-col gap-3"
+              className="flex w-full flex-col"
             >
               <label htmlFor="event-search" className="sr-only">
                 {'¿Qué querés ver?'}
               </label>
 
-              <div className="relative flex items-center rounded-full border-2 border-border bg-card transition-colors focus-within:border-primary">
-                <Search aria-hidden="true" className="pointer-events-none absolute left-5 size-5 text-primary" />
+              <div className="relative flex items-center rounded-lg border border-border bg-card transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/30">
+                <Search aria-hidden="true" className="pointer-events-none absolute left-4 size-5 text-muted-foreground" />
                 <Input
                   id="event-search"
                   type="search"
@@ -191,30 +190,21 @@ function ProgramacionContent() {
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Circo, música, varieté..."
                   aria-describedby="event-search-status"
-                  className="h-14 flex-1 rounded-full border-0 bg-transparent pl-14 pr-28 text-base text-foreground shadow-none placeholder:text-muted-foreground focus-visible:ring-0 md:text-base [&::-webkit-search-cancel-button]:hidden"
+                  className="h-12 flex-1 rounded-lg border-0 bg-transparent pl-12 pr-12 text-base text-foreground shadow-none placeholder:text-muted-foreground focus-visible:ring-0 md:text-base [&::-webkit-search-cancel-button]:hidden"
                 />
-                <div className="absolute right-2 flex items-center gap-1">
-                  {search && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSearch('')
-                        document.getElementById('event-search')?.focus()
-                      }}
-                      aria-label="Borrar búsqueda"
-                      className="flex size-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                    >
-                      <X className="size-4" aria-hidden="true" />
-                    </button>
-                  )}
+                {search && (
                   <button
-                    type="submit"
-                    aria-label="Ver resultados"
-                    className="flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    type="button"
+                    onClick={() => {
+                      setSearch('')
+                      document.getElementById('event-search')?.focus()
+                    }}
+                    aria-label="Borrar búsqueda"
+                    className="absolute right-1.5 flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <ArrowRight className="size-5" aria-hidden="true" />
+                    <X className="size-4" aria-hidden="true" />
                   </button>
-                </div>
+                )}
               </div>
 
               <p id="event-search-status" aria-live="polite" className="sr-only">
