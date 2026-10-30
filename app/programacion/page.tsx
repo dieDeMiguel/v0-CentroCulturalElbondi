@@ -154,7 +154,7 @@ function ProgramacionContent() {
       </section>
 
       {/* Hero header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
+      <section className="relative isolate flex min-h-[256px] items-center overflow-hidden border-b border-border/40 bg-primary py-10 lg:py-14">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <InteractivePageHeader
             title="Eventos"
