@@ -54,7 +54,7 @@ export default function FaqPage() {
       </section>
 
       {/* Header */}
-      <section className="relative isolate flex min-h-[384px] flex-col overflow-hidden border-b border-border/40 bg-primary pt-16 lg:pt-24">
+      <section className="relative isolate flex flex-col overflow-hidden border-b border-border/40 bg-primary pt-10 lg:pt-14">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
             <InteractivePageHeader
@@ -63,13 +63,13 @@ export default function FaqPage() {
             />
           </ScrollReveal>
         </div>
-        <div className="mt-6 w-full px-4">
+        <div className="mt-2 w-full px-4">
           <FireJuggler />
         </div>
       </section>
 
       {/* FAQ Categories */}
-      <section className="py-16 lg:py-24">
+      <section className="pt-10 pb-16 lg:pt-14 lg:pb-24">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col gap-12">
             {faqCategories.map((category, catIndex) => (

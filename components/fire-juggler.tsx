@@ -18,12 +18,12 @@ const NOTES: NoteSpot[] = [
 
 export function FireJuggler() {
   return (
-    <div className="music-troupe relative mx-auto aspect-[1376/768] w-full max-w-4xl">
+    <div className="music-troupe relative mx-auto aspect-[1376/768] w-full max-w-md lg:max-w-lg">
       <style>{`
         .music-troupe { container-type: inline-size; }
         .music-note {
-          width: 2.6cqw; height: 2.6cqw; color: #ffd36b;
-          filter: drop-shadow(0 .2cqw 0 rgba(40,10,50,.5));
+          width: 3.4cqw; height: 3.4cqw; color: #2b0b3f;
+          filter: drop-shadow(0 0 .35cqw rgba(255,255,255,.35));
           animation: note-float 3s ease-in-out infinite;
           opacity: 0;
         }
@@ -42,7 +42,7 @@ export function FireJuggler() {
         alt="Músicos de papel tocando acordeón, bombo, violín, trompeta y guitarra"
         fill
         priority
-        sizes="(min-width: 896px) 896px, 100vw"
+        sizes="(min-width: 1024px) 512px, 448px"
         className="object-contain"
       />
 
