@@ -53,6 +53,8 @@ export default function RootLayout({
   return (
     <html lang="es" className="dark bg-background overflow-x-clip">
       <head>
+        <link rel="preconnect" href="https://use.typekit.net" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://p.typekit.net" crossOrigin="anonymous" />
         <link rel="stylesheet" href="https://use.typekit.net/zwk2tqd.css" />
       </head>
       <body className={`${geist.variable} font-sans antialiased overflow-x-clip`}>

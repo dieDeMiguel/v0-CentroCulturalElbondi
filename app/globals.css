@@ -241,10 +241,76 @@ html {
 .animate-drift-b { animation: drift-b 20s ease-in-out infinite; }
 .animate-drift-c { animation: drift-c 24s ease-in-out infinite; }
 
+/* Paper-cut jacaranda petals falling over the building illustration */
+.paper-scene {
+  --jacaranda-deep: oklch(0.58 0.15 295);
+  --jacaranda-light: oklch(0.74 0.11 295);
+  --petal-reach: 34rem;
+}
+@media (min-width: 768px) {
+  .paper-scene {
+    --petal-reach: 38rem;
+  }
+}
+/* Tints the illustration's navy night sky toward the hero purple, then fades it out completely at the top */
+.paper-scene-sky {
+  background: linear-gradient(
+    to bottom,
+    var(--primary) 0%,
+    var(--primary) 6%,
+    color-mix(in oklch, var(--primary) 70%, transparent) 22%,
+    color-mix(in oklch, var(--primary) 25%, transparent) 40%,
+    transparent 58%
+  );
+}
+.jacaranda-petal {
+  border-radius: 80% 0 80% 0;
+  background: var(--jacaranda-deep);
+  box-shadow:
+    inset -2px -2px 0 oklch(0 0 0 / 0.18),
+    1px 2px 2px oklch(0 0 0 / 0.25);
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.jacaranda-petal[data-tone='light'] {
+  background: var(--jacaranda-light);
+}
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  25% {
+    transform: translate3d(var(--sway), calc(var(--fall) * 0.25), 0) rotateX(90deg) rotateY(40deg) rotateZ(60deg);
+  }
+  50% {
+    transform: translate3d(calc(var(--sway) * -0.6 + var(--drift) * 0.5), calc(var(--fall) * 0.5), 0) rotateX(180deg) rotateY(-20deg) rotateZ(130deg);
+  }
+  75% {
+    transform: translate3d(calc(var(--sway) * 0.8 + var(--drift) * 0.75), calc(var(--fall) * 0.75), 0) rotateX(270deg) rotateY(30deg) rotateZ(200deg);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--drift), var(--fall), 0) rotateX(360deg) rotateY(0deg) rotateZ(270deg);
+    opacity: 0;
+  }
+}
+
 /* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .jacaranda-petal {
+    display: none;
   }
   .animate-float-soft,
   .animate-pulse-ring,

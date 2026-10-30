@@ -64,7 +64,7 @@ export default function EducacionPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
+      <section className="relative isolate flex min-h-[316px] items-center md:min-h-[282px] lg:min-h-[328px] overflow-hidden border-b border-border/40 bg-primary py-10 lg:py-14">
         <InteractiveGlow />
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>

@@ -14,7 +14,7 @@ export function InteractivePageHeader({ title, description, children }: Interact
         <DisplayText>{title}</DisplayText>
       </h1>
       {description && (
-        <p className="mt-4 max-w-2xl text-base text-primary-foreground/80 md:text-lg">{description}</p>
+        <p className="mt-2 max-w-2xl text-base text-primary-foreground/80 md:text-lg">{description}</p>
       )}
       {children}
     </div>

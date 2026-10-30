@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Home, ArrowRight } from 'lucide-react'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
-import { InteractiveGlow } from '@/components/interactive-glow'
+import { PaperGalponScene, GalponFallingLights } from '@/components/paper-galpon-scene'
 import { EstructuraOrganizacional } from '@/components/estructura-organizacional'
 import {
   Breadcrumb,
@@ -49,15 +49,17 @@ export default function ColectivoCulturalPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
-        <InteractiveGlow />
-        <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
-          <ScrollReveal>
-            <InteractivePageHeader
-              title="Colectivo Cultural"
-              description="La organización que dio vida a El Bondi. El Colectivo Cultural de Ingeniero Maschwitz es una entidad asamblearia y autogestiva que existe desde antes del espacio, y del cual el centro cultural es su proyecto más grande."
-            />
-          </ScrollReveal>
+      <section className="relative z-10 flex flex-col overflow-x-clip bg-primary pt-16 lg:pt-24">
+        {/* Shared min-height with the Centro Cultural hero so both heroes match. */}
+        <div className="mx-auto min-h-[181px] w-full max-w-7xl px-4 md:min-h-[160px] lg:min-h-[175px] lg:px-8">
+          <InteractivePageHeader
+            title="Colectivo Cultural"
+            description="La organización que dio vida a El Bondi. El Colectivo Cultural de Ingeniero Maschwitz es una entidad asamblearia y autogestiva que existe desde antes del espacio, y del cual el centro cultural es su proyecto más grande."
+          />
+        </div>
+        <div className="relative z-10 mt-6 md:mt-8">
+          <PaperGalponScene />
+          <GalponFallingLights />
         </div>
       </section>
 

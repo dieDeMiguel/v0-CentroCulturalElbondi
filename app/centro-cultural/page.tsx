@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/dialog'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
-import { InteractiveGlow } from '@/components/interactive-glow'
+import { PaperBuildingScene } from '@/components/paper-building-scene'
 import { AnimatedTeamCard } from '@/components/animated-team-card'
 import integrantesData from '@/content/integrantes.json'
 import {
@@ -90,15 +90,15 @@ const organizationPillars = [
 ]
 
 const galleryImages = [
-  { src: '/images/evento-variete.jpg', alt: 'Artista de variete en traje tradicional' },
-  { src: '/images/evento-folklore.jpg', alt: 'Ballet folklorico con vestidos purpura' },
-  { src: '/images/evento-ronda.jpg', alt: 'Ronda de baile comunitario' },
-  { src: '/images/evento-musica.jpg', alt: 'Musica en vivo con guitarra y canto' },
-  { src: '/images/evento-pareja.jpg', alt: 'Pareja bailando al atardecer' },
-  { src: '/images/evento-baile-atardecer.jpg', alt: 'Baile folklorico con luz dorada' },
-  { src: '/images/evento-encuentro.jpg', alt: 'Abrazo entre amigas en encuentro comunitario' },
-  { src: '/images/evento-cumple.jpg', alt: 'Celebracion de cumpleanos comunitario' },
-  { src: '/images/evento-danza-circulo.jpg', alt: 'Danza en circulo con la comunidad' },
+  { src: '/images/evento-variete.webp', alt: 'Artista de variete en traje tradicional' },
+  { src: '/images/evento-folklore.webp', alt: 'Ballet folklorico con vestidos purpura' },
+  { src: '/images/evento-ronda.webp', alt: 'Ronda de baile comunitario' },
+  { src: '/images/evento-musica.webp', alt: 'Musica en vivo con guitarra y canto' },
+  { src: '/images/evento-pareja.webp', alt: 'Pareja bailando al atardecer' },
+  { src: '/images/evento-baile-atardecer.webp', alt: 'Baile folklorico con luz dorada' },
+  { src: '/images/evento-encuentro.webp', alt: 'Abrazo entre amigas en encuentro comunitario' },
+  { src: '/images/evento-cumple.webp', alt: 'Celebracion de cumpleanos comunitario' },
+  { src: '/images/evento-danza-circulo.webp', alt: 'Danza en circulo con la comunidad' },
 ]
 
 export default function CentroCulturalPage() {
@@ -138,20 +138,21 @@ export default function CentroCulturalPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
-        <InteractiveGlow />
-        <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
-          <ScrollReveal>
-            <InteractivePageHeader
-              title="Centro Cultural El Bondi"
-              description="Más de 15 años construyendo comunidad a través de la cultura, la educación y la comunicación en Maschwitz."
-            />
-          </ScrollReveal>
+      <section className="relative z-10 flex flex-col overflow-x-clip bg-primary pt-16 lg:pt-24">
+        {/* Shared min-height with the Colectivo Cultural hero so both heroes match. */}
+        <div className="mx-auto min-h-[181px] w-full max-w-7xl px-4 md:min-h-[160px] lg:min-h-[175px] lg:px-8">
+          <InteractivePageHeader
+            title="Centro Cultural El Bondi"
+            description="Más de 15 años construyendo comunidad a través de la cultura, la educación y la comunicación en Maschwitz."
+          />
+        </div>
+        <div className="relative z-10 mt-6 md:mt-8">
+          <PaperBuildingScene />
         </div>
       </section>
 
       {/* El espacio (building history) Section */}
-      <section className="border-t border-border/40 py-16 lg:py-24">
+      <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <ScrollReveal>
             <h2 className="text-center font-display text-3xl tracking-wide text-foreground md:text-4xl lg:text-5xl">

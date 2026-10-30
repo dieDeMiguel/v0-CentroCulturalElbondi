@@ -67,13 +67,12 @@ function ProgramacionContent() {
     let items = allItems
 
     if (search.trim()) {
-      const q = search.toLowerCase()
-      items = items.filter(
-        (i) =>
-          i.title.toLowerCase().includes(q) ||
-          i.description.toLowerCase().includes(q) ||
-          i.location.toLowerCase().includes(q)
-      )
+      const normalize = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+      const q = normalize(search.trim())
+      items = items.filter((i) => {
+        const typeLabel = EVENT_TYPES.find((t) => t.value === i.eventType)?.label ?? ''
+        return [i.title, i.description, i.location, typeLabel].some((field) => normalize(field).includes(q))
+      })
     }
 
     // Date filtering - only calendar selection
@@ -155,50 +154,72 @@ function ProgramacionContent() {
       </section>
 
       {/* Hero header */}
-      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
+      <section className="relative isolate flex min-h-[316px] items-center md:min-h-[282px] lg:min-h-[328px] overflow-hidden border-b border-border/40 bg-primary py-10 lg:py-14">
         <InteractiveGlow />
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <InteractivePageHeader
             title="Eventos"
             description="Descubrí eventos en El Bondi"
-          >
-            {/* Search bar - Eventbrite style */}
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div className="relative flex-1 max-w-xl">
-                <label htmlFor="event-search" className="sr-only">
-                  Buscar eventos
-                </label>
-                <Search
-                  aria-hidden="true"
-                  className="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground"
-                />
+          />
+        </div>
+      </section>
+
+      {/* Search */}
+      <section className="bg-background pt-8 lg:pt-10">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <form
+              role="search"
+              aria-label="Buscar eventos"
+              onSubmit={(e) => {
+                e.preventDefault()
+                document.getElementById('resultados')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              }}
+              className="flex w-full flex-col"
+            >
+              <label htmlFor="event-search" className="sr-only">
+                {'¿Qué querés ver?'}
+              </label>
+
+              <div className="relative flex items-center rounded-lg border border-border bg-card transition-colors focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/30">
+                <Search aria-hidden="true" className="pointer-events-none absolute left-4 size-5 text-muted-foreground" />
                 <Input
                   id="event-search"
                   type="search"
+                  inputMode="search"
+                  autoComplete="off"
+                  enterKeyHint="search"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Buscar eventos..."
-                  aria-label="Buscar eventos"
-                  className="h-14 rounded-lg border-0 bg-white pl-12 pr-12 text-base text-foreground placeholder:text-muted-foreground shadow-lg focus-visible:ring-4 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                  placeholder="Circo, música, varieté..."
+                  aria-describedby="event-search-status"
+                  className="h-12 flex-1 rounded-lg border-0 bg-transparent pl-12 pr-12 text-base text-foreground shadow-none placeholder:text-muted-foreground focus-visible:ring-0 md:text-base [&::-webkit-search-cancel-button]:hidden"
                 />
                 {search && (
                   <button
                     type="button"
-                    onClick={() => setSearch('')}
+                    onClick={() => {
+                      setSearch('')
+                      document.getElementById('event-search')?.focus()
+                    }}
                     aria-label="Borrar búsqueda"
-                    className="absolute top-1/2 right-3 flex size-8 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="absolute right-1.5 flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     <X className="size-4" aria-hidden="true" />
                   </button>
                 )}
               </div>
-            </div>
-          </InteractivePageHeader>
+
+              <p id="event-search-status" aria-live="polite" className="sr-only">
+                {hasActiveFilters
+                  ? `${filtered.length} ${filtered.length === 1 ? 'evento encontrado' : 'eventos encontrados'}`
+                  : `${allItems.length} eventos en cartelera`}
+              </p>
+            </form>
         </div>
       </section>
 
       {/* Filters + Content */}
-      <section className="bg-background py-8 lg:py-10">
+      <section id="resultados" className="scroll-mt-20 bg-background py-8 lg:py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col gap-8 lg:flex-row">
             {/* Left: Sidebar filters */}
