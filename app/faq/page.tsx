@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { FireJuggler } from '@/components/fire-juggler'
 import { Home } from 'lucide-react'
 import {
   Accordion,
@@ -54,7 +53,7 @@ export default function FaqPage() {
       </section>
 
       {/* Header */}
-      <section className="relative isolate flex flex-col overflow-hidden border-b border-border/40 bg-primary pt-10 lg:pt-14">
+      <section className="relative isolate flex min-h-[384px] items-center overflow-hidden border-b border-border/40 bg-primary py-16 lg:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
             <InteractivePageHeader
@@ -62,9 +61,6 @@ export default function FaqPage() {
               description="Encontrá las respuestas a las preguntas más comunes sobre El Bondi, nuestros eventos, talleres, la radio comunitaria y cómo colaborar."
             />
           </ScrollReveal>
-        </div>
-        <div className="mt-2 w-full px-4">
-          <FireJuggler />
         </div>
       </section>
 

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {
   Search,
+  ArrowRight,
   Calendar as CalendarIcon,
   X,
   MapPin,
@@ -66,13 +67,12 @@ function ProgramacionContent() {
     let items = allItems
 
     if (search.trim()) {
-      const q = search.toLowerCase()
-      items = items.filter(
-        (i) =>
-          i.title.toLowerCase().includes(q) ||
-          i.description.toLowerCase().includes(q) ||
-          i.location.toLowerCase().includes(q)
-      )
+      const normalize = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+      const q = normalize(search.trim())
+      items = items.filter((i) => {
+        const typeLabel = EVENT_TYPES.find((t) => t.value === i.eventType)?.label ?? ''
+        return [i.title, i.description, i.location, typeLabel].some((field) => normalize(field).includes(q))
+      })
     }
 
     // Date filtering - only calendar selection
@@ -160,43 +160,93 @@ function ProgramacionContent() {
             title="Eventos"
             description="Descubrí eventos en El Bondi"
           >
-            {/* Search bar - Eventbrite style */}
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div className="relative flex-1 max-w-xl">
-                <label htmlFor="event-search" className="sr-only">
-                  Buscar eventos
-                </label>
-                <Search
-                  aria-hidden="true"
-                  className="pointer-events-none absolute top-1/2 left-4 size-5 -translate-y-1/2 text-muted-foreground"
-                />
+            <form
+              role="search"
+              aria-label="Buscar eventos"
+              onSubmit={(e) => {
+                e.preventDefault()
+                document.getElementById('resultados')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+              }}
+              className="mt-8 flex w-full max-w-2xl flex-col gap-4"
+            >
+              <label
+                htmlFor="event-search"
+                className="text-sm font-semibold uppercase tracking-wider text-primary-foreground/90"
+              >
+                {'¿Qué querés ver?'}
+              </label>
+
+              <div className="relative flex items-center rounded-full border-2 border-primary-foreground/25 bg-background shadow-xl shadow-foreground/20 transition-colors focus-within:border-primary-foreground">
+                <Search aria-hidden="true" className="pointer-events-none absolute left-5 size-5 text-primary" />
                 <Input
                   id="event-search"
                   type="search"
+                  inputMode="search"
+                  autoComplete="off"
+                  enterKeyHint="search"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Buscar eventos..."
-                  aria-label="Buscar eventos"
-                  className="h-14 rounded-lg border-0 bg-white pl-12 pr-12 text-base text-foreground placeholder:text-muted-foreground shadow-lg focus-visible:ring-4 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                  placeholder="Circo, música, varieté..."
+                  aria-describedby="event-search-status"
+                  className="h-14 flex-1 rounded-full border-0 bg-transparent pl-14 pr-28 text-base text-foreground shadow-none placeholder:text-muted-foreground focus-visible:ring-0 md:text-base [&::-webkit-search-cancel-button]:hidden"
                 />
-                {search && (
+                <div className="absolute right-2 flex items-center gap-1">
+                  {search && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSearch('')
+                        document.getElementById('event-search')?.focus()
+                      }}
+                      aria-label="Borrar búsqueda"
+                      className="flex size-10 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                      <X className="size-4" aria-hidden="true" />
+                    </button>
+                  )}
                   <button
-                    type="button"
-                    onClick={() => setSearch('')}
-                    aria-label="Borrar búsqueda"
-                    className="absolute top-1/2 right-3 flex size-8 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    type="submit"
+                    aria-label="Ver resultados"
+                    className="flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:translate-x-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   >
-                    <X className="size-4" aria-hidden="true" />
+                    <ArrowRight className="size-5" aria-hidden="true" />
                   </button>
-                )}
+                </div>
               </div>
-            </div>
+
+              <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Categorías rápidas">
+                {EVENT_TYPES.map((type) => {
+                  const isActive = selectedTypes.length === 1 && selectedTypes[0] === type.value
+                  return (
+                    <button
+                      key={type.value}
+                      type="button"
+                      aria-pressed={isActive}
+                      onClick={() => setSelectedTypes(isActive ? [] : [type.value])}
+                      className={`min-h-10 rounded-full border px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-primary ${
+                        isActive
+                          ? 'border-primary-foreground bg-primary-foreground text-primary'
+                          : 'border-primary-foreground/40 text-primary-foreground hover:border-primary-foreground hover:bg-primary-foreground/10'
+                      }`}
+                    >
+                      {type.label}
+                    </button>
+                  )
+                })}
+              </div>
+
+              <p id="event-search-status" aria-live="polite" className="text-sm text-primary-foreground/85">
+                {hasActiveFilters
+                  ? `${filtered.length} ${filtered.length === 1 ? 'evento encontrado' : 'eventos encontrados'}`
+                  : `${allItems.length} eventos en cartelera`}
+              </p>
+            </form>
           </InteractivePageHeader>
         </div>
       </section>
 
       {/* Filters + Content */}
-      <section className="bg-background py-8 lg:py-10">
+      <section id="resultados" className="scroll-mt-20 bg-background py-8 lg:py-10">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
           <div className="flex flex-col gap-8 lg:flex-row">
             {/* Left: Sidebar filters */}
