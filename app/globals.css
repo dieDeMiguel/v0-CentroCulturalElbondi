@@ -267,17 +267,27 @@ html {
     --petal-reach: 38rem;
   }
 }
-/* Tints the illustration's navy night sky toward the hero purple, then fades it out completely at the top */
-.paper-scene-sky {
+  /* Blends the top edge of the illustration's night sky into the dark hero background */
+  .paper-scene-sky {
   background: linear-gradient(
-    to bottom,
-    var(--primary) 0%,
-    var(--primary) 6%,
-    color-mix(in oklch, var(--primary) 70%, transparent) 22%,
-    color-mix(in oklch, var(--primary) 25%, transparent) 40%,
-    transparent 58%
+  to bottom,
+  var(--background) 0%,
+  var(--background) 4%,
+  color-mix(in oklch, var(--background) 75%, transparent) 12%,
+  color-mix(in oklch, var(--background) 30%, transparent) 22%,
+  transparent 34%
   );
-}
+  }
+  /* Short purple wash at the top of the hero that fades out quickly into the dark background */
+  .hero-purple-wash {
+  background: linear-gradient(
+  to bottom,
+  color-mix(in oklch, var(--primary) 70%, transparent) 0%,
+  color-mix(in oklch, var(--primary) 30%, transparent) 25%,
+  color-mix(in oklch, var(--primary) 8%, transparent) 55%,
+  transparent 100%
+  );
+  }
 .jacaranda-petal {
   border-radius: 80% 0 80% 0;
   background: var(--jacaranda-deep);
