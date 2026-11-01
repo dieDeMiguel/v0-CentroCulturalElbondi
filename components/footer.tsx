@@ -68,7 +68,7 @@ export function Footer() {
               rel="noopener noreferrer"
               className="underline underline-offset-4 transition-colors hover:text-primary hover:underline"
             >
-              Carmen Chaves
+              Carmen Chavez
               <span className="sr-only">{' (LinkedIn, se abre en una nueva pestaña)'}</span>
             </a>
   </p>
