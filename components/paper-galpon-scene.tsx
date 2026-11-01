@@ -35,8 +35,7 @@ export function PaperGalponScene() {
           style={{ objectPosition: '50% 25%' }}
         />
 
-        <div aria-hidden="true" className="paper-scene-sky pointer-events-none absolute inset-0" />
-      </div>
+            </div>
     </div>
   )
 }
