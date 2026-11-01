@@ -19,7 +19,7 @@ export function PaperGalponScene() {
     <div className="relative w-full overflow-x-clip">
       {/* Same aspect and min-width as PaperBuildingScene so both heroes share the same height. */}
       <div
-        className="relative left-1/2 aspect-[1744/608] w-full min-w-[620px] -translate-x-1/2 md:min-w-[860px]"
+        className="relative left-1/2 aspect-[1744/608] w-full min-w-[620px] -translate-x-1/2 overflow-hidden md:min-w-[860px]"
         style={{ containerType: 'size' }}
       >
         <img
@@ -32,7 +32,8 @@ export function PaperGalponScene() {
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 size-full object-cover"
-          style={{ objectPosition: '50% 70%' }}
+          // Scaled from the bottom so the walls' outer edges fall outside the frame and only the interior shows.
+          style={{ objectPosition: '50% 70%', transform: 'scale(1.22)', transformOrigin: '50% 100%' }}
         />
       </div>
     </div>
