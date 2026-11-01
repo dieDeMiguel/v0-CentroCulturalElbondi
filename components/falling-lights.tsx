@@ -1,16 +1,13 @@
+import { round, seeded } from '@/lib/seeded'
+
 const LIGHT_COUNT = 34
 
-function seeded(index: number, salt: number) {
-  const x = Math.sin(index * 12.9898 + salt * 78.233) * 43758.5453
-  return x - Math.floor(x)
-}
-
 const lights = Array.from({ length: LIGHT_COUNT }, (_, i) => ({
-  left: 7 + seeded(i, 1) * 86,
+  left: round(7 + seeded(i, 1) * 86),
   size: 3 + Math.round(seeded(i, 2) * 4),
-  duration: 6 + seeded(i, 3) * 7,
-  delay: -seeded(i, 4) * 13,
-  drift: (seeded(i, 5) - 0.5) * 40,
+  duration: round(6 + seeded(i, 3) * 7),
+  delay: round(-seeded(i, 4) * 13),
+  drift: round((seeded(i, 5) - 0.5) * 40),
 }))
 
 const keyframes = `
