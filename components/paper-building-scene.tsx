@@ -44,9 +44,9 @@ const petals = JACARANDAS.flatMap((tree, treeIndex) =>
   }),
 )
 
-const HERO_SRC = '/images/bondi-edificio-papel-v8-1744.webp'
+const HERO_SRC = '/images/bondi-edificio-papel-v9-1744.webp'
 const HERO_SRCSET =
-  '/images/bondi-edificio-papel-v8-960.webp 960w, /images/bondi-edificio-papel-v8-1744.webp 1744w'
+  '/images/bondi-edificio-papel-v9-960.webp 960w, /images/bondi-edificio-papel-v9-1744.webp 1744w'
 const HERO_SIZES = '(min-width: 860px) 100vw, (min-width: 768px) 860px, 620px'
 
 export function PaperBuildingScene() {
