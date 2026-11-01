@@ -267,24 +267,14 @@ html {
     --petal-reach: 38rem;
   }
 }
-  /* Blends the top edge of the illustration's night sky into the dark hero background */
-  .paper-scene-sky {
-  background: linear-gradient(
-  to bottom,
-  var(--background) 0%,
-  var(--background) 4%,
-  color-mix(in oklch, var(--background) 75%, transparent) 12%,
-  color-mix(in oklch, var(--background) 30%, transparent) 22%,
-  transparent 34%
-  );
-  }
-  /* Short purple wash at the top of the hero that fades out quickly into the dark background */
+  /* Purple wash at the top of the hero: holds its peak briefly, then fades into the dark background */
   .hero-purple-wash {
   background: linear-gradient(
   to bottom,
   color-mix(in oklch, var(--primary) 70%, transparent) 0%,
-  color-mix(in oklch, var(--primary) 30%, transparent) 25%,
-  color-mix(in oklch, var(--primary) 8%, transparent) 55%,
+  color-mix(in oklch, var(--primary) 70%, transparent) 20%,
+  color-mix(in oklch, var(--primary) 30%, transparent) 40%,
+  color-mix(in oklch, var(--primary) 8%, transparent) 64%,
   transparent 100%
   );
   }

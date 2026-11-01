@@ -147,7 +147,8 @@ export default function CentroCulturalPage() {
             description="Más de 15 años construyendo comunidad a través de la cultura, la educación y la comunicación en Maschwitz."
           />
         </div>
-        <div className="relative z-10 mt-2">
+        {/* The illustration's top ~12% is transparent sky; pull it up so the treetops sit just under the text */}
+        <div className="relative z-10 mt-[calc(-1*max(3.6%,22px))]">
           <PaperBuildingScene />
         </div>
       </section>
