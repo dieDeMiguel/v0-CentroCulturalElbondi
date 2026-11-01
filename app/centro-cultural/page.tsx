@@ -139,6 +139,7 @@ export default function CentroCulturalPage() {
 
       {/* Hero Header */}
       <section className="relative z-10 flex flex-col overflow-x-clip bg-background pt-16 lg:pt-24">
+        <div aria-hidden="true" className="hero-purple-wash pointer-events-none absolute inset-x-0 top-0 h-56 lg:h-64" />
         <div className="relative mx-auto w-full max-w-7xl px-4 lg:px-8">
           <InteractivePageHeader
             tone="light"

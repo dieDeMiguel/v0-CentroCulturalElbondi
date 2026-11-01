@@ -271,10 +271,10 @@ html {
   .hero-purple-wash {
   background: linear-gradient(
   to bottom,
-  color-mix(in oklch, var(--primary) 70%, transparent) 0%,
-  color-mix(in oklch, var(--primary) 70%, transparent) 20%,
-  color-mix(in oklch, var(--primary) 30%, transparent) 40%,
-  color-mix(in oklch, var(--primary) 8%, transparent) 64%,
+  color-mix(in oklch, var(--primary) 35%, transparent) 0%,
+  color-mix(in oklch, var(--primary) 35%, transparent) 20%,
+  color-mix(in oklch, var(--primary) 15%, transparent) 40%,
+  color-mix(in oklch, var(--primary) 4%, transparent) 64%,
   transparent 100%
   );
   }
