@@ -30,33 +30,56 @@ export function ImmersiveHero() {
   const audioRef = useRef<HTMLAudioElement>(null)
   const fadeRafRef = useRef<number | null>(null)
 
-  // Handle scroll progress
+  // Scroll and mouse updates are coalesced to at most one React render per frame.
   useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const windowHeight = window.innerHeight
-      // Calculate progress: 0 at top, 1 when hero is scrolled past
-      const progress = Math.min(Math.max(-rect.top / windowHeight, 0), 1)
-      setScrollProgress(progress)
+    let frame = 0
+    let pendingMouse: MousePosition | null = null
+
+    const flush = () => {
+      frame = 0
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect()
+        // 0 at top, 1 when hero is scrolled past
+        setScrollProgress(Math.min(Math.max(-rect.top / window.innerHeight, 0), 1))
+      }
+      if (pendingMouse) {
+        setMousePosition(pendingMouse)
+        pendingMouse = null
+      }
     }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // Handle mouse movement for parallax effect
-  useEffect(() => {
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(flush)
+    }
     const handleMouseMove = (e: MouseEvent) => {
-      const x = e.clientX / window.innerWidth
-      const y = e.clientY / window.innerHeight
-      setMousePosition({ x, y })
+      pendingMouse = { x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight }
+      schedule()
     }
 
+    window.addEventListener('scroll', schedule, { passive: true })
     window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    flush()
+    return () => {
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('mousemove', handleMouseMove)
+      if (frame) cancelAnimationFrame(frame)
+    }
   }, [])
+
+  // Pause decoding when the hero is scrolled past or the tab is hidden, so the
+  // full-screen video doesn't keep the GPU busy in the background.
+  const heroOffscreen = scrollProgress >= 1
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    const sync = () => {
+      const shouldPlay = isPlaying && !heroOffscreen && document.visibilityState === 'visible'
+      if (shouldPlay && video.paused) void video.play().catch(() => {})
+      if (!shouldPlay && !video.paused) video.pause()
+    }
+    sync()
+    document.addEventListener('visibilitychange', sync)
+    return () => document.removeEventListener('visibilitychange', sync)
+  }, [isPlaying, heroOffscreen])
 
   // Clean up any in-flight volume fade on unmount
   useEffect(() => {
@@ -157,7 +180,7 @@ export function ImmersiveHero() {
             style={{
               transform: `scale(${videoScale}) translate(${parallaxX}px, ${parallaxY}px)`,
               opacity: videoOpacity,
-              filter: `blur(${videoBlur}px)`,
+              filter: videoBlur > 0.1 ? `blur(${videoBlur}px)` : 'none',
             }}
           >
             <video
@@ -167,7 +190,7 @@ export function ImmersiveHero() {
               playsInline
               muted
               loop
-              preload="auto"
+              preload="metadata"
               poster="/images/hero.jpg"
               onLoadedData={handleVideoLoad}
               className="size-full object-cover"
