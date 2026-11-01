@@ -1,9 +1,9 @@
 import { preload } from 'react-dom'
 import { FallingLights } from '@/components/falling-lights'
 
-const HERO_SRC = '/images/colectivo-galpon-papel-v5-1584.webp'
+const HERO_SRC = '/images/colectivo-galpon-papel-v6-1584.webp'
 const HERO_SRCSET =
-  '/images/colectivo-galpon-papel-v5-960.webp 960w, /images/colectivo-galpon-papel-v5-1584.webp 1584w'
+  '/images/colectivo-galpon-papel-v6-960.webp 960w, /images/colectivo-galpon-papel-v6-1584.webp 1584w'
 const HERO_SIZES = '(min-width: 860px) 100vw, (min-width: 768px) 860px, 620px'
 
 export function PaperGalponScene() {
@@ -32,7 +32,7 @@ export function PaperGalponScene() {
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 size-full object-cover"
-          style={{ objectPosition: '50% 25%' }}
+          style={{ objectPosition: '50% 0%' }}
         />
 
             </div>
