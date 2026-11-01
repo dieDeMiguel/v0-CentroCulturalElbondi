@@ -256,11 +256,18 @@ html {
 .paper-scene-sky {
   background: linear-gradient(
     to bottom,
-    var(--primary) 0%,
-    var(--primary) 6%,
-    color-mix(in oklch, var(--primary) 70%, transparent) 22%,
-    color-mix(in oklch, var(--primary) 25%, transparent) 40%,
-    transparent 58%
+  var(--primary) 0%,
+  color-mix(in oklch, var(--primary) 98%, transparent) 4%,
+  color-mix(in oklch, var(--primary) 92%, transparent) 9%,
+  color-mix(in oklch, var(--primary) 82%, transparent) 14%,
+  color-mix(in oklch, var(--primary) 69%, transparent) 19%,
+  color-mix(in oklch, var(--primary) 55%, transparent) 24%,
+  color-mix(in oklch, var(--primary) 42%, transparent) 29%,
+  color-mix(in oklch, var(--primary) 29%, transparent) 35%,
+  color-mix(in oklch, var(--primary) 18%, transparent) 41%,
+  color-mix(in oklch, var(--primary) 10%, transparent) 47%,
+  color-mix(in oklch, var(--primary) 4%, transparent) 53%,
+  transparent 60%
   );
 }
 .jacaranda-petal {

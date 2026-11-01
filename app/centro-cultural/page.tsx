@@ -140,13 +140,13 @@ export default function CentroCulturalPage() {
       {/* Hero Header */}
       <section className="relative z-10 flex flex-col overflow-x-clip bg-primary pt-16 lg:pt-24">
         {/* Shared min-height with the Colectivo Cultural hero so both heroes match. */}
-        <div className="mx-auto min-h-[181px] w-full max-w-7xl px-4 md:min-h-[160px] lg:min-h-[175px] lg:px-8">
+        <div className="relative z-20 mx-auto min-h-[181px] w-full max-w-7xl px-4 md:min-h-[160px] lg:min-h-[175px] lg:px-8">
           <InteractivePageHeader
             title="Centro Cultural El Bondi"
             description="Más de 15 años construyendo comunidad a través de la cultura, la educación y la comunicación en Maschwitz."
           />
         </div>
-        <div className="relative z-10 mt-6 md:mt-8">
+        <div className="relative z-10 -mt-8 md:-mt-12 lg:-mt-14">
           <PaperBuildingScene />
         </div>
       </section>
