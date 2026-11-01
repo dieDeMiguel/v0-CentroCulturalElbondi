@@ -1,9 +1,9 @@
 import { preload } from 'react-dom'
 import { FallingLights } from '@/components/falling-lights'
 
-const HERO_SRC = '/images/colectivo-galpon-papel-v10-1584.webp'
+const HERO_SRC = '/images/colectivo-galpon-papel-v11-1584.webp'
 const HERO_SRCSET =
-  '/images/colectivo-galpon-papel-v10-960.webp 960w, /images/colectivo-galpon-papel-v10-1584.webp 1584w'
+  '/images/colectivo-galpon-papel-v11-960.webp 960w, /images/colectivo-galpon-papel-v11-1584.webp 1584w'
 const HERO_SIZES = '(min-width: 860px) 100vw, (min-width: 768px) 860px, 620px'
 
 export function PaperGalponScene() {
@@ -28,7 +28,7 @@ export function PaperGalponScene() {
           sizes={HERO_SIZES}
           alt="Ilustración en papel recortado del interior del galpón del Colectivo Cultural: paredes de ladrillo cubiertas de enredaderas, mural de papeles de colores y guarda geométrica a los costados, cabreadas de madera bajo un cielo morado estrellado, pared violeta con ventanal en arco, marquesina iluminada, guirnaldas de lamparitas, faroles de papel y un pequeño escenario de madera"
           width={1584}
-          height={609}
+          height={649}
           fetchPriority="high"
           decoding="async"
           className="absolute inset-0 size-full object-cover object-top"
