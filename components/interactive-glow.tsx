@@ -35,22 +35,9 @@ export function InteractiveGlow() {
     const target = { x: 50, y: 50, on: 0 }
     const eased = { x: 50, y: 50, on: 0 }
 
-    const onMove = (e: PointerEvent) => {
-      const rect = parent.getBoundingClientRect()
-      target.x = ((e.clientX - rect.left) / rect.width) * 100
-      target.y = ((e.clientY - rect.top) / rect.height) * 100
-    }
-    const onEnter = () => {
-      target.on = 1
-    }
-    const onLeave = () => {
-      target.on = 0
-    }
-    parent.addEventListener('pointermove', onMove)
-    parent.addEventListener('pointerenter', onEnter)
-    parent.addEventListener('pointerleave', onLeave)
-
     let raf = 0
+    // The loop only runs while easing toward the target and stops once settled,
+    // so an idle page does no per-frame repaint work.
     const render = () => {
       const ease = reduceMotion ? 1 : 0.12
       eased.x += (target.x - eased.x) * ease
@@ -60,9 +47,33 @@ export function InteractiveGlow() {
       overlay.style.opacity = String(eased.on)
       overlay.style.background = `radial-gradient(420px circle at ${eased.x}% ${eased.y}%, oklch(0.78 0.14 305 / 0.55), oklch(0.7 0.16 305 / 0.22) 40%, transparent 70%)`
 
-      raf = requestAnimationFrame(render)
+      const settled =
+        Math.abs(target.x - eased.x) < 0.05 &&
+        Math.abs(target.y - eased.y) < 0.05 &&
+        Math.abs(target.on - eased.on) < 0.005
+      raf = settled ? 0 : requestAnimationFrame(render)
     }
-    raf = requestAnimationFrame(render)
+    const kick = () => {
+      if (!raf) raf = requestAnimationFrame(render)
+    }
+
+    const onMove = (e: PointerEvent) => {
+      const rect = parent.getBoundingClientRect()
+      target.x = ((e.clientX - rect.left) / rect.width) * 100
+      target.y = ((e.clientY - rect.top) / rect.height) * 100
+      kick()
+    }
+    const onEnter = () => {
+      target.on = 1
+      kick()
+    }
+    const onLeave = () => {
+      target.on = 0
+      kick()
+    }
+    parent.addEventListener('pointermove', onMove)
+    parent.addEventListener('pointerenter', onEnter)
+    parent.addEventListener('pointerleave', onLeave)
 
     return () => {
       cancelAnimationFrame(raf)
