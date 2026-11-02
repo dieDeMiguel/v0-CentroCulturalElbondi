@@ -15,6 +15,7 @@ export function Footer() {
         <div className="flex flex-col gap-8 sm:flex-row sm:gap-16">
           {/* Logo & copyright */}
           <div className="flex flex-col gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element -- small logo with responsive height/max-width; next/image adds nothing here */}
             <img
               src="/images/logo-white.png"
               alt="El Bondi - Centro Cultural Comunitario"
