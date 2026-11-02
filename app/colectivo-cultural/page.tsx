@@ -49,10 +49,11 @@ export default function ColectivoCulturalPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative z-10 flex flex-col overflow-x-clip bg-primary pt-16 lg:pt-24">
-        {/* Shared min-height with the Centro Cultural hero so both heroes match. */}
-        <div className="mx-auto min-h-[181px] w-full max-w-7xl px-4 md:min-h-[160px] lg:min-h-[175px] lg:px-8">
+      <section className="relative z-10 flex flex-col overflow-x-clip bg-background pt-16 lg:pt-24">
+        <div aria-hidden="true" className="hero-purple-wash pointer-events-none absolute inset-x-0 top-0 h-56 lg:h-64" />
+        <div className="relative mx-auto w-full max-w-7xl px-4 lg:px-8">
           <InteractivePageHeader
+            tone="light"
             title="Colectivo Cultural"
             description="La organización que dio vida a El Bondi. El Colectivo Cultural de Ingeniero Maschwitz es una entidad asamblearia y autogestiva que existe desde antes del espacio, y del cual el centro cultural es su proyecto más grande."
           />
