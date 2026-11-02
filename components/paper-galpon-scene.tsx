@@ -2,9 +2,9 @@ import type { CSSProperties } from 'react'
 import { preload } from 'react-dom'
 import { FallingLights } from '@/components/falling-lights'
 
-const HERO_SRC = '/images/colectivo-galpon-papel-v12-1584.webp'
+const HERO_SRC = '/images/colectivo-galpon-papel-v14-1584.webp'
 const HERO_SRCSET =
-  '/images/colectivo-galpon-papel-v12-960.webp 960w, /images/colectivo-galpon-papel-v12-1584.webp 1584w'
+  '/images/colectivo-galpon-papel-v14-960.webp 960w, /images/colectivo-galpon-papel-v14-1584.webp 1584w'
 const HERO_SIZES = '(min-width: 860px) 100vw, (min-width: 768px) 860px, 620px'
 
 export function PaperGalponScene() {
