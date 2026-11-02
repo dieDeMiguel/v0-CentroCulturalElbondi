@@ -7,7 +7,6 @@ import { radio } from '@/lib/radio'
 import { Button } from '@/components/ui/button'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
-import { InteractiveGlow } from '@/components/interactive-glow'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -25,8 +24,8 @@ export default function RadioEspacioPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Breadcrumb */}
-      <section className="border-b border-border/40 bg-secondary/30">
-        <div className="mx-auto max-w-7xl px-4 py-4 lg:px-8">
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 pt-4 lg:px-8">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -47,20 +46,19 @@ export default function RadioEspacioPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative isolate flex min-h-[316px] items-center md:min-h-[282px] lg:min-h-[328px] overflow-hidden border-b border-border/40 bg-primary py-10 lg:py-14">
-        <InteractiveGlow />
+      <section className="border-b border-border/40 bg-background pt-10 pb-12 lg:pt-14 lg:pb-16">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               {/* Radio Info */}
               <div className="flex-1">
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="flex size-12 items-center justify-center rounded-full bg-primary-foreground/20">
-                    <Radio className="size-6 text-primary-foreground" />
+                  <div className="flex size-12 items-center justify-center rounded-full bg-primary/15">
+                    <Radio className="size-6 text-primary" />
                   </div>
-                  <span className="font-display text-5xl text-primary-foreground md:text-6xl">{radio.frequency}</span>
+                  <span className="font-display text-5xl text-foreground md:text-6xl">{radio.frequency}</span>
                 </div>
-                <InteractivePageHeader title={radio.name} description={radio.heroDescription} />
+                <InteractivePageHeader tone="light" title={radio.name} description={radio.heroDescription} />
               </div>
             </div>
           </ScrollReveal>

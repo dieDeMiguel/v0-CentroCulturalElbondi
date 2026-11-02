@@ -3,7 +3,6 @@ import { Home, Youtube, ArrowUpRight, Radio } from 'lucide-react'
 import { socials } from '@/lib/socials'
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { InteractivePageHeader } from '@/components/interactive-page-header'
-import { InteractiveGlow } from '@/components/interactive-glow'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -21,8 +20,8 @@ export default function RedesPage() {
   return (
     <main className="min-h-screen bg-background">
       {/* Breadcrumb */}
-      <section className="border-b border-border/40 bg-secondary/30">
-        <div className="mx-auto max-w-7xl px-4 py-4 lg:px-8">
+      <section className="bg-background">
+        <div className="mx-auto max-w-7xl px-4 pt-4 lg:px-8">
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -47,11 +46,11 @@ export default function RedesPage() {
       </section>
 
       {/* Hero Header */}
-      <section className="relative isolate flex min-h-[316px] items-center md:min-h-[282px] lg:min-h-[328px] overflow-hidden border-b border-border/40 bg-primary py-10 lg:py-14">
-        <InteractiveGlow />
+      <section className="bg-background pt-10 lg:pt-14">
         <div className="mx-auto w-full max-w-7xl px-4 lg:px-8">
           <ScrollReveal>
             <InteractivePageHeader
+              tone="light"
               title="Redes"
               description="Seguí al Centro Cultural El Bondi en nuestras redes para enterarte de todo lo que pasa en el espacio: eventos, talleres, convocatorias y la vida del Colectivo Cultural."
             />
