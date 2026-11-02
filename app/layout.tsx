@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AnnouncementBar } from '@/components/announcement-bar'
+import { siteUrl } from '@/lib/site'
 import './globals.css'
 
 const geist = Geist({
@@ -9,11 +10,6 @@ const geist = Geist({
   variable: '--font-geist',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
-  ? process.env.NEXT_PUBLIC_SITE_URL
-  : process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : 'http://localhost:3000'
 
 const title = 'El Bondi - Centro Cultural Comunitario'
 const description =

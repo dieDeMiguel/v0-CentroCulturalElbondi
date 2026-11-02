@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { Clock, MapPin, ChevronDown } from 'lucide-react'
-import { workshops, events, type EventItem } from '@/lib/data'
+import { workshops, events } from '@/lib/data'
 
 type TimetableMode = 'eventos' | 'talleres'
 type DayFilter = 'todos' | 'lunes' | 'martes' | 'miercoles' | 'jueves' | 'viernes' | 'sabado'
@@ -31,17 +31,6 @@ interface TimetableItem {
   location: string
   slug: string
   category: 'evento' | 'taller'
-}
-
-function getDayFromDateString(dateStr: string): Day | null {
-  const lower = dateStr.toLowerCase()
-  if (lower.includes('lunes')) return 'Lunes'
-  if (lower.includes('martes')) return 'Martes'
-  if (lower.includes('miercoles') || lower.includes('miércoles')) return 'Miercoles'
-  if (lower.includes('jueves')) return 'Jueves'
-  if (lower.includes('viernes')) return 'Viernes'
-  if (lower.includes('sabado') || lower.includes('sábado') || lower.includes('sabados') || lower.includes('sábados')) return 'Sabados'
-  return null
 }
 
 function parseMultipleDays(dateStr: string): Day[] {
@@ -117,12 +106,6 @@ export function WeeklyTimetable({ mode = 'talleres', selectedDay = 'todos' }: We
     setExpandedDay(expandedDay === day ? null : day)
   }
 
-  // Determine grid columns based on number of days
-  const gridColsClass = daysToShow.length === 1 
-    ? 'grid-cols-1' 
-    : daysToShow.length <= 3 
-      ? `grid-cols-${daysToShow.length}` 
-      : 'grid-cols-6'
 
   return (
     <div className="mt-6">

@@ -113,7 +113,6 @@ export function InteractiveTimeline() {
   const [pointerIndex, setPointerIndex] = useState<number | null>(null)
   const [fillHeight, setFillHeight] = useState(0)
 
-  const listRef = useRef<HTMLUListElement>(null)
   const itemRefs = useRef<(HTMLLIElement | null)[]>([])
 
   const currentIndex = pointerIndex ?? activeIndex
@@ -289,7 +288,7 @@ export function InteractiveTimeline() {
                               transitionDelay: isActive ? `${imgIndex * 80}ms` : '0ms',
                             }}
                           >
-                            <Image src={img} alt="" fill className="object-cover" />
+                            <Image src={img} alt="" fill sizes="64px" className="object-cover" />
                           </div>
                         ))}
                       </div>
